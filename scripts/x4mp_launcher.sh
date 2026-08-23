@@ -232,6 +232,34 @@ if [ "$ROLE_NAME" = "client" ]; then
     # teleporting visible ships; far/offscreen ships snap.
     export X4MP_GLIDE_SPEED="${X4MP_GLIDE_SPEED:-1500}"
     export X4MP_GLIDE_MAX="${X4MP_GLIDE_MAX:-20000}"
+
+    # Anti-flicker rendering (client): choose how aggressively to suppress the
+    # client/host sync flicker.
+    #   Ghost rendering (1) is the strongest: the client suppresses its own
+    #   diverged local ships and renders the host's world purely as ghosts
+    #   (host-authoritative). Requires thin-client (ships host-driven).
+    #   Pin + glide (2) reconciles the client's local ships with per-frame
+    #   pinning + glide convergence (the previous standard).
+    #   Original (3) reconciles without per-frame pinning.
+    echo ""
+    echo "--- Anti-flicker rendering (client) ---"
+    echo "  1) Ghost rendering  - host-authoritative; suppresses local ships [recommended]"
+    echo "  2) Pin + glide      - reconcile local ships with per-frame pinning"
+    echo "  3) Original         - reconcile without per-frame pinning"
+    read -r -p "Anti-flicker mode [1 = ghost rendering]: " FLK_INPUT
+    case "$FLK_INPUT" in
+        2|pin)      export X4MP_GHOSTS=0; export X4MP_PIN_INTERVAL=1
+                    echo "  -> Pin + glide (X4MP_GHOSTS=0, per-frame pin)" ;;
+        3|original) export X4MP_GHOSTS=0; export X4MP_PIN_INTERVAL=3
+                    echo "  -> Original reconcile (no per-frame pin)" ;;
+        *)          export X4MP_GHOSTS=1; export X4MP_PIN_INTERVAL=1
+                    if [ "$SIM_MODE" = "hybrid" ]; then
+                        export X4MP_INERT=1; SIM_MODE="thin-client"
+                        echo "  -> Ghost rendering (X4MP_GHOSTS=1); switched to thin-client"
+                    else
+                        echo "  -> Ghost rendering (X4MP_GHOSTS=1) [recommended]"
+                    fi ;;
+    esac
 fi
 
 # --- Common options ---------------------------------------------------------
@@ -272,6 +300,12 @@ case "$REGION_INPUT" in
     *)        export X4MP_REGION=0
               echo "  -> Region streaming OFF (released behavior)" ;;
 esac
+# Option A "true thin-client" ghost rendering (experimental): the client renders
+# the host's world purely as ghosts and suppresses its own diverged local ships in
+# the zone (eliminating wrong-binding flicker). Set X4MP_GHOSTS=1 in the
+# environment to enable; client-side only. Defaults OFF (current reconcile model).
+export X4MP_GHOSTS="${X4MP_GHOSTS:-0}"; export X4MP_FRAME_DIAG_S="${X4MP_FRAME_DIAG_S:-5}"
+if [ "$X4MP_GHOSTS" = "1" ]; then echo ">> X4MP_GHOSTS=1 — Option A ghost rendering ENABLED (experimental)"; fi
 # Net mode: consolidated (DEFAULT) = one port per transport (TCP 7778 or UDP
 # 7777) carrying control + data on a single connection. legacy = UDP 7777
 # control + TCP/UDP 7778 data (old split-port setup; X4MP_LEGACY_NET=1).
@@ -366,9 +400,24 @@ fi
 export SteamAppId="294140"
 export SteamGameId="294140"
 export LD_LIBRARY_PATH="${GAME_DIR}/lib:${LD_LIBRARY_PATH:-}"
-# Force the real GPU Vulkan driver (radv). On the VM the loader otherwise picks
-# lavapipe, which crashes X4. Harmless on machines that already default to radv.
-export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/radeon_icd.x86_64.json"
+# Choose the Vulkan driver sensibly. VK_ICD_FILENAMES, once set, REPLACES the
+# loader's default ICD discovery — so forcing the AMD radv ICD here would break
+# startup on NVIDIA machines (wrong driver / no valid ICD found). We therefore
+# only force radv automatically when a real NVIDIA ICD is NOT installed; this
+# avoids the software lavapipe driver crashing X4 on the headless VM. Override
+# with X4MP_FORCE_RADV=1 (always force radv) or X4MP_FORCE_RADV=0 (never force,
+# let the Vulkan loader pick — recommended on NVIDIA).
+RADV_ICD="/usr/share/vulkan/icd.d/radeon_icd.x86_64.json"
+case "${X4MP_FORCE_RADV:-}" in
+    0) ;; # explicit: never force
+    1) export VK_ICD_FILENAMES="$RADV_ICD" ;; # explicit: always force
+    *) NV_ICD="$(ls /usr/share/vulkan/icd.d/*nvidia*.json 2>/dev/null | head -1)"
+       if [ -f "$RADV_ICD" ] && [ -z "$NV_ICD" ]; then
+           export VK_ICD_FILENAMES="$RADV_ICD"
+           echo ">> No NVIDIA Vulkan ICD found — forcing AMD radv (avoids lavapipe)"
+       fi
+       ;;
+esac
 
 cd "${GAME_DIR}"
 mkdir -p "${LOG_DIR}"

@@ -159,3 +159,49 @@ code is the thing I could verify; the experience was theirs alone to witness.
   to the host** — the host's build tree is stale.
 
 Thank you for leaving room for this note. Build it further.
+
+---
+
+## Update — 2026-08-23 (anti-flicker rework shipped)
+
+A follow-on from the note above, because the flying-flicker question is now
+largely answered.
+
+**The flicker was diagnosed, not guessed at.** Client-side diagnostics (`[FRM]`,
+`[FLK]`, `[FLKV]`) proved the client and host **share one coordinate frame**
+(`[FRM]` local-nearest ≈ streamed-nearest to the meter). So the earlier
+hypothesis in the note — that streaming one sector leaves diverged stale
+positions — was right in spirit but the *frame* was never the problem. The real
+cause is **population divergence**: the client keeps its local universe frozen
+near save-load positions while the host simulates (ships move/spawn/die), so
+macro+nearest binding mis-binds (a local fighter beside the player got bound to
+the host's same-macro fighter ~117 km away). The pin then fails or teleports.
+
+**The fix — ghost rendering (`X4MP_GHOSTS=1`, now the launcher's recommended
+default).** On sector entry the client **suppresses its diverged local ships**
+(`RemoveComponent`) and renders the host's world **purely as ghosts**. No binding,
+no pinning → no wrong-binding flicker, no tug-of-war, no divergence. It reuses
+existing machinery (`render_pass` already falls through to the ghost path when
+there is nothing to bind), so it was a small change. Verified live: `[FLK]
+drift=0 pin=0`, `[FRM] local_mind=-1 (n=0)`.
+
+**One honest caveat:** a single nearby ship still flickers *visually* despite
+drift=0 — it may be host-side unstable positions, interpolation lag, or a
+rendering/model glitch, not the sync. A per-ship `[FRM]` tracer (id/tx/px/pxt)
+is deployed to isolate it. That is the current open item.
+
+**Also shipped in this build:**
+- **glibc ≥ 2.38** — a stray `sqrtf@GLIBC_2.43` import kept `x4mp_stream.so` from
+  loading on Ubuntu 24.04 (glibc 2.39). A local `sqrtf` shim (mapping to
+  `sqrt@GLIBC_2.2.5`) dropped the requirement. New trap worth knowing: *building
+  on a newer glibc silently bumps symbol versions even for basic math functions.*
+- **Host log-flood fix** — `GetObjectPositionInSector` on an object that lost its
+  sector (dying/docked) spammed "Failed to retrieve sector" every tick. A
+  `sector_of()` guard before each read fixes it.
+- **Launcher GPU fix** — it used to force the AMD `radv` Vulkan ICD
+  unconditionally, which broke startup on NVIDIA machines. It now only forces
+  radv when no NVIDIA ICD is present (`X4MP_FORCE_RADV` to override).
+
+The strategic direction #1 from the original note (fix the flicker) is done for
+the sync side. The 🟡 features (combat/trade/boarding) are still awaiting the
+human's in-game validation — that frontier has not moved.

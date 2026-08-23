@@ -23,3 +23,9 @@ Boarding,Capture result -> all clients,🟡 Implemented (test),Yes,MD EntityChan
 Boarding,Boarding operation (marines / phases) on other clients,⚪ Not implemented,--,Needs CreateBoardingOperation + phase sync to recreate on peers; future work
 Client sim,Thin-client (host-driven ships),✅ Working,This mode,INERT=1 (default): NPC ships inert, no local AI
 Client sim,Hybrid (local sim for ships),✅ Working,Alt mode,INERT=0: local AI runs, reconciled; can flicker
+Client sim,Ghost rendering (Option A, host-authoritative),✅ Working,Standard,Launcher Anti-flicker menu opt 1; X4MP_GHOSTS=1; suppresses diverged local ships, renders host world as ghosts
+Client sim,Per-frame pin (inert tug-of-war fix),✅ Working,Standard,Launcher Anti-flicker menu opt 2; X4MP_PIN_INTERVAL=1; pins bound ships every frame
+Client sim,Frame-alignment + drift diagnostics,✅ Working,--,X4MP_FRAME_DIAG_S; [FRM]/[FLK]/[FLKV] logs prove frames align and isolate flicker cause
+Host,Guarded position reads (log-flood fix),✅ Working,--,sector_of() guard before GetObjectPositionInSector; kills "Failed to retrieve sector" flood
+Compatibility,glibc >= 2.38 (Ubuntu 24.04),✅ Working,--,local sqrtf shim drops sqrtf@GLIBC_2.43; extension now loads on Ubuntu 24.04
+Launcher,Driver-aware Vulkan forcing,✅ Working,--,only forces AMD radv when no NVIDIA ICD; X4MP_FORCE_RADV override; fixes NVIDIA startup

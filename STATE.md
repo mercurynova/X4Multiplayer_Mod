@@ -2,7 +2,7 @@
 
 > Saved 2026-08-08 (before a PC restart). Read this before continuing.
 
-## 0. CURRENT STATE (latest, 2026-08-20) — read this first
+## 0. CURRENT STATE (latest, 2026-08-23) — read this first
 
 **Architecture:** hybrid/thin-client reconciliation over a single consolidated TCP
 connection (7778). The host streams every ship in each client's sector; the client
@@ -35,8 +35,22 @@ is 30 s (aligned with the ghost stale threshold).
 **Deployment:** source of truth is this machine (192.168.1.101). Build locally,
 scp `.so` + `x4mp_run.sh`/launcher to 192.168.1.16. Both machines run the game
 with `-showfps -nocputhrottle`. Current md5s: x4mp.so
-`efb4f15ded4a0b4272cc0ceca27a1634` (2026-08-21 role-gating fix), x4mp_stream.so
-`14ec256989ba92acd3a34434d72fc1da`. Region streaming is opt-in (`X4MP_REGION=1`, `X4MP_REGION_M`), off by default.
+`285ab3aa0a415623fddf9dfb1c9c070a` (2026-08-23 sector-guard log-flood fix),
+x4mp_stream.so `413d92fbd18a9df5b74b6aa5ef28e2e6` (2026-08-23 ghost rendering +
+glibc 2.38 + diagnostics). Both extensions now require only **glibc ≥ 2.38**
+(Ubuntu 24.04 works). Region streaming is opt-in (`X4MP_REGION=1`, `X4MP_REGION_M`),
+off by default.
+
+**Anti-flicker rendering (client) — NEW (2026-08-22/23):** the launcher's
+"Anti-flicker mode" menu (client) offers three strategies. Diagnosis proved the
+client and host **share one coordinate frame** (no mismatch) but their ship
+populations **diverge** (client frozen at save positions vs host simulated), so
+macro+nearest binding mis-binds and pins fail. **Ghost rendering (`X4MP_GHOSTS=1`)**
+is the recommended standard: the client suppresses its diverged local ships on
+sector entry and renders the host's world purely as ghosts — eliminating
+wrong-binding flicker, the inert tug-of-war, and divergence. **Pin + glide**
+(`X4MP_PIN_INTERVAL=1`) and **original** remain as alternatives. Verified: with
+ghost mode, `[FLK] drift=0 pin=0` and `[FRM] local_mind=-1 (n=0)`.
 
 **To test the 🟡 items:** board a ship with cargo + trade (trading), kill a ship
 (combat), board + capture a ship (boarding).
@@ -267,6 +281,52 @@ of the world is the client's own save. This is exactly what Option 2 solves.
 - Test log (test_minimal.sh / manual): `X4 Foundations/test_logs/game.log`.
 - The game takes ~20s to load extensions and up to ~180s to load a large save.
 - Only ONE X4 instance can run at a time on a machine.
+
+## 2026-08-22/23 — ANTI-FLICKER REWORK: ghost rendering + diagnostics + glibc/launcher fixes
+
+**Diagnosis (client-side `[FRM]`/`[FLK]`/`[FLKV]` logs):**
+- Proved the client and host **share one coordinate frame** (`[FRM] local_mind`
+  ≈ `streamed_mind` to the meter; no frame mismatch). The earlier coordinate-
+  offset hypothesis was wrong.
+- The real cause of residual flicker is **population divergence**: the client
+  keeps its local universe frozen near save-load positions while the host
+  simulates (ships move/spawn/die). macro+nearest binding then mis-binds
+  (218 of 268 near-player drift outliers were a local ship bound to a host ship
+  ~117 km away), and the pin fails/teleports.
+- Phase 1 (per-frame pin, `X4MP_PIN_INTERVAL=1`) cut the tug-of-war but could not
+  fix wrong bindings.
+
+**Fix — Option A ghost rendering (`X4MP_GHOSTS=1`, recommended default):**
+- On sector entry the client now **suppresses** (RemoveComponent) its diverged
+  local ships (keeping the player's own ship, the load-bearing satellite,
+  stations, and boarding-exempt ships) and renders the host's world **purely as
+  ghosts**. No binding, no pinning → no wrong-binding flicker, no tug-of-war.
+- `render_pass` needed no edits: with no local ships to bind it already falls
+  through to its ghost path, and the prune loop already uses RemoveComponent.
+- Verified live: `[GHOST] suppressed N local ships`, `[FLK] drift=0 pin=0`,
+  `[FRM] local_mind=-1 (n=0) streamed_mind=280m`.
+- Launcher: new client "Anti-flicker mode" menu (1 Ghost [recommended] / 2
+  Pin+glide / 3 Original). `X4MP_GHOSTS`/`X4MP_PIN_INTERVAL` exposed.
+
+**Other fixes shipped in this build:**
+- **Host log-flood fix** (`x4mp.cpp`): `sector_of()` guard before every active
+  `GetObjectPositionInSector` read — kills the `Failed to retrieve sector of
+  object <id>` flood (was ~590× for a dying/docked object).
+- **glibc ≥ 2.38** (`x4mp_stream.cpp`): a local `sqrtf` shim replaces the
+  `sqrtf@GLIBC_2.43` import, so the extension loads on **Ubuntu 24.04** (glibc
+  2.39). README compatibility line corrected.
+- **Launcher GPU fix**: `VK_ICD_FILENAMES` is only forced to AMD `radv` when no
+  NVIDIA ICD is present (with `X4MP_FORCE_RADV` override) — fixes startup on
+  NVIDIA machines that the old unconditional forcing broke.
+- **`[FRM]` frame diagnostic** extended with a per-ship tracer (nearest ship's
+  id/tx/px/pxt) to isolate any residual flicker.
+
+**md5s:** x4mp.so `285ab3aa0a415623fddf9dfb1c9c070a`, x4mp_stream.so
+`413d92fbd18a9df5b74b6aa5ef28e2e6` (both machines + release).
+
+**Open:** one nearby ship still flickers visually despite `drift=0` — being
+tracked with the `[FRM]` tracer (host-side unstable position vs interpolation
+lag vs rendering).
 
 ## 2026-08-11 — Option 1 intermediate step: client renders host-streamed objects (WORKS)
 - Client now syncs the host's save (scp in x4mp_run.sh) and LOADS it (paused, no simulation).

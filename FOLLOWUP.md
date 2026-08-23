@@ -317,3 +317,58 @@ but correctly SKIPS campaign saves where the player pilots a foreign faction
 - ACT BUILD: implemented; functional test needs a user-built station.
 - bound_locals leak + index dupes: instrumented (prune-skip counters);
   verifying in current run.
+
+---
+
+## Anti-flicker rework (2026-08-22/23) — ghost rendering + fixes
+
+### Diagnosis (log-evidence, not guessed)
+Added client diagnostics and tested live:
+- `[FRM]` frame check: nearest **local** ship to the player vs nearest
+  **host-streamed** ship. They match to the meter (`local_mind` ≈
+  `streamed_mind`) → **the two instances share one coordinate frame**. The
+  coordinate-offset hypothesis is dead.
+- `[FLK]`/`[FLKV]`: with per-frame pinning, ~42% of pins still saw >5 m drift
+  and outliers up to ~17,000 km. Of 268 near-player outliers, **218 were wrong
+  bindings** — the client bound a local ship beside the player to the host's
+  same-macro ship ~117 km away. Cause: **population divergence** (client frozen
+  near save positions vs host simulated). Frames align; the ship *populations*
+  differ.
+
+### Option A — ghost rendering (`X4MP_GHOSTS=1`, launcher-recommended default)
+On sector entry the client **suppresses** (RemoveComponent) its diverged local
+ships (keeping the player's own ship, the load-bearing **satellite**, stations,
+and boarding-exempt ships) and renders the host's world **purely as ghosts**.
+No binding, no pinning → eliminates wrong-binding flicker, the inert
+`tug-of-war`, and divergence. Reuses existing machinery: with nothing to bind,
+`render_pass` already falls through to its ghost path. Verified live:
+`[GHOST] suppressed N local ships`, `[FLK] drift=0 pin=0`,
+`[FRM] local_mind=-1 (n=0) streamed_mind=280m`.
+
+Launcher now has a client **"Anti-flicker rendering"** menu:
+1. Ghost rendering (`X4MP_GHOSTS=1`) [recommended] · 2. Pin + glide
+(`X4MP_PIN_INTERVAL=1`) · 3. Original (no per-frame pin). Ghost auto-switches
+hybrid→thin-client.
+
+### Other fixes in this build
+- **Host log-flood** (`x4mp.cpp`): `sector_of()` guard before active
+  `GetObjectPositionInSector` reads — kills the `Failed to retrieve sector of
+  object` flood (a dying/docked object passes `IsValidComponent` but has no
+  sector). Host log now shows 0 such errors.
+- **glibc ≥ 2.38** (`x4mp_stream.cpp`): a local `sqrtf` shim replaces the
+  `sqrtf@GLIBC_2.43` import so the extension loads on **Ubuntu 24.04** (glibc
+  2.39). Trap: building on a newer glibc bumps symbol versions even for basic
+  math.
+- **Launcher GPU forcing**: `VK_ICD_FILENAMES` was set to the AMD `radv` ICD
+  unconditionally, breaking NVIDIA startup. Now only forced when no NVIDIA ICD
+  is present; `X4MP_FORCE_RADV=0/1` overrides.
+
+### Open item
+One nearby ship still flickers **visually** despite `drift=0` — possibly
+host-side unstable positions, interpolation lag, or a rendering/model glitch
+(rather than sync). A per-ship `[FRM]` tracer (`near=id… tx=… px=… pxt=…`) is
+deployed (`X4MP_FRAME_DIAG_S=2` for dense sampling) to isolate it.
+
+### md5s
+`x4mp.so 285ab3aa0a415623fddf9dfb1c9c070a` ·
+`x4mp_stream.so 413d92fbd18a9df5b74b6aa5ef28e2e6` (both machines + release).

@@ -78,7 +78,7 @@ faction's money pool.
 
 | | |
 |---|---|
-| OS | Linux x86-64, **glibc ≥ 2.43** (Debian 13+, Ubuntu 25.04+, Arch, Fedora 41+). Tested on Arch/CachyOS. |
+| OS | Linux x86-64, **glibc ≥ 2.38** (Debian 13+, Ubuntu 24.04+, Arch, Fedora 39+). Tested on Arch/CachyOS. |
 | Game | X4: Foundations **Linux** build installed and runnable on each machine. |
 | GPU | Real GPU with a Vulkan driver (the game renders with Vulkan). |
 | Network | Machines on the same LAN that can reach each other by IP. |
@@ -166,6 +166,8 @@ running, or answer the launcher prompts).
 | `X4MP_LEGACY_NET` | `0` | `0` = consolidated one-port mode (default); `1` = legacy split ports. |
 | `X4MP_PORT` | `7777` | Control port (legacy mode). |
 | `X4MP_INERT` | `1` | Freeze the client's local AI for host-driven ships (prevents divergence). |
+| `X4MP_GHOSTS` | `0` | **Anti-flicker (Option A):** client suppresses its diverged local ships and renders the host's world purely as ghosts (host-authoritative). Strongest flicker fix; implies thin-client. |
+| `X4MP_PIN_INTERVAL` | `1` | Frames between per-frame pins of bound ships (`1` = every frame; kills the inert tug-of-war). Used in pin+glide mode. |
 | `X4MP_CONVERGE_GREEDY` | `1` | On sector entry, snap diverged local ships to the host's positions. |
 | `X4MP_BIND_RADIUS` | `1000` | Mid-sector re-match radius (m). |
 | `X4MP_CONVERGE_RADIUS` | `20000` | Entry convergence radius (m) when greedy is off. |
@@ -258,9 +260,9 @@ of the same save).
 | World differs on client vs host | Client loaded a different save. Re-transfer the exact same save and restart the client. |
 | Client reloads the save in a loop | Old bug (fixed): player-ship pruning. Update to the latest `x4mp_stream.so`. Check the log for `Game Over ... killmethod=removed`. |
 | Can't see other players' ships | Old bug (fixed): ghost factions. Update to the latest `x4mp.so`. Check the host log for `HOST spawned client ghost`. |
-| Ships flicker / pop | Ensure `X4MP_INERT=1` and `X4MP_CONVERGE_GREEDY=1` (defaults); run with `X4MP_DEBUG=1` and look for `[CONVERGE]` / `[FLK]` lines. |
+| Ships flicker / pop | Pick **Ghost rendering** in the launcher's Anti-flicker menu (client; `X4MP_GHOSTS=1`) — it renders the host's world as ghosts and suppresses diverged local ships. Otherwise ensure `X4MP_INERT=1` + `X4MP_PIN_INTERVAL=1`; run with `X4MP_DEBUG=1` and look for `[GHOST]` / `[FRM]` / `[FLK]` lines. |
 | Client crashes on load | Make sure only one X4 instance runs; the client waits for "universe ready" before rendering. Check the log. |
-| GPU / rendering errors | Needs a real Vulkan GPU. AMD `radv` driver is forced via `VK_ICD_FILENAMES` on the test machines; other GPUs may need it unset. |
+| GPU / rendering errors | Needs a real Vulkan GPU. The launcher only forces the AMD `radv` ICD when no NVIDIA ICD is present (so NVIDIA machines use their own driver); override with `X4MP_FORCE_RADV=0`/`1`. |
 | Host very slow | Avoid `X4MP_FULLSIM=1` (simulates all ~85k ships). The default per-sector high-sim is much lighter. |
 
 ## Package layout
