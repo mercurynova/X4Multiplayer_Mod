@@ -34,7 +34,9 @@ is 30 s (aligned with the ghost stale threshold).
 
 **Deployment:** source of truth is this machine (192.168.1.101). Build locally,
 scp `.so` + `x4mp_run.sh`/launcher to 192.168.1.16. Both machines run the game
-with `-showfps -nocputhrottle`. Current `x4mp_stream.so` md5 `01e9307e...`.
+with `-showfps -nocputhrottle`. Current md5s: x4mp.so
+`efb4f15ded4a0b4272cc0ceca27a1634` (2026-08-21 role-gating fix), x4mp_stream.so
+`14ec256989ba92acd3a34434d72fc1da`. Region streaming is opt-in (`X4MP_REGION=1`, `X4MP_REGION_M`), off by default.
 
 **To test the 🟡 items:** board a ship with cargo + trade (trading), kill a ship
 (combat), board + capture a ship (boarding).
@@ -801,3 +803,42 @@ x4mp_stream.so `8a4dce4648a3bd2b444e07673c531a0f`.
   host, or prune ghosts before save.
 - Host-built stations are not yet replicated to clients (client->host works).
 - Host fps ~25 with one client (high-sim cost, accepted).
+
+---
+
+## 2026-08-21 — HOST-ONLY SPAWN-ERROR FLOOD FIXED (client<->host role gating)
+
+**Symptom:** the host log flooded with
+`SpawnObjectAtPos2(): Failed to retrieve owner faction with name
+'<cluster_NN_sector001_macro>'` — ~2.4M times/hour, in dense per-frame bursts,
+across every sector the player visited. Client log: **0** errors. `ghosts=0`,
+no `x4mp_stream: [DBG] SPAWN` lines, yet the host's `x4mp_stream` `g_objs`
+ballooned to ~250 with garbage ids (~2^64).
+
+**Root cause:** the consolidated-**UDP** receive loop in `x4mp.cpp`
+(`recvfrom(g_sock, …)` ~line 2142) forwarded incoming data lines
+(`OBJ/PLAYER/FULL/STA/KILL/PLAYERDIED/CARGO/CAPTURE/TRADE`) to
+`x4mp_stream.data` **without a role gate**, so it ran on the **host** too.
+The host fed the *client's* own `PLAYER` lines into the host's `x4mp_stream`.
+The client's `PLAYER` format is cid-less (`PLAYER x y z yaw pitch roll macro
+csector`), but `x4mp_stream`'s parser expects a leading `cid`
+(`PLAYER cid … macro faction sectormacro`). The missing `cid` shifted every
+field by one, so the client's **sector macro** landed in `o.faction`. Each such
+object is `is_player=true` (never binds), so `x4mp_stream` called
+`SpawnObjectAtPos2(ship_macro, sector, pos, "<sector macro>")` every frame; the
+game rejected it (returns 0, `o.spawned` stays false) → infinite retry flood.
+The client's moving x-position was mis-read as a fresh id, growing `g_objs`.
+
+**Impact on sync: none.** The phantom spawn never succeeded, so nothing was
+created or corrupted. Real player-ship exchange (client sends position each tick
+→ host moves into that sector → host streams it back) worked underneath.
+
+**Fix:** gate the forward to **client-only** — `if (g_net_client && !g_legacy_net
+&& g_transport == "udp" && …)`. The consolidated-**TCP** path was already
+client-gated (`else if (g_net_client)`); only the UDP path missed the check.
+On the host, received `PLAYER`/`ACT` lines now go to `process_message`, which
+spawns the client ghost with the correct `cfaction`.
+
+**Deployed md5 (this fix):** x4mp.so `efb4f15ded4a0b4272cc0ceca27a1634`
+(both machines + release). x4mp_stream.so unchanged
+`14ec256989ba92acd3a34434d72fc1da`. Tarball rebuilt.

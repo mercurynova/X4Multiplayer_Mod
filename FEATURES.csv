@@ -2,6 +2,7 @@ Category,Feature,Status,Thin-client?,Notes / Limitation
 Networking,Host / join (in-game menu + launcher),✅ Working,Yes,Both machines render; menu or auto-start
 Networking,TCP consolidated transport (1 port),✅ Working,Yes,Default. UDP option also available
 Networking,Reconnection (no drop loop),✅ Working,Yes,Stable 30+ min verified
+Networking,Reconciliation is client-only (host role-gated),✅ Fixed 2026-08-21,Yes,UDP data->x4mp_stream forward gated to client; stops host 'Failed to retrieve owner faction <sector>' flood. Sync was never affected.
 Networking,Save sync (client loads host save),✅ Working,Yes,Client copies host's save before launch
 Core sync,Player position / movement,✅ Working,Yes,Player ship is active (not inert); streamed to all
 Core sync,Ship position sync (same ships everywhere),✅ Working,Yes,Now flicker-free via glide convergence

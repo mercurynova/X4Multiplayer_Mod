@@ -257,6 +257,21 @@ read -r -p "Data-stream transport — tcp (reliable) or udp (no backpressure) [t
 X4MP_TRANSPORT="${X4MP_TRANSPORT:-tcp}"
 case "${X4MP_TRANSPORT}" in udp|UDP) X4MP_TRANSPORT="udp" ;; *) X4MP_TRANSPORT="tcp" ;; esac
 export X4MP_TRANSPORT
+# Region streaming (experimental): the host also streams ships within a radius
+# of the client (neighbouring sectors), so they stay pre-synced and a sector
+# transition has no diverged-save-position snap/glide. Must be enabled on BOTH
+# the host and the client. Off (2) is the default = the released behavior.
+echo ""
+echo "--- Region streaming (experimental) ---"
+echo "  1) ON    pre-sync neighbouring sectors — fixes highway flicker. Enable on BOTH host and client."
+echo "  2) OFF   released behavior — current sector only [default]"
+read -r -p "Region streaming [2 = off]: " REGION_INPUT
+case "$REGION_INPUT" in
+    1|ON|on)  export X4MP_REGION=1; export X4MP_REGION_M="${X4MP_REGION_M:-120000}"
+              echo "  -> Region streaming ON (X4MP_REGION=1, R=${X4MP_REGION_M}m). Enable it on the other machine too." ;;
+    *)        export X4MP_REGION=0
+              echo "  -> Region streaming OFF (released behavior)" ;;
+esac
 # Net mode: consolidated (DEFAULT) = one port per transport (TCP 7778 or UDP
 # 7777) carrying control + data on a single connection. legacy = UDP 7777
 # control + TCP/UDP 7778 data (old split-port setup; X4MP_LEGACY_NET=1).
