@@ -1,6 +1,0 @@
-{
-    "library": "native/x4llm.dll",
-    "priority": 40,
-    "min_api_version": 1,
-    "autoreload": false
-}
