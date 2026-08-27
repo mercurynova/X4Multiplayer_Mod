@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language id="44">
+  <page id="70001" title="X4Native">
+    <t id="1001">X4Native</t>
+    <t id="1002">Extension that allows for native includes of cpp dlls into the X4 game. Useful for advances extensions.</t>
+  </page>
+</language>

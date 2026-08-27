@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content version="900" id="x4llm" name="X4LLM" description="In-game LLM board-computer assistant (asks a local llama.cpp server, research + companion)." author="lunarbuntu" date="2026-08-23" save="0" enabled="1">
+  <dependency id="x4native" optional="false" />
+  <text language="44" description="In-game LLM board-computer assistant." name="X4LLM"/>
+</content>
