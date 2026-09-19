@@ -29,6 +29,30 @@ INSTALL
   3. Enable:  x4native,  x4mp,  x4mp_stream
   4. Restart the game.
 
+RECOMMENDED -- run multiplayer on an UNMODDED copy of the game
+  Both machines must load the SAME save, and a save only loads identically
+  where the SAME extensions are present. Matching a large mod list across
+  two machines is a job in itself, and other extensions add noise to the
+  logs that makes diagnosing sync problems harder. Two vanilla installs
+  plus these three extensions is the configuration to aim for.
+
+  You do not have to give up your modded game to do this. Steam will not
+  hold two copies of one game in a single library, but you can:
+
+    1. Steam -> Settings -> Storage -> add a second library folder
+       (a different folder on the same drive is fine).
+    2. Copy the whole "X4 Foundations" directory into
+       <second library>\steamapps\common\ by hand.
+    3. Delete everything in that copy's extensions\ folder except the
+       ego_dlc_* directories (those are your DLCs, keep them), then
+       install the three x4mp extensions there.
+    4. Put steam_appid.txt (see below) next to that copy's X4.exe and
+       launch x4mp.bat from that directory.
+
+  X4 runs fine from a copied directory as long as Steam is running. Your
+  original modded install is untouched, and the two never share anything
+  except your savegame folder -- so keep multiplayer saves clearly named.
+
 IMPORTANT -- steam_appid.txt (read this before your first run)
   X4 restarts itself through Steam when it is not launched by Steam. The
   restarted process keeps the command line but inherits STEAM's environment,
