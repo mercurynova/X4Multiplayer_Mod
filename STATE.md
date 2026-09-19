@@ -1020,3 +1020,98 @@ per-frame pinning.
   filenames.
 - README.txt claimed no runtimes were needed; `x4native_64.dll` /
   `x4native_core.dll` import MSVCP140/VCRUNTIME140 (VC++ 2015-2022 x64 redist).
+
+
+---
+
+## 2026-09-18 (later) — WINDOWS: menu host FIXED, MD hooks FIXED (both verified)
+
+Follow-up to the smoke-test entry above. Two of the three defects are now fixed
+and verified on the same machine (X4 9.00 / 611726, Windows 11).
+
+### Defect 3 was a PACKAGING bug, not a version limitation
+
+`x4native_core` loads the internal-function RVAs at runtime from
+`<extension>/native/version_db/internal_functions.json` (`game_api.cpp:178`).
+The `x4mp_windows/` package shipped **no `version_db` folder at all** — so every
+internal address was unresolvable and the frame-tick, radar and MD-event hooks
+were disabled. The upstream DB has entries for our exact build:
+
+    900-611726  X4_FrameTick                       0x00FA2D70
+    900-611726  EventQueue_InsertOrDispatch        0x0099A3F0
+    900-611726  RadarVisibilityChanged_BuildEvent  0x00A753E0
+
+Shipping the folder fixes it outright:
+
+    GameAPI: Resolved 2065/2065 game functions
+    GameAPI: Resolved 22 internal function(s) from RVA database
+    Native frame hook installed (on_native_frame_update)
+    Radar visibility hook installed (on_radar_changed)
+    MD event hook installed (on_md_before/on_md_after, 600 type slots)
+
+**MD events are therefore live on Windows** — kills, `EntityChangedOwner`
+captures and the boarding inert-exemptions are reachable again. They are still
+unproven in-game (nobody has flown a kill yet), but they are no longer blocked.
+
+`x4mp_linux/extensions/x4native/` has the same omission — worth fixing there
+too, with the caveat that the RVAs in this DB are for the **Windows** binary.
+
+### Defect 2 (menu host loses its listener) — FIXED in x4mp.cpp
+
+Root cause as diagnosed: x4native restarts the extension when the game reloads
+its Lua state, destroying every global (including `g_auto`) and closing the
+listener, and a menu click left nothing behind to resume from.
+
+Fix: the menu handlers now park the request in the **process** environment,
+which outlives the DLL:
+
+* `on_host_request()` → `X4MP_RESUME_ROLE=host` (+ `X4MP_RESUME_MODULE`)
+* `on_join_request()` → `X4MP_RESUME_ROLE=client` (+ `X4MP_RESUME_IP`)
+* `x4native_init()` → if `X4MP_AUTO` is unset and `X4MP_RESUME_ROLE` is set,
+  restore the role, the host IP and the module, and mark the save load as
+  in-flight (`g_save_loading`) so `on_game_loaded` finishes the job. It
+  deliberately does **not** schedule another save load / new game — the click
+  that preceded the reload already started one.
+* `x4mp_platform.h` gained `x4mp_setenv()` (`_putenv_s` / `setenv`).
+
+Verified from the in-game menu (not auto-start):
+
+    03:32:07.869  x4mp: shutting down
+    03:32:07.870  x4mp: net: CLOSE fd=6588 site=shutdown_listen
+    03:32:07.915  x4mp: resuming host after extension reload (in-game menu request)
+    03:32:07.917  x4mp: net: HOST listening on TCP port 7778
+    03:32:32.357  x4mp: game loaded
+    ...           heartbeat — HOST active, listener still up 90 s later
+
+Also fixed while in there: `x4mp_winsock_strerror()` in `x4mp_platform.h`
+returned the address of a **local** buffer (UB — the caller reads it after the
+return). It is now `static thread_local`. Every Windows socket-error log line
+went through that function.
+
+### Build provenance (Windows, from this machine)
+
+Source: `github.com/Neresco/X4Native_Linux`, `examples/x4mp/x4mp.cpp` — its
+`build-win/x4mp.dll` is byte-identical (md5 `edd0026c…`) to the DLL this
+package shipped, so the source matches the binaries we tested. Upstream is
+`github.com/eg3r/X4Native`.
+
+Toolchain: MinGW-w64 GCC 16.2.0 (winlibs zip, unpacked to `C:\Dev\tools`,
+no installer). One command, no CMake needed:
+
+    g++ -shared -std=c++23 -O2 -static -I../../sdk -I../../sdk/sdk \
+        x4mp.cpp -o x4mp.dll -lws2_32
+
+The new DLL is 880 KB vs the old 3 MB because the previous build shipped
+unstripped DWARF debug sections.
+
+### Still open
+
+* **The Linux `.so` is NOT patched** — no Linux toolchain here. The same source
+  change applies; rebuild there. The Linux package is also missing `version_db`.
+* **Defect 1 (Steam relaunch discards the environment)** stands; `x4mp.bat` now
+  writes `steam_appid.txt` itself, which is the practical fix.
+* **Nothing about the client path has been exercised on Windows** — no second
+  machine yet. Host-side only.
+* Cosmetic: after a resume the init still logs `X4MP_AUTO=host — will host a NEW
+  game on game loaded`, which is the shared code path, not the env var. Confusing
+  in a debug log; worth rewording.

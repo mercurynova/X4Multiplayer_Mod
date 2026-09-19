@@ -25,6 +25,9 @@ REQUIREMENTS
 INSTALL
   1. Copy the three extension folders into your game's extensions dir:
          extensions\*   ->   "C:\...\X4 Foundations\extensions\"
+     (x4native\native\version_db\ MUST come along -- without it the game's
+     internal function addresses cannot be resolved and MD events, the
+     frame tick and radar events are all disabled.)
   2. Start X4 and open the extension manager (Options -> Extensions).
   3. Enable:  x4native,  x4mp,  x4mp_stream
   4. Restart the game.
@@ -67,20 +70,23 @@ IMPORTANT -- steam_appid.txt (read this before your first run)
   With that file present the game no longer relaunches and the launcher's
   settings take effect. Delete it to restore the normal Steam start.
 
-KNOWN ISSUE -- use AUTO-START, not the in-game menu
-  Clicking "Host Multiplayer" in the start menu opens the listening socket
-  and then loses it: loading the universe makes x4native reload and shut
-  down the extensions, closing the socket, and the reloaded extension does
-  not remember that you asked to host. Auto-start does not suffer from this
-  (the reloaded extension re-reads X4MP_AUTO and re-opens the listener), so
-  choose AUTO-START in the launcher until this is fixed.
+FIXED 2026-09-18 -- the in-game menu works again
+  Clicking "Host Multiplayer" used to open the listening socket and then
+  lose it: loading the universe makes x4native reload and shut down the
+  extensions, closing the socket, and the reloaded extension had no memory
+  of the request. x4mp now parks the request in the process environment
+  (X4MP_RESUME_ROLE / _IP / _MODULE) and resumes it on the next init, so the
+  listener comes straight back. Look for this in x4native.log:
 
-  Verified working on X4 9.00 with auto-start: TCP 7778 listening, ~92k
-  ships streamed, "heartbeat -- HOST active".
+      x4mp: net: CLOSE fd=... site=shutdown_listen
+      x4mp: resuming host after extension reload (in-game menu request)
+      x4mp: net: HOST listening on TCP port 7778
 
-  Note also that on X4 9.00 x4native cannot resolve the MD event hook
-  (EventQueue_InsertOrDispatch), so combat kills, boarding captures and the
-  boarding inert-exemptions are not expected to work on this build.
+  Both the menu and AUTO-START are verified on X4 9.00: TCP 7778 listening,
+  ~92k ships streamed, "heartbeat -- HOST active".
+
+  The DLL in this package was built with MinGW-w64 GCC 16.2.0 from
+  github.com/Neresco/X4Native_Linux (examples/x4mp).
 
 LAUNCHING
   Double-click x4mp.bat (it sits next to X4.exe). It walks you through:

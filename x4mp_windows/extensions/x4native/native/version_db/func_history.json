@@ -1,0 +1,6226 @@
+{
+    "schema_version": 1,
+    "baseline": "900",
+    "versions": [
+        "900",
+        "900-600626",
+        "900-602526",
+        "900-603098",
+        "900-603990",
+        "900-604402",
+        "900-605025",
+        "900-606138",
+        "900-607242",
+        "900-607977",
+        "900-611726"
+    ],
+    "functions": {
+        "AbortActiveDiplomacyActionOperation": {
+            "added": "900"
+        },
+        "AbortActiveTerraformingProject": {
+            "added": "900"
+        },
+        "AbortBoardingOperation": {
+            "added": "900"
+        },
+        "AbortCurrentNotification": {
+            "added": "900"
+        },
+        "AbortMission": {
+            "added": "900"
+        },
+        "ActivateDirectInput": {
+            "added": "900"
+        },
+        "ActivateDirectKeyInput": {
+            "added": "900"
+        },
+        "ActivateObject": {
+            "added": "900"
+        },
+        "ActivateSliderCellInput": {
+            "added": "900"
+        },
+        "AddAttackerToBoardingOperation": {
+            "added": "900"
+        },
+        "AddBuildTask6": {
+            "added": "900"
+        },
+        "AddCluster": {
+            "added": "900"
+        },
+        "AddColorMapColorDefinition": {
+            "added": "900"
+        },
+        "AddCopyToConstructionMap": {
+            "added": "900"
+        },
+        "AddFleetUnitSubordinate": {
+            "added": "900"
+        },
+        "AddFloatingSequenceToConstructionPlan": {
+            "added": "900"
+        },
+        "AddGateConnection": {
+            "added": "900"
+        },
+        "AddHoloMap": {
+            "added": "900"
+        },
+        "AddMacroToConstructionMap": {
+            "added": "900"
+        },
+        "AddPlayerAlert2": {
+            "added": "900"
+        },
+        "AddPlayerMoney": {
+            "added": "900"
+        },
+        "AddResearch": {
+            "added": "900"
+        },
+        "AddSector": {
+            "added": "900"
+        },
+        "AddSimilarMapComponentsToSelection": {
+            "added": "900"
+        },
+        "AddTradeWare": {
+            "added": "900"
+        },
+        "AdjustOrder": {
+            "added": "900"
+        },
+        "AllowPersonalizedData": {
+            "added": "900"
+        },
+        "AreAssertsEnabled": {
+            "added": "900"
+        },
+        "AreConstructionPlanLoadoutsCompatible": {
+            "added": "900"
+        },
+        "AreGfxSettingsTooHigh": {
+            "added": "900"
+        },
+        "AreMandatoryAssertsEnabled": {
+            "added": "900"
+        },
+        "AreObjectEnginesDisabledByStanceOnly": {
+            "added": "900"
+        },
+        "AreOptionalAssertEnabled": {
+            "added": "900"
+        },
+        "AreVenturesCompatible": {
+            "added": "900"
+        },
+        "AreVenturesEnabled": {
+            "added": "900"
+        },
+        "AreWaresWithinContainerProductionLimits": {
+            "added": "900"
+        },
+        "AssignHiredActor": {
+            "added": "900"
+        },
+        "CanAbortActiveTerraformingProject": {
+            "added": "900"
+        },
+        "CanAcceptSubordinate": {
+            "added": "900"
+        },
+        "CanActivateSeta": {
+            "added": "900"
+        },
+        "CanApplyKnownLoadout": {
+            "added": "900"
+        },
+        "CanBeCollectedBy": {
+            "added": "900"
+        },
+        "CanBeDismantled": {
+            "added": "900"
+        },
+        "CanBeTowed": {
+            "added": "900"
+        },
+        "CanBuildLoadout": {
+            "added": "900"
+        },
+        "CanBuildMissionLoadout": {
+            "added": "900"
+        },
+        "CanCancelConstruction": {
+            "added": "900"
+        },
+        "CancelConstruction": {
+            "added": "900"
+        },
+        "CancelPlayerInvolvedTradeDeal": {
+            "added": "900"
+        },
+        "CanClaimOwnership": {
+            "added": "900"
+        },
+        "CanContainerBuildShip": {
+            "added": "900"
+        },
+        "CanContainerEquipShip": {
+            "added": "900"
+        },
+        "CanContainerMineTransport": {
+            "added": "900"
+        },
+        "CanContainerSupplyShip": {
+            "added": "900"
+        },
+        "CanContainerTransport": {
+            "added": "900"
+        },
+        "CanControllableHaveAnyTrainees": {
+            "added": "900"
+        },
+        "CanControllableHaveControlEntity": {
+            "added": "900"
+        },
+        "CanDockAtDockingBay": {
+            "added": "900"
+        },
+        "CanGenerateValidKnownLoadout": {
+            "added": "900"
+        },
+        "CanGenerateValidLoadout": {
+            "added": "900"
+        },
+        "CanHaveCountermeasures": {
+            "added": "900"
+        },
+        "CanOpenWebBrowser": {
+            "added": "900"
+        },
+        "CanPerformLongRangeScan": {
+            "added": "900"
+        },
+        "CanPlayerActivateCoverAbility": {
+            "added": "900"
+        },
+        "CanPlayerCommTarget": {
+            "added": "900"
+        },
+        "CanPlayerStandUp": {
+            "added": "900"
+        },
+        "CanPlayerUseRace": {
+            "added": "900"
+        },
+        "CanPutShipIntoStorage": {
+            "added": "900"
+        },
+        "CanRedoConstructionMapChange": {
+            "added": "900"
+        },
+        "CanResearch": {
+            "added": "900"
+        },
+        "CanSetPlayerCameraCinematicView": {
+            "added": "900"
+        },
+        "CanShipSwitchStance": {
+            "added": "900"
+        },
+        "CanStartDiplomacyAction": {
+            "added": "900"
+        },
+        "CanStartTerraformingProject": {
+            "added": "900"
+        },
+        "CanStartTravelMode": {
+            "added": "900"
+        },
+        "CanTeleportPlayerTo": {
+            "added": "900"
+        },
+        "CanUndoConstructionMapChange": {
+            "added": "900"
+        },
+        "ChangeMapBuildPlot": {
+            "added": "900"
+        },
+        "CheatDockingTraffic": {
+            "added": "900"
+        },
+        "CheatLiveStreamViewChannels": {
+            "added": "900"
+        },
+        "CheckConstructionPlanForMacros": {
+            "added": "900"
+        },
+        "CheckGroupedShieldModCompatibility": {
+            "added": "900"
+        },
+        "CheckShipModCompatibility": {
+            "added": "900"
+        },
+        "CheckWeaponModCompatibility": {
+            "added": "900"
+        },
+        "ClaimShip": {
+            "added": "900"
+        },
+        "ClearBuildMapSelection": {
+            "added": "900"
+        },
+        "ClearContainerBuyLimitOverride": {
+            "added": "900"
+        },
+        "ClearContainerSellLimitOverride": {
+            "added": "900"
+        },
+        "ClearErrorLog": {
+            "added": "900"
+        },
+        "ClearMapBehaviour": {
+            "added": "900"
+        },
+        "ClearMapBuildPlot": {
+            "added": "900"
+        },
+        "ClearMapObjectFilter": {
+            "added": "900"
+        },
+        "ClearMapOrderParamObjectFilter": {
+            "added": "900"
+        },
+        "ClearMapTradeFilterByMinTotalVolume": {
+            "added": "900"
+        },
+        "ClearMapTradeFilterByPlayerOffer": {
+            "added": "900"
+        },
+        "ClearMapTradeFilterByWare": {
+            "added": "900"
+        },
+        "ClearMapTradeFilterByWillingToTradeWithPlayer": {
+            "added": "900"
+        },
+        "ClearProductionItems": {
+            "added": "900"
+        },
+        "ClearRendertarget": {
+            "added": "900"
+        },
+        "ClearSelectedMapComponents": {
+            "added": "900"
+        },
+        "ClearSelectedMapMacroSlots": {
+            "added": "900"
+        },
+        "ClearStartmenuParam": {
+            "added": "900"
+        },
+        "ClearTrackedMenus": {
+            "added": "900"
+        },
+        "CompareMapConstructionSequenceWithPlanned": {
+            "added": "900"
+        },
+        "CompassMenuButtonPressed": {
+            "added": "900"
+        },
+        "CompassMenuButtonReleased": {
+            "added": "900"
+        },
+        "ConnectToMultiplayerGame": {
+            "added": "900"
+        },
+        "ContinueGameStart": {
+            "added": "900"
+        },
+        "ConvertInputString": {
+            "added": "900"
+        },
+        "ConvertStringTo64Bit": {
+            "added": "900"
+        },
+        "CopyToClipboard": {
+            "added": "900"
+        },
+        "CreateBlacklist2": {
+            "added": "900"
+        },
+        "CreateBoardingOperation": {
+            "added": "900"
+        },
+        "CreateDeployToStationOrder": {
+            "added": "900"
+        },
+        "CreateFightRule": {
+            "added": "900"
+        },
+        "CreateNPCFromPerson": {
+            "added": "900"
+        },
+        "CreateOrder": {
+            "added": "900"
+        },
+        "CreateOrder3": {
+            "added": "900"
+        },
+        "CreateTradeRule": {
+            "added": "900"
+        },
+        "CycleNextDroneMode": {
+            "added": "900"
+        },
+        "CycleTurretMissile": {
+            "added": "900"
+        },
+        "CycleTurretMode": {
+            "added": "900"
+        },
+        "DeactivateDirectInput": {
+            "added": "900"
+        },
+        "DeactivateDirectKeyInput": {
+            "added": "900"
+        },
+        "DeactivateMouseEmulation": {
+            "added": "900"
+        },
+        "DeactivateSliderCellInput": {
+            "added": "900"
+        },
+        "DeleteSavegame": {
+            "added": "900"
+        },
+        "DeselectMacroForConstructionMap": {
+            "added": "900"
+        },
+        "DisableAsserts": {
+            "added": "900"
+        },
+        "DisableAutoMouseEmulation": {
+            "added": "900"
+        },
+        "DisableEncryptedDirectInputMode": {
+            "added": "900"
+        },
+        "DisableOptionalAsserts": {
+            "added": "900"
+        },
+        "DisableScenarioLoading": {
+            "added": "900"
+        },
+        "DismantleEngineMod": {
+            "added": "900"
+        },
+        "DismantleGroupedWeaponMod": {
+            "added": "900"
+        },
+        "DismantleShieldMod": {
+            "added": "900"
+        },
+        "DismantleShipMod": {
+            "added": "900"
+        },
+        "DismantleWeaponMod": {
+            "added": "900"
+        },
+        "DoesColorMapNeedRestart": {
+            "added": "900"
+        },
+        "DoesConstructionSequenceRequireBuilder": {
+            "added": "900"
+        },
+        "DoesSliderCellForceArrows": {
+            "added": "900"
+        },
+        "DoesUserDataExist": {
+            "added": "900"
+        },
+        "DropCargo": {
+            "added": "900"
+        },
+        "DropInventory": {
+            "added": "900"
+        },
+        "EnableAllCheats": {
+            "added": "900"
+        },
+        "EnableAsserts": {
+            "added": "900"
+        },
+        "EnableAutoMouseEmulation": {
+            "added": "900"
+        },
+        "EnableEncryptedDirectInputMode": {
+            "added": "900"
+        },
+        "EnableOptionalAsserts": {
+            "added": "900"
+        },
+        "EnableOrder": {
+            "added": "900"
+        },
+        "EnablePlannedDefaultOrder": {
+            "added": "900"
+        },
+        "EnableScenarioLoading": {
+            "added": "900"
+        },
+        "EndGuidance": {
+            "added": "900"
+        },
+        "EnterInteractMenu": {
+            "added": "900"
+        },
+        "ExportColorMap": {
+            "added": "900"
+        },
+        "ExportColorProfile": {
+            "added": "900"
+        },
+        "ExportCustomGameStart": {
+            "added": "900"
+        },
+        "ExportInputFeedbackConfig": {
+            "added": "900"
+        },
+        "ExportMap": {
+            "added": "900"
+        },
+        "ExportMapConstructionPlan": {
+            "added": "900"
+        },
+        "ExtendBuildPlot": {
+            "added": "900"
+        },
+        "FadeScreen2": {
+            "added": "900"
+        },
+        "FilterComponentByText": {
+            "added": "900"
+        },
+        "FilterComponentForDefaultOrderParamObjectMode": {
+            "added": "900"
+        },
+        "FilterComponentForDiplomaticActionParamObjectMode": {
+            "added": "900"
+        },
+        "FilterComponentForMapMode": {
+            "added": "900"
+        },
+        "FilterComponentForOrderParamObjectMode": {
+            "added": "900"
+        },
+        "FilterFleetUnitByText": {
+            "added": "900"
+        },
+        "FindMacro": {
+            "added": "900"
+        },
+        "FireUpdateUseFactionColorTargetSystemEvent": {
+            "added": "900"
+        },
+        "ForceBuildCompletion": {
+            "added": "900"
+        },
+        "ForceMouseCursorVisible": {
+            "added": "900"
+        },
+        "FormatDateTimeString": {
+            "added": "900"
+        },
+        "GenerateFactionRelationImplications": {
+            "added": "900"
+        },
+        "GenerateFactionRelationText": {
+            "added": "900"
+        },
+        "GenerateFactionRelationText2": {
+            "added": "900"
+        },
+        "GenerateFactionRelationTextFromRelation2": {
+            "added": "900"
+        },
+        "GenerateModuleLoadout": {
+            "added": "900"
+        },
+        "GenerateModuleLoadoutCounts": {
+            "added": "900"
+        },
+        "GenerateShipKnownLoadout2": {
+            "added": "900"
+        },
+        "GenerateShipKnownLoadoutCounts2": {
+            "added": "900"
+        },
+        "GenerateShipLoadout2": {
+            "added": "900"
+        },
+        "GenerateShipLoadoutCounts2": {
+            "added": "900"
+        },
+        "GetAAOption": {
+            "added": "900"
+        },
+        "GetAchievement": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerAngleFactor": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerDeadzoneAngle": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerDeadzonePosition": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerGazeAngleFactor": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerGazeDeadzone": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerGazeFilterStrength": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerHeadFilterStrength": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerHeadPositionFactor": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerMode": {
+            "added": "900"
+        },
+        "GetActiveHeadTrackerName": {
+            "added": "900"
+        },
+        "GetActiveMissionID": {
+            "added": "900"
+        },
+        "GetActiveObjectiveType": {
+            "added": "900"
+        },
+        "GetActivePrimaryWeaponGroup": {
+            "added": "900"
+        },
+        "GetActiveSecondaryWeaponGroup": {
+            "added": "900"
+        },
+        "GetAdaptiveSamplingOption": {
+            "added": "900"
+        },
+        "GetAgentDiplomacyShip": {
+            "added": "900"
+        },
+        "GetAgentMaxSlotCount": {
+            "added": "900"
+        },
+        "GetAgentOriginalOwner": {
+            "added": "900"
+        },
+        "GetAgentSlotResearchWare": {
+            "added": "900"
+        },
+        "GetAimAssistState": {
+            "added": "900"
+        },
+        "GetAllBlacklists": {
+            "added": "900"
+        },
+        "GetAllBoardingBehaviours": {
+            "added": "900"
+        },
+        "GetAllBoardingPhases": {
+            "added": "900"
+        },
+        "GetAllColorMapColors": {
+            "added": "900"
+        },
+        "GetAllColorMapEntries": {
+            "added": "900"
+        },
+        "GetAllColorMapMappings": {
+            "added": "900"
+        },
+        "GetAllCommanders": {
+            "added": "900"
+        },
+        "GetAllControlPosts": {
+            "added": "900"
+        },
+        "GetAllCountermeasures": {
+            "added": "900"
+        },
+        "GetAllEquipment": {
+            "added": "900",
+            "removed": "900-600626"
+        },
+        "GetAllEquipmentModProperties": {
+            "added": "900"
+        },
+        "GetAllFactions": {
+            "added": "900"
+        },
+        "GetAllFactionShips": {
+            "added": "900"
+        },
+        "GetAllFactionStations": {
+            "added": "900"
+        },
+        "GetAllFightRules": {
+            "added": "900"
+        },
+        "GetAllFleetUnits": {
+            "added": "900"
+        },
+        "GetAllFleetUnitSubordinates": {
+            "added": "900"
+        },
+        "GetAllInputFeedback": {
+            "added": "900"
+        },
+        "GetAllInventoryBombs": {
+            "added": "900"
+        },
+        "GetAllLaserTowers": {
+            "added": "900"
+        },
+        "GetAllMines": {
+            "added": "900"
+        },
+        "GetAllMissiles": {
+            "added": "900"
+        },
+        "GetAllModuleSets": {
+            "added": "900"
+        },
+        "GetAllNavBeacons": {
+            "added": "900"
+        },
+        "GetAllowedWeaponSystems": {
+            "added": "900"
+        },
+        "GetAllRaces": {
+            "added": "900"
+        },
+        "GetAllResourceProbes": {
+            "added": "900"
+        },
+        "GetAllResponsesToSignal": {
+            "added": "900"
+        },
+        "GetAllRoles": {
+            "added": "900"
+        },
+        "GetAllSatellites": {
+            "added": "900"
+        },
+        "GetAllShipMacros2": {
+            "added": "900"
+        },
+        "GetAllSignals": {
+            "added": "900"
+        },
+        "GetAllTradeRules": {
+            "added": "900"
+        },
+        "GetAllUnits": {
+            "added": "900"
+        },
+        "GetAllWareGroups": {
+            "added": "900"
+        },
+        "GetAllWareGroups2": {
+            "added": "900"
+        },
+        "GetAmmoStorage": {
+            "added": "900"
+        },
+        "GetAmountOfWareAvailable": {
+            "added": "900"
+        },
+        "GetAskToSignalForControllable": {
+            "added": "900"
+        },
+        "GetAskToSignalForFaction": {
+            "added": "900"
+        },
+        "GetAssignedConstructionVessels": {
+            "added": "900"
+        },
+        "GetAttackersOfBoardingOperation": {
+            "added": "900"
+        },
+        "GetAutoRollState": {
+            "added": "900"
+        },
+        "GetAutosaveIntervalOption": {
+            "added": "900"
+        },
+        "GetAutoZoomResetOption": {
+            "added": "900"
+        },
+        "GetAvailableClothingThemes": {
+            "added": "900"
+        },
+        "GetAvailableCustomGameStarts": {
+            "added": "900"
+        },
+        "GetAvailableEquipment": {
+            "added": "900"
+        },
+        "GetAvailableEquipmentMods": {
+            "added": "900"
+        },
+        "GetAvailableLockboxes": {
+            "added": "900"
+        },
+        "GetAvailablePaintThemes": {
+            "added": "900"
+        },
+        "GetAveragePlayerNPCSkill": {
+            "added": "900"
+        },
+        "GetBlacklistInfo2": {
+            "added": "900"
+        },
+        "GetBlacklistInfoCounts": {
+            "added": "900"
+        },
+        "GetBlueprints": {
+            "added": "900"
+        },
+        "GetBoardingActionOfAttacker": {
+            "added": "900"
+        },
+        "GetBoardingCasualtiesOfTier": {
+            "added": "900"
+        },
+        "GetBoardingMarineTierAmountsFromAttacker": {
+            "added": "900"
+        },
+        "GetBoardingRiskThresholds": {
+            "added": "900"
+        },
+        "GetBoardingStrengthFromOperation": {
+            "added": "900"
+        },
+        "GetBoardingStrengthOfControllableTierAmounts": {
+            "added": "900"
+        },
+        "GetBoostEnergyPercentage": {
+            "added": "900"
+        },
+        "GetBoxTextBoxColor": {
+            "added": "900"
+        },
+        "GetBoxTextInfo": {
+            "added": "900"
+        },
+        "GetBuildDuration": {
+            "added": "900"
+        },
+        "GetBuilderHiringFee": {
+            "added": "900"
+        },
+        "GetBuildMapConstructionPlan": {
+            "added": "900"
+        },
+        "GetBuildMapConstructionPlan2": {
+            "added": "900"
+        },
+        "GetBuildMapStationLocation2": {
+            "added": "900"
+        },
+        "GetBuildModules": {
+            "added": "900"
+        },
+        "GetBuildPlotCenterOffset": {
+            "added": "900"
+        },
+        "GetBuildPlotPayment": {
+            "added": "900"
+        },
+        "GetBuildPlotPrice": {
+            "added": "900"
+        },
+        "GetBuildPlotSize": {
+            "added": "900"
+        },
+        "GetBuildProcessorEstimatedTimeLeft": {
+            "added": "900"
+        },
+        "GetBuildResources": {
+            "added": "900"
+        },
+        "GetBuildSequenceResources": {
+            "added": "900"
+        },
+        "GetBuildTaskCrewTransferInfo2": {
+            "added": "900"
+        },
+        "GetBuildTaskDuration": {
+            "added": "900"
+        },
+        "GetBuildTaskInfo": {
+            "added": "900"
+        },
+        "GetBuildTasks": {
+            "added": "900"
+        },
+        "GetBuildVersionSuffix": {
+            "added": "900"
+        },
+        "GetBuildWarePrice": {
+            "added": "900"
+        },
+        "GetButtonBorderColor": {
+            "added": "900"
+        },
+        "GetButtonColorGlowFactor": {
+            "added": "900"
+        },
+        "GetButtonHighlightColor": {
+            "added": "900"
+        },
+        "GetButtonHighlightColorGlowFactor": {
+            "added": "900"
+        },
+        "GetButtonIcon2GlowFactor": {
+            "added": "900"
+        },
+        "GetButtonIconGlowFactor": {
+            "added": "900"
+        },
+        "GetButtonText2Details": {
+            "added": "900"
+        },
+        "GetButtonTextGlowFactor": {
+            "added": "900"
+        },
+        "GetCameraRotation": {
+            "added": "900"
+        },
+        "GetCargo": {
+            "added": "900"
+        },
+        "GetCargoStatistics": {
+            "added": "900"
+        },
+        "GetCargoTransportTypes": {
+            "added": "900"
+        },
+        "GetCatalogMacros": {
+            "added": "900"
+        },
+        "GetCatalogTemplates": {
+            "added": "900"
+        },
+        "GetCenteredMousePos": {
+            "added": "900"
+        },
+        "GetChatAuthorColor2": {
+            "added": "900"
+        },
+        "GetCheckBoxColor": {
+            "added": "900"
+        },
+        "GetCheckBoxGlowFactor": {
+            "added": "900"
+        },
+        "GetCheckBoxSymbol": {
+            "added": "900"
+        },
+        "GetCheckBoxSymbolGlowFactor": {
+            "added": "900"
+        },
+        "GetCheckpointSequence": {
+            "added": "900"
+        },
+        "GetChromaticAberrationOption": {
+            "added": "900"
+        },
+        "GetCloseOnUnhandledClickFrames": {
+            "added": "900"
+        },
+        "GetClusterBackground": {
+            "added": "900"
+        },
+        "GetCockpitCameraScaleOption": {
+            "added": "900"
+        },
+        "GetCollisionAvoidanceState": {
+            "added": "900"
+        },
+        "GetColorBlindOption": {
+            "added": "900"
+        },
+        "GetColorBlindOptionStrength": {
+            "added": "900"
+        },
+        "GetColorMapEntry": {
+            "added": "900"
+        },
+        "GetColorProfiles": {
+            "added": "900"
+        },
+        "GetCommander": {
+            "added": "900"
+        },
+        "GetCommonContext": {
+            "added": "900"
+        },
+        "GetCompassMenuMappings": {
+            "added": "900"
+        },
+        "GetComponentClass": {
+            "added": "900"
+        },
+        "GetComponentClassMatrix": {
+            "added": "900"
+        },
+        "GetComponentCollidableSize": {
+            "added": "900"
+        },
+        "GetComponentDetails": {
+            "added": "900"
+        },
+        "GetComponentHUDIcon": {
+            "added": "900"
+        },
+        "GetComponentIcon": {
+            "added": "900"
+        },
+        "GetComponentName": {
+            "added": "900"
+        },
+        "GetComponentOffset": {
+            "added": "900"
+        },
+        "GetComponentScreenPosition": {
+            "added": "900"
+        },
+        "GetCompSlotControlPosition": {
+            "added": "900"
+        },
+        "GetCompSlotPlayerActions": {
+            "added": "900"
+        },
+        "GetCompSlotPlayerActionTriggeredConnection": {
+            "added": "900"
+        },
+        "GetCompSlotScreenPos": {
+            "added": "900"
+        },
+        "GetConfigSetting": {
+            "added": "900"
+        },
+        "GetConfiguredModifierKeys": {
+            "added": "900"
+        },
+        "GetConstructionMapItemLoadout2": {
+            "added": "900"
+        },
+        "GetConstructionMapItemLoadoutCounts2": {
+            "added": "900"
+        },
+        "GetConstructionMapMinimumBuildPlotCenterOffset": {
+            "added": "900"
+        },
+        "GetConstructionMapMinimumBuildPlotSize": {
+            "added": "900"
+        },
+        "GetConstructionMapVenturePlatform": {
+            "added": "900"
+        },
+        "GetConstructionPlanInfo": {
+            "added": "900"
+        },
+        "GetConstructionPlanInvalidPatches": {
+            "added": "900"
+        },
+        "GetConstructionPlans": {
+            "added": "900"
+        },
+        "GetContainerBuilderMacros": {
+            "added": "900"
+        },
+        "GetContainerBuildMethod": {
+            "added": "900"
+        },
+        "GetContainerBuildPriceFactor": {
+            "added": "900"
+        },
+        "GetContainerBuildResources": {
+            "added": "900"
+        },
+        "GetContainerBuyLimit": {
+            "added": "900"
+        },
+        "GetContainerCriticalWares": {
+            "added": "900"
+        },
+        "GetContainerGlobalPriceFactor": {
+            "added": "900"
+        },
+        "GetContainerSellLimit": {
+            "added": "900"
+        },
+        "GetContainerStockLimitOverrides": {
+            "added": "900"
+        },
+        "GetContainerTradeRuleID": {
+            "added": "900"
+        },
+        "GetContainerWareConsumption": {
+            "added": "900"
+        },
+        "GetContainerWareConsumptionPerProduct": {
+            "added": "900"
+        },
+        "GetContainerWareIsBuyable": {
+            "added": "900"
+        },
+        "GetContainerWareIsSellable": {
+            "added": "900"
+        },
+        "GetContainerWareMaxProductionStorageForTime": {
+            "added": "900"
+        },
+        "GetContainerWareProduction": {
+            "added": "900"
+        },
+        "GetContainerWareReservations2": {
+            "added": "900"
+        },
+        "GetContainerWorkforceInfluence": {
+            "added": "900"
+        },
+        "GetContextByClass": {
+            "added": "900"
+        },
+        "GetContextByRealClass": {
+            "added": "900"
+        },
+        "GetContextForTransporterCheck": {
+            "added": "900"
+        },
+        "GetControllableBlacklistID": {
+            "added": "900"
+        },
+        "GetControllableFightRuleID": {
+            "added": "900"
+        },
+        "GetControllableSubordinateFleetUnits": {
+            "added": "900"
+        },
+        "GetControlPanelInfo": {
+            "added": "900"
+        },
+        "GetControlPanelName": {
+            "added": "900"
+        },
+        "GetControlPanelRequiredWares": {
+            "added": "900"
+        },
+        "GetCreditsDueFromPlayerBuilds": {
+            "added": "900"
+        },
+        "GetCreditsDueFromPlayerTrades": {
+            "added": "900"
+        },
+        "GetCrosshairArrowDetails": {
+            "added": "900"
+        },
+        "GetCrosshairPlatformGuidanceDetails": {
+            "added": "900"
+        },
+        "GetCurrentAmmoOfWeapon": {
+            "added": "900"
+        },
+        "GetCurrentBoardingPhase": {
+            "added": "900"
+        },
+        "GetCurrentBuildProgress": {
+            "added": "900"
+        },
+        "GetCurrentCrosshairMessage": {
+            "added": "900"
+        },
+        "GetCurrentCursorInfo": {
+            "added": "900"
+        },
+        "GetCurrentDroneMode": {
+            "added": "900"
+        },
+        "GetCurrentFleetLogo": {
+            "added": "900"
+        },
+        "GetCurrentGameTime": {
+            "added": "900"
+        },
+        "GetCurrentLanguage": {
+            "added": "900"
+        },
+        "GetCurrentLoadout": {
+            "added": "900"
+        },
+        "GetCurrentLoadoutCounts": {
+            "added": "900"
+        },
+        "GetCurrentLoadoutStatistics5": {
+            "added": "900"
+        },
+        "GetCurrentMissionOffers": {
+            "added": "900"
+        },
+        "GetCurrentPlayerLogo": {
+            "added": "900"
+        },
+        "GetCurrentSoundDevice": {
+            "added": "900"
+        },
+        "GetCurrentTargetMouseButtonMapping": {
+            "added": "900"
+        },
+        "GetCurrentUTCDataTime": {
+            "added": "900"
+        },
+        "GetCurrentVentureInfo": {
+            "added": "900"
+        },
+        "GetCurrentVentureShips": {
+            "added": "900"
+        },
+        "GetCustomGameStartBlueprintDefaultProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartBlueprintProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartBlueprintPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartBoolProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartBudget": {
+            "added": "900"
+        },
+        "GetCustomGameStartBudgetDetails": {
+            "added": "900"
+        },
+        "GetCustomGameStartBudgetGroupInfo": {
+            "added": "900"
+        },
+        "GetCustomGameStartBudgetGroups": {
+            "added": "900"
+        },
+        "GetCustomGameStartContent2": {
+            "added": "900"
+        },
+        "GetCustomGameStartContentCounts2": {
+            "added": "900"
+        },
+        "GetCustomGameStartEncyclopediaProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartEncyclopediaPropertyCounts": {
+            "added": "900"
+        },
+        "GetCustomGameStartEncyclopediaPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartFloatProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartInventoryDefaultProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartInventoryProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartInventoryPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownDefaultProperty2": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownProperty2": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownPropertyBudgetValue2": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownPropertyNumStateDependencies": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownPropertyNumStateDependencyLists": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartKnownPropertyStateDependencies": {
+            "added": "900"
+        },
+        "GetCustomGameStartLoadoutProperty2": {
+            "added": "900"
+        },
+        "GetCustomGameStartLoadoutPropertyCounts2": {
+            "added": "900"
+        },
+        "GetCustomGameStartLoadoutPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartMoneyProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartPaintThemes": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyCounts": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyLoadout": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyLoadoutCounts": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyPeopleValue": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyPerson": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyProperty3": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertySector": {
+            "added": "900"
+        },
+        "GetCustomGameStartPlayerPropertyValue": {
+            "added": "900"
+        },
+        "GetCustomGameStartPosRotProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartRelationsProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartRelationsPropertyBudgetValue": {
+            "added": "900"
+        },
+        "GetCustomGameStartRelationsPropertyCounts": {
+            "added": "900"
+        },
+        "GetCustomGameStartRelationsPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartResearchProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartResearchPropertyCounts": {
+            "added": "900"
+        },
+        "GetCustomGameStartResearchPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartShipPeopleValue2": {
+            "added": "900"
+        },
+        "GetCustomGameStartShipPersonValue": {
+            "added": "900"
+        },
+        "GetCustomGameStartShipPilot": {
+            "added": "900"
+        },
+        "GetCustomGameStartStoryBudgetDependencies": {
+            "added": "900"
+        },
+        "GetCustomGameStartStoryBudgets": {
+            "added": "900"
+        },
+        "GetCustomGameStartStoryDefaultProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartStoryProperty": {
+            "added": "900"
+        },
+        "GetCustomGameStartStoryPropertyState": {
+            "added": "900"
+        },
+        "GetCustomGameStartStringProperty": {
+            "added": "900"
+        },
+        "GetDamagedSubComponents": {
+            "added": "900"
+        },
+        "GetDefaultCountermeasureStorageCapacity": {
+            "added": "900"
+        },
+        "GetDefaultLoadoutMacros": {
+            "added": "900"
+        },
+        "GetDefaultMissileStorageCapacity": {
+            "added": "900"
+        },
+        "GetDefaultOrder": {
+            "added": "900"
+        },
+        "GetDefaultOrderFailure": {
+            "added": "900"
+        },
+        "GetDefaultPlayerBuildMethod": {
+            "added": "900"
+        },
+        "GetDefaultResponseToSignalForControllable": {
+            "added": "900"
+        },
+        "GetDefaultResponseToSignalForFaction2": {
+            "added": "900"
+        },
+        "GetDefensibleActiveWeaponGroup": {
+            "added": "900"
+        },
+        "GetDefensibleDeployableCapacity": {
+            "added": "900"
+        },
+        "GetDefensibleDPS": {
+            "added": "900"
+        },
+        "GetDefensibleLoadoutLevel": {
+            "added": "900"
+        },
+        "GetDefensibleSpeeds": {
+            "added": "900"
+        },
+        "GetDefensibleWeaponFireRange": {
+            "added": "900"
+        },
+        "GetDetailmonitorCutsceneKey": {
+            "added": "900"
+        },
+        "GetDiplomacyActionCooldownEndTime": {
+            "added": "900"
+        },
+        "GetDiplomacyActionGiftEffect": {
+            "added": "900"
+        },
+        "GetDiplomacyActionMoneyCost": {
+            "added": "900"
+        },
+        "GetDiplomacyActionOperations": {
+            "added": "900"
+        },
+        "GetDiplomacyActions": {
+            "added": "900"
+        },
+        "GetDiplomacyActionWares": {
+            "added": "900"
+        },
+        "GetDiplomacyAgentAttributeData": {
+            "added": "900"
+        },
+        "GetDiplomacyAgents": {
+            "added": "900"
+        },
+        "GetDiplomacyEventOperations": {
+            "added": "900"
+        },
+        "GetDiplomacyEventOptionChance": {
+            "added": "900"
+        },
+        "GetDiplomacyEventOptions": {
+            "added": "900"
+        },
+        "GetDiplomacyEventOptionWares": {
+            "added": "900"
+        },
+        "GetDiplomacyEvents": {
+            "added": "900"
+        },
+        "GetDiplomacyExcludedReasons": {
+            "added": "900"
+        },
+        "GetDiscoveredSectorResources": {
+            "added": "900"
+        },
+        "GetDisplayedModifierKey": {
+            "added": "900"
+        },
+        "GetDistanceBetween": {
+            "added": "900"
+        },
+        "GetDLSSAutoFrameGenOption": {
+            "added": "900"
+        },
+        "GetDLSSAutoMode": {
+            "added": "900"
+        },
+        "GetDLSSFrameGenOption": {
+            "added": "900"
+        },
+        "GetDLSSModeOption": {
+            "added": "900"
+        },
+        "GetDLSSOption": {
+            "added": "900"
+        },
+        "GetDockedShips": {
+            "added": "900"
+        },
+        "GetDroneDetails": {
+            "added": "900"
+        },
+        "GetDroneModes": {
+            "added": "900"
+        },
+        "GetDropDownBackground2Details": {
+            "added": "900"
+        },
+        "GetDropDownBorderColor": {
+            "added": "900"
+        },
+        "GetDropDownColor": {
+            "added": "900"
+        },
+        "GetDropDownDetails": {
+            "added": "900"
+        },
+        "GetDropDownGlowFactor": {
+            "added": "900"
+        },
+        "GetDropDownHighlightColor": {
+            "added": "900"
+        },
+        "GetDropDownHighlightGlowFactor": {
+            "added": "900"
+        },
+        "GetDropDownHotkeyDetails": {
+            "added": "900"
+        },
+        "GetDropDownIconDetails": {
+            "added": "900"
+        },
+        "GetDropDownOptionColor": {
+            "added": "900"
+        },
+        "GetDropDownOptionGlowFactor": {
+            "added": "900"
+        },
+        "GetDropDownOptionOverlayInfo2": {
+            "added": "900"
+        },
+        "GetDropDownOptions3": {
+            "added": "900"
+        },
+        "GetDropDownStartOption": {
+            "added": "900"
+        },
+        "GetDropDownTextProperties": {
+            "added": "900"
+        },
+        "GetEditBoxDefaultText": {
+            "added": "900"
+        },
+        "GetEditBoxDescription": {
+            "added": "900"
+        },
+        "GetEditBoxGlowFactor": {
+            "added": "900"
+        },
+        "GetEditBoxMaxChars": {
+            "added": "900"
+        },
+        "GetEditBoxTextGlowFactor": {
+            "added": "900"
+        },
+        "GetEditBoxTextOffsetX": {
+            "added": "900"
+        },
+        "GetEditBoxTextOffsetY": {
+            "added": "900"
+        },
+        "GetEmergencyEjectOption": {
+            "added": "900"
+        },
+        "GetEnemyWarningAttackSound": {
+            "added": "900"
+        },
+        "GetEnemyWarningNearbySound": {
+            "added": "900"
+        },
+        "GetEntityActiveIcon": {
+            "added": "900"
+        },
+        "GetEntityCombinedSkill": {
+            "added": "900"
+        },
+        "GetEntityInactiveIcon": {
+            "added": "900"
+        },
+        "GetEntitySelectedIcon": {
+            "added": "900"
+        },
+        "GetEntitySkillsForAssignment": {
+            "added": "900"
+        },
+        "GetEnvironmentObject": {
+            "added": "900"
+        },
+        "GetEnvMapProbeInsideGlassFadeOption": {
+            "added": "900"
+        },
+        "GetEnvMapProbeOption": {
+            "added": "900"
+        },
+        "GetEquipmentModInfo": {
+            "added": "900"
+        },
+        "GetEquipmentModPropertyName": {
+            "added": "900"
+        },
+        "GetEstimatedBuildPrice": {
+            "added": "900"
+        },
+        "GetEstimatedResearchPrice": {
+            "added": "900"
+        },
+        "GetExtensionName": {
+            "added": "900"
+        },
+        "GetExtensionNameByID": {
+            "added": "900"
+        },
+        "GetExtensionVersion": {
+            "added": "900"
+        },
+        "GetExternalTargetViewComponent": {
+            "added": "900"
+        },
+        "GetExternalViewRefObject": {
+            "added": "900"
+        },
+        "GetFactionAgent": {
+            "added": "900"
+        },
+        "GetFactionDefaultWeaponMode": {
+            "added": "900"
+        },
+        "GetFactionDetails": {
+            "added": "900"
+        },
+        "GetFactionNameForTargetMonitorHack": {
+            "added": "900"
+        },
+        "GetFactionRelationStatus2": {
+            "added": "900"
+        },
+        "GetFactionRepresentative": {
+            "added": "900"
+        },
+        "GetFightRuleInfo": {
+            "added": "900"
+        },
+        "GetFightRuleInfoCounts": {
+            "added": "900"
+        },
+        "GetFixedStations": {
+            "added": "900"
+        },
+        "GetFleetLead": {
+            "added": "900"
+        },
+        "GetFleetName": {
+            "added": "900"
+        },
+        "GetFleetUnit": {
+            "added": "900"
+        },
+        "GetFleetUnitBuildIssues": {
+            "added": "900"
+        },
+        "GetFleetUnitFirstCommanderComponent": {
+            "added": "900"
+        },
+        "GetFleetUnitFleetName": {
+            "added": "900"
+        },
+        "GetFleetUnitInfo": {
+            "added": "900"
+        },
+        "GetFleetUnitProblematicEquipmentWares": {
+            "added": "900"
+        },
+        "GetFleetUnitSubordinateFleetUnits": {
+            "added": "900"
+        },
+        "GetFleetUnitSubordinateGroup": {
+            "added": "900"
+        },
+        "GetFleetUnitSubordinateGroupAssignment": {
+            "added": "900"
+        },
+        "GetFleetUnitSubordinates": {
+            "added": "900"
+        },
+        "GetFollowCameraBasePos": {
+            "added": "900"
+        },
+        "GetFontStringGlowFactor": {
+            "added": "900"
+        },
+        "GetFontStringTitleColor": {
+            "added": "900"
+        },
+        "GetFontStringTitleGlowFactor": {
+            "added": "900"
+        },
+        "GetForceShootingAtCursorOption": {
+            "added": "900"
+        },
+        "GetFormationShapes": {
+            "added": "900"
+        },
+        "GetFPS": {
+            "added": "900"
+        },
+        "GetFrameBackground2Info": {
+            "added": "900"
+        },
+        "GetFrameBackgroundInfo": {
+            "added": "900"
+        },
+        "GetFrameBorders": {
+            "added": "900"
+        },
+        "GetFrameOverlayInfo": {
+            "added": "900"
+        },
+        "GetFrameRateTarget": {
+            "added": "900"
+        },
+        "GetFreeCountermeasureStorageAfterTradeOrders": {
+            "added": "900"
+        },
+        "GetFreeDeployableStorageAfterTradeOrders": {
+            "added": "900"
+        },
+        "GetFreeMissileStorageAfterTradeOrders": {
+            "added": "900"
+        },
+        "GetFreePeopleCapacity": {
+            "added": "900"
+        },
+        "GetFSRFrameGenOption": {
+            "added": "900"
+        },
+        "GetGameResolution": {
+            "added": "900"
+        },
+        "GetGameStartDate": {
+            "added": "900"
+        },
+        "GetGameStartGroups": {
+            "added": "900"
+        },
+        "GetGameStartName": {
+            "added": "900"
+        },
+        "GetGameStartUIName": {
+            "added": "900"
+        },
+        "GetGameVersion": {
+            "added": "900"
+        },
+        "GetGlobalLightScale": {
+            "added": "900"
+        },
+        "GetGPUNiceName": {
+            "added": "900"
+        },
+        "GetGraphBackgroundColor": {
+            "added": "900"
+        },
+        "GetGraphData2": {
+            "added": "900"
+        },
+        "GetGraphDataRecords": {
+            "added": "900"
+        },
+        "GetGraphIcons": {
+            "added": "900"
+        },
+        "GetGraphInitialSelectionInfo": {
+            "added": "900"
+        },
+        "GetGraphTitle": {
+            "added": "900"
+        },
+        "GetGraphType": {
+            "added": "900"
+        },
+        "GetGraphXAxis2": {
+            "added": "900"
+        },
+        "GetGraphYAxis2": {
+            "added": "900"
+        },
+        "GetGroupOfFleetUnitSubordinate": {
+            "added": "900"
+        },
+        "GetHelpOverlayInfo3": {
+            "added": "900"
+        },
+        "GetHighestEquipmentModQuality": {
+            "added": "900"
+        },
+        "GetHighwaySplinePoints": {
+            "added": "900"
+        },
+        "GetHQs": {
+            "added": "900"
+        },
+        "GetHUDScaleOption": {
+            "added": "900"
+        },
+        "GetHUDSeparateRadar": {
+            "added": "900"
+        },
+        "GetHUDUIScale": {
+            "added": "900"
+        },
+        "GetIconGlowFactor": {
+            "added": "900"
+        },
+        "GetIcons": {
+            "added": "900"
+        },
+        "GetIconText2Details": {
+            "added": "900"
+        },
+        "GetIconTextDetails": {
+            "added": "900"
+        },
+        "GetIllegalToFactions": {
+            "added": "900"
+        },
+        "GetImportableConstructionPlans": {
+            "added": "900"
+        },
+        "GetImprovedControllerMode": {
+            "added": "900"
+        },
+        "GetInfluenceLevelName": {
+            "added": "900"
+        },
+        "GetInputAxisDirectionSuffix": {
+            "added": "900"
+        },
+        "GetInputFeedbackOption": {
+            "added": "900"
+        },
+        "GetInstalledEngineMod2": {
+            "added": "900"
+        },
+        "GetInstalledGroupedWeaponMod": {
+            "added": "900"
+        },
+        "GetInstalledPaintMod": {
+            "added": "900"
+        },
+        "GetInstalledShieldMod": {
+            "added": "900"
+        },
+        "GetInstalledShipMod2": {
+            "added": "900"
+        },
+        "GetInstalledWeaponMod": {
+            "added": "900"
+        },
+        "GetInstantiatedPerson": {
+            "added": "900"
+        },
+        "GetInventoryPaintMods": {
+            "added": "900"
+        },
+        "GetLanguages": {
+            "added": "900"
+        },
+        "GetLastAttackInfo": {
+            "added": "900"
+        },
+        "GetLastPlayerControlledShipID": {
+            "added": "900"
+        },
+        "GetLastSaveInfo": {
+            "added": "900"
+        },
+        "GetLibraryEntryAliases": {
+            "added": "900"
+        },
+        "GetLicenceInfo": {
+            "added": "900"
+        },
+        "GetLoadingHint": {
+            "added": "900"
+        },
+        "GetLoadout": {
+            "added": "900"
+        },
+        "GetLoadout2": {
+            "added": "900"
+        },
+        "GetLoadoutCounts": {
+            "added": "900"
+        },
+        "GetLoadoutCounts2": {
+            "added": "900"
+        },
+        "GetLoadoutInvalidPatches": {
+            "added": "900"
+        },
+        "GetLoadoutsInfo": {
+            "added": "900"
+        },
+        "GetLoadoutStatistics5": {
+            "added": "900"
+        },
+        "GetLocalizedInputName": {
+            "added": "900"
+        },
+        "GetLocalizedInteractiveNotificationKey": {
+            "added": "900"
+        },
+        "GetLocalizedRawMouseAxisName": {
+            "added": "900"
+        },
+        "GetLocalizedRawMouseButtonName": {
+            "added": "900"
+        },
+        "GetLocalizedText": {
+            "added": "900"
+        },
+        "GetLongRangeScanIndicatorOption": {
+            "added": "900"
+        },
+        "GetLUTMode": {
+            "added": "900"
+        },
+        "GetMacroClass": {
+            "added": "900"
+        },
+        "GetMacroDeployableCapacity": {
+            "added": "900"
+        },
+        "GetMacroMapPositionOnEcliptic": {
+            "added": "900"
+        },
+        "GetMacroMissileCapacity": {
+            "added": "900"
+        },
+        "GetMacrosStartingWith": {
+            "added": "900"
+        },
+        "GetMapComponentMissions": {
+            "added": "900"
+        },
+        "GetMapEditorMacros": {
+            "added": "900"
+        },
+        "GetMapEditorObjectList": {
+            "added": "900"
+        },
+        "GetMapFocusComponent": {
+            "added": "900"
+        },
+        "GetMappedInputIcon": {
+            "added": "900"
+        },
+        "GetMappedInputName": {
+            "added": "900"
+        },
+        "GetMapPositionOnEcliptic2": {
+            "added": "900"
+        },
+        "GetMapRenderedComponents": {
+            "added": "900"
+        },
+        "GetMapSelectedComponents": {
+            "added": "900"
+        },
+        "GetMapState": {
+            "added": "900"
+        },
+        "GetMapTradeVolumeParameter": {
+            "added": "900"
+        },
+        "GetMaxLoadoutStatistics5": {
+            "added": "900"
+        },
+        "GetMaxProductionStorage": {
+            "added": "900"
+        },
+        "GetMenuWidthScale": {
+            "added": "900"
+        },
+        "GetMessageDetails3": {
+            "added": "900"
+        },
+        "GetMessageInteractPosition": {
+            "added": "900"
+        },
+        "GetMessages": {
+            "added": "900"
+        },
+        "GetMineablesAtSectorPos": {
+            "added": "900"
+        },
+        "GetMinimumBuildPlotCenterOffset": {
+            "added": "900"
+        },
+        "GetMinimumBuildPlotSize": {
+            "added": "900"
+        },
+        "GetMissileCargo": {
+            "added": "900"
+        },
+        "GetMissingBuildProcessorResources": {
+            "added": "900"
+        },
+        "GetMissingBuildResources": {
+            "added": "900"
+        },
+        "GetMissingConstructionPlanBlueprints3": {
+            "added": "900"
+        },
+        "GetMissingLoadoutBlueprints": {
+            "added": "900"
+        },
+        "GetMissingLoadoutResources": {
+            "added": "900"
+        },
+        "GetMissingMissionLoadoutBlueprints": {
+            "added": "900"
+        },
+        "GetMissionBriefingButton": {
+            "added": "900"
+        },
+        "GetMissionBriefingIcon": {
+            "added": "900"
+        },
+        "GetMissionDeliveryWares": {
+            "added": "900"
+        },
+        "GetMissionGroupDetails2": {
+            "added": "900"
+        },
+        "GetMissionHelpOverlayID": {
+            "added": "900"
+        },
+        "GetMissionIDDetails": {
+            "added": "900"
+        },
+        "GetMissionIDDetails2": {
+            "added": "900"
+        },
+        "GetMissionIDObjective2": {
+            "added": "900"
+        },
+        "GetMissionIDObjectiveTarget": {
+            "added": "900"
+        },
+        "GetMissionInfo3": {
+            "added": "900"
+        },
+        "GetMissionLoadout": {
+            "added": "900"
+        },
+        "GetMissionLoadoutCounts": {
+            "added": "900"
+        },
+        "GetMissionObjectiveStep3": {
+            "added": "900"
+        },
+        "GetMissionOfferIcons": {
+            "added": "900"
+        },
+        "GetMissionOnlineInfo": {
+            "added": "900"
+        },
+        "GetMissionThreadSubMissions": {
+            "added": "900"
+        },
+        "GetModeLightIntensity": {
+            "added": "900"
+        },
+        "GetModifiedBasegameUIFilesExtensions": {
+            "added": "900"
+        },
+        "GetModuleNeededResources": {
+            "added": "900"
+        },
+        "GetModuleRecycledResources": {
+            "added": "900"
+        },
+        "GetMoneyLog": {
+            "added": "900"
+        },
+        "GetMonitorExtents": {
+            "added": "900"
+        },
+        "GetMoonInfo2": {
+            "added": "900"
+        },
+        "GetMouseOverText": {
+            "added": "900"
+        },
+        "GetMouseOverTextAdditional": {
+            "added": "900"
+        },
+        "GetMouseOverTextOption": {
+            "added": "900"
+        },
+        "GetMouseSteeringInvertedOption": {
+            "added": "900"
+        },
+        "GetNextNewsItem2": {
+            "added": "900"
+        },
+        "GetNotificationID": {
+            "added": "900"
+        },
+        "GetNotificationTypes2": {
+            "added": "900"
+        },
+        "GetNPCAccountStatistics": {
+            "added": "900"
+        },
+        "GetNumAcceptedMissions": {
+            "added": "900"
+        },
+        "GetNumAllBlacklists": {
+            "added": "900"
+        },
+        "GetNumAllBoardingBehaviours": {
+            "added": "900"
+        },
+        "GetNumAllBoardingPhases": {
+            "added": "900"
+        },
+        "GetNumAllColorMapColors": {
+            "added": "900"
+        },
+        "GetNumAllColorMapEntries": {
+            "added": "900"
+        },
+        "GetNumAllColorMapMappings": {
+            "added": "900"
+        },
+        "GetNumAllCommanders": {
+            "added": "900"
+        },
+        "GetNumAllControlPosts": {
+            "added": "900"
+        },
+        "GetNumAllCountermeasures": {
+            "added": "900"
+        },
+        "GetNumAllEquipment": {
+            "added": "900",
+            "removed": "900-600626"
+        },
+        "GetNumAllEquipmentModProperties": {
+            "added": "900"
+        },
+        "GetNumAllFactions": {
+            "added": "900"
+        },
+        "GetNumAllFactionShips": {
+            "added": "900"
+        },
+        "GetNumAllFactionStations": {
+            "added": "900"
+        },
+        "GetNumAllFightRules": {
+            "added": "900"
+        },
+        "GetNumAllFleetUnits": {
+            "added": "900"
+        },
+        "GetNumAllFleetUnitSubordinates": {
+            "added": "900"
+        },
+        "GetNumAllInputFeedback": {
+            "added": "900"
+        },
+        "GetNumAllInventoryBombs": {
+            "added": "900"
+        },
+        "GetNumAllLaserTowers": {
+            "added": "900"
+        },
+        "GetNumAllMines": {
+            "added": "900"
+        },
+        "GetNumAllMissiles": {
+            "added": "900"
+        },
+        "GetNumAllModuleSets": {
+            "added": "900"
+        },
+        "GetNumAllNavBeacons": {
+            "added": "900"
+        },
+        "GetNumAllowedWeaponSystems": {
+            "added": "900"
+        },
+        "GetNumAllRaces": {
+            "added": "900"
+        },
+        "GetNumAllResourceProbes": {
+            "added": "900"
+        },
+        "GetNumAllResponsesToSignal": {
+            "added": "900"
+        },
+        "GetNumAllRoles": {
+            "added": "900"
+        },
+        "GetNumAllSatellites": {
+            "added": "900"
+        },
+        "GetNumAllShipMacros2": {
+            "added": "900"
+        },
+        "GetNumAllSignals": {
+            "added": "900"
+        },
+        "GetNumAllTradeRules": {
+            "added": "900"
+        },
+        "GetNumAllUnits": {
+            "added": "900"
+        },
+        "GetNumAllWareGroups": {
+            "added": "900"
+        },
+        "GetNumAmmoStorage": {
+            "added": "900"
+        },
+        "GetNumAssignedConstructionVessels": {
+            "added": "900"
+        },
+        "GetNumAttackersOfBoardingOperation": {
+            "added": "900"
+        },
+        "GetNumAvailableClothingThemes": {
+            "added": "900"
+        },
+        "GetNumAvailableCustomGameStarts": {
+            "added": "900"
+        },
+        "GetNumAvailableEquipment": {
+            "added": "900"
+        },
+        "GetNumAvailableEquipmentMods": {
+            "added": "900"
+        },
+        "GetNumAvailableLockboxes": {
+            "added": "900"
+        },
+        "GetNumAvailablePaintThemes": {
+            "added": "900"
+        },
+        "GetNumBlacklistTypes": {
+            "added": "900"
+        },
+        "GetNumBlueprints": {
+            "added": "900"
+        },
+        "GetNumBoardingMarinesFromOperation": {
+            "added": "900"
+        },
+        "GetNumBuildMapConstructionPlan": {
+            "added": "900"
+        },
+        "GetNumBuildModules": {
+            "added": "900"
+        },
+        "GetNumBuildResources": {
+            "added": "900"
+        },
+        "GetNumBuildTaskCrewTransferInfo": {
+            "added": "900"
+        },
+        "GetNumBuildTasks": {
+            "added": "900"
+        },
+        "GetNumCargo": {
+            "added": "900"
+        },
+        "GetNumCargoStatistics": {
+            "added": "900"
+        },
+        "GetNumCargoTransportTypes": {
+            "added": "900"
+        },
+        "GetNumCatalogMacros": {
+            "added": "900"
+        },
+        "GetNumCatalogTemplates": {
+            "added": "900"
+        },
+        "GetNumCloseOnUnhandledClickFrames": {
+            "added": "900"
+        },
+        "GetNumColorProfiles": {
+            "added": "900"
+        },
+        "GetNumComponentClasses": {
+            "added": "900"
+        },
+        "GetNumCompSlotPlayerActions": {
+            "added": "900"
+        },
+        "GetNumConfiguredModifierKeys": {
+            "added": "900"
+        },
+        "GetNumConstructionMapVenturePlatformDocks": {
+            "added": "900"
+        },
+        "GetNumConstructionPlanInfo": {
+            "added": "900"
+        },
+        "GetNumConstructionPlans": {
+            "added": "900"
+        },
+        "GetNumContainedKnownSpaces": {
+            "added": "900"
+        },
+        "GetNumContainedKnownUnreadSpaces": {
+            "added": "900"
+        },
+        "GetNumContainerBuilderMacros": {
+            "added": "900"
+        },
+        "GetNumContainerBuildResources": {
+            "added": "900"
+        },
+        "GetNumContainerCriticalWares": {
+            "added": "900"
+        },
+        "GetNumContainerStockLimitOverrides": {
+            "added": "900"
+        },
+        "GetNumContainerWareReservations2": {
+            "added": "900"
+        },
+        "GetNumContainerWorkforceInfluence": {
+            "added": "900"
+        },
+        "GetNumControllableSubordinateFleetUnits": {
+            "added": "900"
+        },
+        "GetNumCountermeasures": {
+            "added": "900"
+        },
+        "GetNumCurrentMissionOffers": {
+            "added": "900"
+        },
+        "GetNumCustomGameStartBudgetGroups": {
+            "added": "900"
+        },
+        "GetNumCustomGameStartPaintThemes": {
+            "added": "900"
+        },
+        "GetNumCustomGameStartStoryBudgetDependencyLists": {
+            "added": "900"
+        },
+        "GetNumCustomGameStartStoryBudgets": {
+            "added": "900"
+        },
+        "GetNumDefaultLoadoutMacros": {
+            "added": "900"
+        },
+        "GetNumDiplomacyActionOperations": {
+            "added": "900"
+        },
+        "GetNumDiplomacyActions": {
+            "added": "900"
+        },
+        "GetNumDiplomacyAgents": {
+            "added": "900"
+        },
+        "GetNumDiplomacyEventOperations": {
+            "added": "900"
+        },
+        "GetNumDiplomacyEvents": {
+            "added": "900"
+        },
+        "GetNumDiscoveredSectorResources": {
+            "added": "900"
+        },
+        "GetNumDockedShips": {
+            "added": "900"
+        },
+        "GetNumDroneModes": {
+            "added": "900"
+        },
+        "GetNumDropDownOptions": {
+            "added": "900"
+        },
+        "GetNumFactionRelationImplications": {
+            "added": "900"
+        },
+        "GetNumFactionRelationText2": {
+            "added": "900"
+        },
+        "GetNumFightRuleTypes": {
+            "added": "900"
+        },
+        "GetNumFixedStations": {
+            "added": "900"
+        },
+        "GetNumFleetUnitProblematicEquipmentWares": {
+            "added": "900"
+        },
+        "GetNumFleetUnitSubordinateFleetUnits": {
+            "added": "900"
+        },
+        "GetNumFleetUnitSubordinates": {
+            "added": "900"
+        },
+        "GetNumFormationShapes": {
+            "added": "900"
+        },
+        "GetNumFrameBorders": {
+            "added": "900"
+        },
+        "GetNumGameStartGroups": {
+            "added": "900"
+        },
+        "GetNumGPUs": {
+            "added": "900"
+        },
+        "GetNumGraphDataRecords": {
+            "added": "900"
+        },
+        "GetNumGraphIcons": {
+            "added": "900"
+        },
+        "GetNumHighwaySplinePoints": {
+            "added": "900"
+        },
+        "GetNumHQs": {
+            "added": "900"
+        },
+        "GetNumIcons": {
+            "added": "900"
+        },
+        "GetNumIllegalToFactions": {
+            "added": "900"
+        },
+        "GetNumImportableConstructionPlans": {
+            "added": "900"
+        },
+        "GetNumInventoryPaintMods": {
+            "added": "900"
+        },
+        "GetNumLanguages": {
+            "added": "900"
+        },
+        "GetNumLibraryEntryAliases": {
+            "added": "900"
+        },
+        "GetNumLoadoutsInfo": {
+            "added": "900"
+        },
+        "GetNumMacrosStartingWith": {
+            "added": "900"
+        },
+        "GetNumMapComponentMissions": {
+            "added": "900"
+        },
+        "GetNumMapEditorMacros": {
+            "added": "900"
+        },
+        "GetNumMapEditorObjectList": {
+            "added": "900"
+        },
+        "GetNumMapRenderedComponents": {
+            "added": "900"
+        },
+        "GetNumMapSelectedComponents": {
+            "added": "900"
+        },
+        "GetNumMaxProductionStorage": {
+            "added": "900"
+        },
+        "GetNumMessages": {
+            "added": "900"
+        },
+        "GetNumMineablesAtSectorPos": {
+            "added": "900"
+        },
+        "GetNumMissileCargo": {
+            "added": "900"
+        },
+        "GetNumMissingBuildProcessorResources": {
+            "added": "900"
+        },
+        "GetNumMissingBuildResources2": {
+            "added": "900"
+        },
+        "GetNumMissingLoadoutResources2": {
+            "added": "900"
+        },
+        "GetNumMissionDeliveryWares": {
+            "added": "900"
+        },
+        "GetNumMissionThreadSubMissions": {
+            "added": "900"
+        },
+        "GetNumModuleNeededResources": {
+            "added": "900"
+        },
+        "GetNumModuleRecycledResources": {
+            "added": "900"
+        },
+        "GetNumNotifications": {
+            "added": "900"
+        },
+        "GetNumNotificationTypes": {
+            "added": "900"
+        },
+        "GetNumObjectsWithSyncPoint": {
+            "added": "900"
+        },
+        "GetNumObjectsWithSyncPointFromOrder": {
+            "added": "900"
+        },
+        "GetNumOrderDefinitions": {
+            "added": "900"
+        },
+        "GetNumOrderFailures": {
+            "added": "900"
+        },
+        "GetNumOrderLocationData": {
+            "added": "900"
+        },
+        "GetNumOrders": {
+            "added": "900"
+        },
+        "GetNumOverlayCols": {
+            "added": "900"
+        },
+        "GetNumPeopleAfterOrders": {
+            "added": "900"
+        },
+        "GetNumPersonSuitableControlPosts": {
+            "added": "900"
+        },
+        "GetNumPlannedLimitedModules": {
+            "added": "900"
+        },
+        "GetNumPlannedStationModules": {
+            "added": "900"
+        },
+        "GetNumPlayerAlerts": {
+            "added": "900"
+        },
+        "GetNumPlayerAlertSounds2": {
+            "added": "900"
+        },
+        "GetNumPlayerBuildMethods": {
+            "added": "900"
+        },
+        "GetNumPlayerLogos": {
+            "added": "900"
+        },
+        "GetNumPlayerPeopleDefinitions": {
+            "added": "900"
+        },
+        "GetNumPlayerShipBuildTasks": {
+            "added": "900"
+        },
+        "GetNumPrimaryWeapons": {
+            "added": "900"
+        },
+        "GetNumProductionMethodResources": {
+            "added": "900"
+        },
+        "GetNumRadarModes": {
+            "added": "900"
+        },
+        "GetNumRegionDefinitions": {
+            "added": "900"
+        },
+        "GetNumRegionResourceWares": {
+            "added": "900"
+        },
+        "GetNumRemovedConstructionPlanModules2": {
+            "added": "900"
+        },
+        "GetNumRemovedStationModules2": {
+            "added": "900"
+        },
+        "GetNumRepairResources2": {
+            "added": "900"
+        },
+        "GetNumRequestedMissionNPCs": {
+            "added": "900"
+        },
+        "GetNumRequestedMissionShips": {
+            "added": "900"
+        },
+        "GetNumRequestedMissionWares": {
+            "added": "900"
+        },
+        "GetNumResearchModules": {
+            "added": "900"
+        },
+        "GetNumScenarioStats": {
+            "added": "900"
+        },
+        "GetNumSecondaryWeapons": {
+            "added": "900"
+        },
+        "GetNumSectors": {
+            "added": "900"
+        },
+        "GetNumSectorsByOwner": {
+            "added": "900"
+        },
+        "GetNumShieldGroups": {
+            "added": "900"
+        },
+        "GetNumShipStances": {
+            "added": "900"
+        },
+        "GetNumShowRoomModules": {
+            "added": "900"
+        },
+        "GetNumSkills": {
+            "added": "900"
+        },
+        "GetNumSlotCompatibilities": {
+            "added": "900"
+        },
+        "GetNumSoftwarePredecessors": {
+            "added": "900"
+        },
+        "GetNumSoftwareSlots": {
+            "added": "900"
+        },
+        "GetNumSoundDevices": {
+            "added": "900"
+        },
+        "GetNumStartmenuBackgrounds": {
+            "added": "900"
+        },
+        "GetNumStationModules": {
+            "added": "900"
+        },
+        "GetNumStationOverviewGraphWares": {
+            "added": "900"
+        },
+        "GetNumStoredUnits": {
+            "added": "900"
+        },
+        "GetNumSubComponents": {
+            "added": "900"
+        },
+        "GetNumSubordinatesOfGroup": {
+            "added": "900"
+        },
+        "GetNumSuitableBuildProcessors": {
+            "added": "900"
+        },
+        "GetNumSuitableControlPosts": {
+            "added": "900"
+        },
+        "GetNumSupplyOrderResources": {
+            "added": "900"
+        },
+        "GetNumSupplyOrders": {
+            "added": "900"
+        },
+        "GetNumTableInitialMultiselectedRows": {
+            "added": "900"
+        },
+        "GetNumTableRowGroups": {
+            "added": "900"
+        },
+        "GetNumTerraformingCurrentStats": {
+            "added": "900"
+        },
+        "GetNumTerraformingDynamicStats": {
+            "added": "900"
+        },
+        "GetNumTerraformingProjectGroups": {
+            "added": "900"
+        },
+        "GetNumTerraformingProjects": {
+            "added": "900"
+        },
+        "GetNumTickerCache": {
+            "added": "900"
+        },
+        "GetNumTiersOfRole": {
+            "added": "900"
+        },
+        "GetNumTimeline": {
+            "added": "900"
+        },
+        "GetNumTradeComputerOrders": {
+            "added": "900"
+        },
+        "GetNumTradeOfferStatistics": {
+            "added": "900"
+        },
+        "GetNumTransactionLog": {
+            "added": "900"
+        },
+        "GetNumTurrets": {
+            "added": "900"
+        },
+        "GetNumTurretSlots": {
+            "added": "900"
+        },
+        "GetNumUISystemInfo": {
+            "added": "900"
+        },
+        "GetNumUnavailableUnits": {
+            "added": "900"
+        },
+        "GetNumUnitCargo": {
+            "added": "900"
+        },
+        "GetNumUnreadLibraryEntries": {
+            "added": "900"
+        },
+        "GetNumUnreadMails": {
+            "added": "900"
+        },
+        "GetNumUpgradeGroupCompatibilities": {
+            "added": "900"
+        },
+        "GetNumUpgradeGroups": {
+            "added": "900"
+        },
+        "GetNumUpgradeSlots": {
+            "added": "900"
+        },
+        "GetNumUsedLimitedModules": {
+            "added": "900"
+        },
+        "GetNumUsedLimitedModulesFromSubsequence": {
+            "added": "900"
+        },
+        "GetNumUsedLimitedShips": {
+            "added": "900"
+        },
+        "GetNumValidTransporterTargets2": {
+            "added": "900"
+        },
+        "GetNumVenturePlatformDocks": {
+            "added": "900"
+        },
+        "GetNumVenturePlatforms": {
+            "added": "900"
+        },
+        "GetNumVirtualUpgradeSlots": {
+            "added": "900"
+        },
+        "GetNumWareBasketItems": {
+            "added": "900"
+        },
+        "GetNumWareBlueprintOwners": {
+            "added": "900"
+        },
+        "GetNumWares": {
+            "added": "900"
+        },
+        "GetNumWares2": {
+            "added": "900"
+        },
+        "GetNumWareSources": {
+            "added": "900"
+        },
+        "GetNumWareTransportTypes": {
+            "added": "900"
+        },
+        "GetNumWeaponGroupsByWeapon": {
+            "added": "900"
+        },
+        "GetNumWeaponSlots": {
+            "added": "900"
+        },
+        "GetObjectBrakeDistance": {
+            "added": "900"
+        },
+        "GetObjectCoverAbilityFaction": {
+            "added": "900"
+        },
+        "GetObjectEngineStatus": {
+            "added": "900"
+        },
+        "GetObjectIDCode": {
+            "added": "900"
+        },
+        "GetObjectPositionInSector": {
+            "added": "900"
+        },
+        "GetOpenTrackConnectionStatus": {
+            "added": "900"
+        },
+        "GetOpenTrackSupportOption": {
+            "added": "900"
+        },
+        "GetOrderDefinition": {
+            "added": "900"
+        },
+        "GetOrderDefinitions": {
+            "added": "900"
+        },
+        "GetOrderFailures": {
+            "added": "900"
+        },
+        "GetOrderID": {
+            "added": "900"
+        },
+        "GetOrderLocationData": {
+            "added": "900"
+        },
+        "GetOrderLoopSkillLimit": {
+            "added": "900"
+        },
+        "GetOrderQueueCurrentIdx": {
+            "added": "900"
+        },
+        "GetOrderQueueFirstLoopIdx": {
+            "added": "900"
+        },
+        "GetOrderQueueOption": {
+            "added": "900"
+        },
+        "GetOrders": {
+            "added": "900"
+        },
+        "GetOrders2": {
+            "added": "900"
+        },
+        "GetOrders3": {
+            "added": "900"
+        },
+        "GetOverlayCols3": {
+            "added": "900"
+        },
+        "GetOverlayDefinition": {
+            "added": "900"
+        },
+        "GetOwnerDetails": {
+            "added": "900"
+        },
+        "GetOwnerDetails2": {
+            "added": "900"
+        },
+        "GetPaidBuildPlotCenterOffset": {
+            "added": "900"
+        },
+        "GetPaidBuildPlotSize": {
+            "added": "900"
+        },
+        "GetPaintThemeMod": {
+            "added": "900"
+        },
+        "GetParentComponent": {
+            "added": "900"
+        },
+        "GetPeople2": {
+            "added": "900"
+        },
+        "GetPeopleAfterOrders": {
+            "added": "900"
+        },
+        "GetPeopleCapacity": {
+            "added": "900"
+        },
+        "GetPersonCombinedSkill": {
+            "added": "900"
+        },
+        "GetPersonName": {
+            "added": "900"
+        },
+        "GetPersonRole": {
+            "added": "900"
+        },
+        "GetPersonRoleName": {
+            "added": "900"
+        },
+        "GetPersonSkills3": {
+            "added": "900"
+        },
+        "GetPersonSkillsForAssignment": {
+            "added": "900"
+        },
+        "GetPersonSuitableControlPosts": {
+            "added": "900"
+        },
+        "GetPersonTier": {
+            "added": "900"
+        },
+        "GetPickedBuildMapEntry2": {
+            "added": "900"
+        },
+        "GetPickedMapComponent": {
+            "added": "900"
+        },
+        "GetPickedMapInterSectorDefence": {
+            "added": "900"
+        },
+        "GetPickedMapMacroSlot": {
+            "added": "900"
+        },
+        "GetPickedMapMission": {
+            "added": "900"
+        },
+        "GetPickedMapMissionOffer": {
+            "added": "900"
+        },
+        "GetPickedMapOrder": {
+            "added": "900"
+        },
+        "GetPickedMapSyncPoint": {
+            "added": "900"
+        },
+        "GetPickedMapSyncPointOwningOrder": {
+            "added": "900"
+        },
+        "GetPickedMapTradeOffer": {
+            "added": "900"
+        },
+        "GetPickedMultiverseMapPlayer": {
+            "added": "900"
+        },
+        "GetPlannedDefaultOrder": {
+            "added": "900"
+        },
+        "GetPlannedLimitedModules": {
+            "added": "900"
+        },
+        "GetPlannedStationModules": {
+            "added": "900"
+        },
+        "GetPlayerAlertCounts": {
+            "added": "900"
+        },
+        "GetPlayerAlerts2": {
+            "added": "900"
+        },
+        "GetPlayerAlertSounds2": {
+            "added": "900"
+        },
+        "GetPlayerBuildMethod": {
+            "added": "900"
+        },
+        "GetPlayerBuildMethods": {
+            "added": "900"
+        },
+        "GetPlayerClothingTheme": {
+            "added": "900"
+        },
+        "GetPlayerComputerID": {
+            "added": "900"
+        },
+        "GetPlayerContainerID": {
+            "added": "900"
+        },
+        "GetPlayerControlledShipID": {
+            "added": "900"
+        },
+        "GetPlayerCoverFaction": {
+            "added": "900"
+        },
+        "GetPlayerCurrentControlGroup": {
+            "added": "900"
+        },
+        "GetPlayerFactionName": {
+            "added": "900"
+        },
+        "GetPlayerGalaxyID": {
+            "added": "900"
+        },
+        "GetPlayerGlobalLoadoutLevel": {
+            "added": "900"
+        },
+        "GetPlayerGlobalTradeLoopCargoReservationSetting": {
+            "added": "900"
+        },
+        "GetPlayerID": {
+            "added": "900"
+        },
+        "GetPlayerInfluence": {
+            "added": "900"
+        },
+        "GetPlayerLogos": {
+            "added": "900"
+        },
+        "GetPlayerName": {
+            "added": "900"
+        },
+        "GetPlayerObjectID": {
+            "added": "900"
+        },
+        "GetPlayerOccupiedShipID": {
+            "added": "900"
+        },
+        "GetPlayerPaintTheme": {
+            "added": "900"
+        },
+        "GetPlayerPaintThemeMod": {
+            "added": "900"
+        },
+        "GetPlayerPeopleDefinitions": {
+            "added": "900"
+        },
+        "GetPlayerRepresentative": {
+            "added": "900"
+        },
+        "GetPlayerShipBuildTasks": {
+            "added": "900"
+        },
+        "GetPlayerShipID": {
+            "added": "900"
+        },
+        "GetPlayerShipSize": {
+            "added": "900"
+        },
+        "GetPlayerTargetOffset": {
+            "added": "900"
+        },
+        "GetPlayerZoneID": {
+            "added": "900"
+        },
+        "GetPOIDetails": {
+            "added": "900"
+        },
+        "GetPOMOption": {
+            "added": "900"
+        },
+        "GetPositionalOffset": {
+            "added": "900"
+        },
+        "GetPresentModeOption2": {
+            "added": "900"
+        },
+        "GetPrimaryWeapon": {
+            "added": "900"
+        },
+        "GetPriorityMissiontargetPOSID": {
+            "added": "900"
+        },
+        "GetProductionMethodInfo": {
+            "added": "900",
+            "removed": "900-603990"
+        },
+        "GetProductionMethodResources": {
+            "added": "900"
+        },
+        "GetPurchasableCargo": {
+            "added": "900"
+        },
+        "GetPurposeName": {
+            "added": "900"
+        },
+        "GetRadarModeOption": {
+            "added": "900"
+        },
+        "GetRectangleTargetElementExtents": {
+            "added": "900"
+        },
+        "GetReducedSpeedModeOption": {
+            "added": "900"
+        },
+        "GetRegionBoundaries": {
+            "added": "900"
+        },
+        "GetRegionDefinition": {
+            "added": "900"
+        },
+        "GetRegionDefinitions": {
+            "added": "900"
+        },
+        "GetRegionFields": {
+            "added": "900"
+        },
+        "GetRegionResources": {
+            "added": "900"
+        },
+        "GetRegionResourceWares": {
+            "added": "900"
+        },
+        "GetRelationRangeInfo": {
+            "added": "900"
+        },
+        "GetRelationRangeUIMaxValue": {
+            "added": "900"
+        },
+        "GetRelationStatus3": {
+            "added": "900"
+        },
+        "GetRelationStatus4": {
+            "added": "900"
+        },
+        "GetRelativeAimOffset": {
+            "added": "900"
+        },
+        "GetRelativeAimScreenPosition": {
+            "added": "900"
+        },
+        "GetRemainingOxygen": {
+            "added": "900"
+        },
+        "GetRemovedConstructionPlanModules2": {
+            "added": "900"
+        },
+        "GetRemovedStationModules2": {
+            "added": "900"
+        },
+        "GetRenderResolutionOption": {
+            "added": "900"
+        },
+        "GetRenderTargetAlpha": {
+            "added": "900"
+        },
+        "GetRenderTargetFrameBorderID": {
+            "added": "900"
+        },
+        "GetRepairPrice": {
+            "added": "900"
+        },
+        "GetRepairResources2": {
+            "added": "900"
+        },
+        "GetRequestedGPU": {
+            "added": "900"
+        },
+        "GetRequestedLanguage": {
+            "added": "900"
+        },
+        "GetRequestedMissionNPCs": {
+            "added": "900"
+        },
+        "GetRequestedMissionShips": {
+            "added": "900"
+        },
+        "GetRequestedMissionWares": {
+            "added": "900"
+        },
+        "GetResearchModules": {
+            "added": "900"
+        },
+        "GetRoleTierNPCs": {
+            "added": "900"
+        },
+        "GetRoleTiers": {
+            "added": "900"
+        },
+        "GetRoleTiers2": {
+            "added": "900"
+        },
+        "GetRoomForTransporter": {
+            "added": "900"
+        },
+        "GetSaveFolderPath": {
+            "added": "900"
+        },
+        "GetSaveInquiryReason": {
+            "added": "900"
+        },
+        "GetSaveInquiryText": {
+            "added": "900"
+        },
+        "GetSaveLocationName": {
+            "added": "900"
+        },
+        "GetScanProgress": {
+            "added": "900"
+        },
+        "GetScenarioLoadingInfoTexts": {
+            "added": "900"
+        },
+        "GetScenarioLoadingTexts": {
+            "added": "900"
+        },
+        "GetScenarioScoreForNextStar": {
+            "added": "900"
+        },
+        "GetScenarioScoreForRating": {
+            "added": "900"
+        },
+        "GetScenarioStats": {
+            "added": "900"
+        },
+        "GetScreenDisplayOption": {
+            "added": "900"
+        },
+        "GetSecondaryWeapon": {
+            "added": "900"
+        },
+        "GetSectorControlStation": {
+            "added": "900"
+        },
+        "GetSectorPopulation": {
+            "added": "900"
+        },
+        "GetSectorsByOwner": {
+            "added": "900"
+        },
+        "GetSelectedBuildMapEntry": {
+            "added": "900"
+        },
+        "GetShieldGroup": {
+            "added": "900"
+        },
+        "GetShieldGroups": {
+            "added": "900"
+        },
+        "GetShieldHullBarGlowFactor": {
+            "added": "900"
+        },
+        "GetShieldHullBarHullPercent": {
+            "added": "900"
+        },
+        "GetShieldHullBarShieldPercent": {
+            "added": "900"
+        },
+        "GetShipActiveStance": {
+            "added": "900"
+        },
+        "GetShipCombinedSkill": {
+            "added": "900"
+        },
+        "GetShipDefaultStance": {
+            "added": "900"
+        },
+        "GetShipOrLaserTowerSize": {
+            "added": "900"
+        },
+        "GetShipStances": {
+            "added": "900"
+        },
+        "GetShipTradeLoopCargoReservationSetting": {
+            "added": "900"
+        },
+        "GetShipValue": {
+            "added": "900"
+        },
+        "GetSignalLeakIndicatorOption": {
+            "added": "900"
+        },
+        "GetSkills": {
+            "added": "900"
+        },
+        "GetSliderCellAccuracyOverride": {
+            "added": "900"
+        },
+        "GetSliderCellBackgroundColor": {
+            "added": "900"
+        },
+        "GetSlidercellBorderColor": {
+            "added": "900"
+        },
+        "GetSliderCellFont": {
+            "added": "900"
+        },
+        "GetSliderCellInactiveBackgroundColor": {
+            "added": "900"
+        },
+        "GetSliderCellNegativeValueColor": {
+            "added": "900"
+        },
+        "GetSliderCellNegativeValueGlowFactor": {
+            "added": "900"
+        },
+        "GetSliderCellSuffix": {
+            "added": "900"
+        },
+        "GetSliderCellText": {
+            "added": "900"
+        },
+        "GetSliderCellTextColor": {
+            "added": "900"
+        },
+        "GetSliderCellTextGlowFactor": {
+            "added": "900"
+        },
+        "GetSliderCellValueColor": {
+            "added": "900"
+        },
+        "GetSliderCellValueGlowFactor": {
+            "added": "900"
+        },
+        "GetSliderCellValues": {
+            "added": "900"
+        },
+        "GetSlotCompatibilities": {
+            "added": "900"
+        },
+        "GetSlotSize": {
+            "added": "900"
+        },
+        "GetSofttarget2": {
+            "added": "900"
+        },
+        "GetSoftwareMaxCompatibleVersion": {
+            "added": "900"
+        },
+        "GetSoftwarePredecessors": {
+            "added": "900"
+        },
+        "GetSoftwareSlots": {
+            "added": "900"
+        },
+        "GetSoundDevices": {
+            "added": "900"
+        },
+        "GetSpeakTargetNameOption": {
+            "added": "900"
+        },
+        "GetSpecialNPCs": {
+            "added": "900"
+        },
+        "GetSSROption2": {
+            "added": "900"
+        },
+        "GetStandardButtonHelpOverlayInfo3": {
+            "added": "900"
+        },
+        "GetStandardButtonOffsetX": {
+            "added": "900"
+        },
+        "GetStandardButtonOffsetY": {
+            "added": "900"
+        },
+        "GetStardustIntensityOption": {
+            "added": "900"
+        },
+        "GetStartmenuBackgroundOption": {
+            "added": "900"
+        },
+        "GetStartmenuBackgrounds": {
+            "added": "900"
+        },
+        "GetStartmenuParam": {
+            "added": "900"
+        },
+        "GetStationModuleLoadoutLevel": {
+            "added": "900"
+        },
+        "GetStationModules": {
+            "added": "900"
+        },
+        "GetStationOverviewGraphWares": {
+            "added": "900"
+        },
+        "GetStationValue": {
+            "added": "900"
+        },
+        "GetStatusBarCurrentValue": {
+            "added": "900"
+        },
+        "GetStatusBarMarkerColor": {
+            "added": "900"
+        },
+        "GetStatusBarMarkerGlowFactor": {
+            "added": "900"
+        },
+        "GetStatusBarMaxValue": {
+            "added": "900"
+        },
+        "GetStatusBarNegChangeColor": {
+            "added": "900"
+        },
+        "GetStatusBarNegChangeGlowFactor": {
+            "added": "900"
+        },
+        "GetStatusBarPosChangeColor": {
+            "added": "900"
+        },
+        "GetStatusBarPosChangeGlowFactor": {
+            "added": "900"
+        },
+        "GetStatusBarStartValue": {
+            "added": "900"
+        },
+        "GetStatusBarTitleColor": {
+            "added": "900"
+        },
+        "GetStatusBarTitleGlowFactor": {
+            "added": "900"
+        },
+        "GetStatusBarValueColor": {
+            "added": "900"
+        },
+        "GetStatusBarValueGlowFactor": {
+            "added": "900"
+        },
+        "GetSteamID": {
+            "added": "900"
+        },
+        "GetSubordinateGroupAssignment": {
+            "added": "900"
+        },
+        "GetSubordinateGroupProtectedPosition": {
+            "added": "900"
+        },
+        "GetSubordinateGroupProtectedSector": {
+            "added": "900"
+        },
+        "GetSubordinatesOfGroup": {
+            "added": "900"
+        },
+        "GetSuitableControlPosts": {
+            "added": "900"
+        },
+        "GetSupplyBudget": {
+            "added": "900"
+        },
+        "GetSupplyOrderResources": {
+            "added": "900"
+        },
+        "GetSupplyOrders": {
+            "added": "900"
+        },
+        "GetSyncPointAutoRelease": {
+            "added": "900"
+        },
+        "GetSyncPointAutoReleaseFromOrder": {
+            "added": "900"
+        },
+        "GetSyncPointInfo2": {
+            "added": "900"
+        },
+        "GetTableBackgroundColor": {
+            "added": "900"
+        },
+        "GetTableBackgroundID": {
+            "added": "900"
+        },
+        "GetTableBackgroundPadding": {
+            "added": "900"
+        },
+        "GetTableFrameBorderID": {
+            "added": "900"
+        },
+        "GetTableHighlightMode2": {
+            "added": "900"
+        },
+        "GetTableInitialMultiselectedRows": {
+            "added": "900"
+        },
+        "GetTableInitialSelectionInfo": {
+            "added": "900"
+        },
+        "GetTableNextConnectedTable": {
+            "added": "900"
+        },
+        "GetTableNextHorizontalConnectedTable": {
+            "added": "900"
+        },
+        "GetTablePreviousConnectedTable": {
+            "added": "900"
+        },
+        "GetTablePreviousHorizontalConnectedTable": {
+            "added": "900"
+        },
+        "GetTableRowGroups": {
+            "added": "900"
+        },
+        "GetTableRowInfo": {
+            "added": "900"
+        },
+        "GetTableRowPadding": {
+            "added": "900"
+        },
+        "GetTargetAngle": {
+            "added": "900"
+        },
+        "GetTargetElementOffset": {
+            "added": "900"
+        },
+        "GetTerraformingActiveProject": {
+            "added": "900"
+        },
+        "GetTerraformingCurrentStats": {
+            "added": "900"
+        },
+        "GetTerraformingDynamicStats": {
+            "added": "900"
+        },
+        "GetTerraformingMissionInfo": {
+            "added": "900"
+        },
+        "GetTerraformingProjectAvailabilityTime": {
+            "added": "900"
+        },
+        "GetTerraformingProjectBlockingProjects": {
+            "added": "900"
+        },
+        "GetTerraformingProjectCompletionFraction": {
+            "added": "900"
+        },
+        "GetTerraformingProjectCompletionTime": {
+            "added": "900"
+        },
+        "GetTerraformingProjectConditions": {
+            "added": "900"
+        },
+        "GetTerraformingProjectDeliveredResources": {
+            "added": "900"
+        },
+        "GetTerraformingProjectDroneStatus": {
+            "added": "900"
+        },
+        "GetTerraformingProjectEffects": {
+            "added": "900"
+        },
+        "GetTerraformingProjectGroups": {
+            "added": "900"
+        },
+        "GetTerraformingProjectPredecessorGroups": {
+            "added": "900"
+        },
+        "GetTerraformingProjectPredecessors": {
+            "added": "900"
+        },
+        "GetTerraformingProjectRebatedResources": {
+            "added": "900"
+        },
+        "GetTerraformingProjectRebates": {
+            "added": "900"
+        },
+        "GetTerraformingProjectRemovedProjects": {
+            "added": "900"
+        },
+        "GetTerraformingProjects2": {
+            "added": "900"
+        },
+        "GetTerraformingStat": {
+            "added": "900"
+        },
+        "GetTerraformingStatRange": {
+            "added": "900"
+        },
+        "GetTerraformingWorldName": {
+            "added": "900"
+        },
+        "GetTextHeight": {
+            "added": "900"
+        },
+        "GetTextureQualityOption": {
+            "added": "900"
+        },
+        "GetTextWidth": {
+            "added": "900"
+        },
+        "GetThirdPersonFlightOption": {
+            "added": "900"
+        },
+        "GetTickerCache": {
+            "added": "900"
+        },
+        "GetTiersOfRole": {
+            "added": "900"
+        },
+        "GetTimeline": {
+            "added": "900"
+        },
+        "GetTopLevelContainer": {
+            "added": "900"
+        },
+        "GetTowedObject": {
+            "added": "900"
+        },
+        "GetTrackerNameOption": {
+            "added": "900"
+        },
+        "GetTrackerSDKOption": {
+            "added": "900"
+        },
+        "GetTradeOfferStatistics": {
+            "added": "900"
+        },
+        "GetTradeRuleInfo": {
+            "added": "900"
+        },
+        "GetTradeRuleInfoCounts": {
+            "added": "900"
+        },
+        "GetTradeWareBudget": {
+            "added": "900"
+        },
+        "GetTransactionLog": {
+            "added": "900"
+        },
+        "GetTransporterLocationComponent": {
+            "added": "900"
+        },
+        "GetTransporterLocationName": {
+            "added": "900"
+        },
+        "GetTurret": {
+            "added": "900"
+        },
+        "GetTurretGroupMode2": {
+            "added": "900"
+        },
+        "GetUIAnchorScreenPosition": {
+            "added": "900"
+        },
+        "GetUIDefaultBaseRelation": {
+            "added": "900"
+        },
+        "GetUIGlowIntensity": {
+            "added": "900"
+        },
+        "GetUIGlowOption": {
+            "added": "900"
+        },
+        "GetUIRelationName": {
+            "added": "900"
+        },
+        "GetUIScale": {
+            "added": "900"
+        },
+        "GetUIScaleFactor": {
+            "added": "900"
+        },
+        "GetUIScaleFactorRange": {
+            "added": "900"
+        },
+        "GetUISystemInfo2": {
+            "added": "900"
+        },
+        "GetUnitCargo": {
+            "added": "900"
+        },
+        "GetUp": {
+            "added": "900"
+        },
+        "GetUpgradeGroupCompatibilities": {
+            "added": "900"
+        },
+        "GetUpgradeGroupInfo": {
+            "added": "900"
+        },
+        "GetUpgradeGroupInfo2": {
+            "added": "900"
+        },
+        "GetUpgradeGroups": {
+            "added": "900"
+        },
+        "GetUpgradeGroups2": {
+            "added": "900"
+        },
+        "GetUpgradeSlotCurrentComponent": {
+            "added": "900"
+        },
+        "GetUpgradeSlotCurrentMacro": {
+            "added": "900"
+        },
+        "GetUpgradeSlotGroup": {
+            "added": "900"
+        },
+        "GetUpscalingOption": {
+            "added": "900"
+        },
+        "GetUsedLimitedModules": {
+            "added": "900"
+        },
+        "GetUsedLimitedModulesFromSubsequence": {
+            "added": "900"
+        },
+        "GetUsedLimitedShips": {
+            "added": "900"
+        },
+        "GetUserData": {
+            "added": "900"
+        },
+        "GetUserDataSigned": {
+            "added": "900"
+        },
+        "GetUserTransportDroneMode": {
+            "added": "900"
+        },
+        "GetValidTransporterTargets2": {
+            "added": "900"
+        },
+        "GetVelocityIndicatorOption": {
+            "added": "900"
+        },
+        "GetVelocityScreenPosition": {
+            "added": "900"
+        },
+        "GetVentureDLCStatus": {
+            "added": "900"
+        },
+        "GetVenturePlatformDocks": {
+            "added": "900"
+        },
+        "GetVenturePlatforms": {
+            "added": "900"
+        },
+        "GetVirtualUpgradeSlotCurrentMacro": {
+            "added": "900"
+        },
+        "GetVisitorNamesShownOption": {
+            "added": "900"
+        },
+        "GetVolumetricFogOption": {
+            "added": "900"
+        },
+        "GetWareBasketItems": {
+            "added": "900"
+        },
+        "GetWareBlueprintOwners": {
+            "added": "900"
+        },
+        "GetWareReservationsForWare": {
+            "added": "900"
+        },
+        "GetWares": {
+            "added": "900"
+        },
+        "GetWares2": {
+            "added": "900"
+        },
+        "GetWareSources": {
+            "added": "900"
+        },
+        "GetWareTransportTypes": {
+            "added": "900"
+        },
+        "GetWeaponDetails3": {
+            "added": "900"
+        },
+        "GetWeaponGroupsByWeapon": {
+            "added": "900"
+        },
+        "GetWeaponMode": {
+            "added": "900"
+        },
+        "GetWidgetSystemSizeOverride": {
+            "added": "900"
+        },
+        "GetWorkForceInfo": {
+            "added": "900"
+        },
+        "GetZoneAt": {
+            "added": "900"
+        },
+        "HandleTargetMouseClickOnRadar": {
+            "added": "900"
+        },
+        "HandleTargetMouseDownOnRadar": {
+            "added": "900"
+        },
+        "HasAcceptedOnlineMission": {
+            "added": "900"
+        },
+        "HasBuildMapFloatingSelection": {
+            "added": "900"
+        },
+        "HasConfigSetting": {
+            "added": "900"
+        },
+        "HasContainerBuyLimitOverride": {
+            "added": "900"
+        },
+        "HasContainerFreeInternalShipStorage": {
+            "added": "900"
+        },
+        "HasContainerOwnTradeRule": {
+            "added": "900"
+        },
+        "HasContainerProcessingModule": {
+            "added": "900"
+        },
+        "HasContainerSellLimitOverride": {
+            "added": "900"
+        },
+        "HasControllableAnyOrderFailures": {
+            "added": "900"
+        },
+        "HasControllableOwnBlacklist": {
+            "added": "900"
+        },
+        "HasControllableOwnFightRule": {
+            "added": "900"
+        },
+        "HasControllableOwnResponse": {
+            "added": "900"
+        },
+        "HasCustomGameStartBudget": {
+            "added": "900"
+        },
+        "HasDefaultLoadout2": {
+            "added": "900"
+        },
+        "HasDefaultResponseToSignalForFaction": {
+            "added": "900"
+        },
+        "HasEntityMoneyLogEntries": {
+            "added": "900"
+        },
+        "HasExtension": {
+            "added": "900"
+        },
+        "HasFactionShipyard": {
+            "added": "900"
+        },
+        "HasFactionWharf": {
+            "added": "900"
+        },
+        "HasFollowCameraBasePosChanged": {
+            "added": "900"
+        },
+        "HasFrameBrackets": {
+            "added": "900"
+        },
+        "HasFrameRateLimit": {
+            "added": "900"
+        },
+        "HasLimitedOxygenSupply": {
+            "added": "900"
+        },
+        "HasPersonArrived": {
+            "added": "900"
+        },
+        "HasProductionModuleIllegalProducts": {
+            "added": "900"
+        },
+        "HasRenderTargetStartNoise": {
+            "added": "900"
+        },
+        "HasResearched": {
+            "added": "900"
+        },
+        "HasSavegame": {
+            "added": "900"
+        },
+        "HasSeta": {
+            "added": "900"
+        },
+        "HasShipFlightAssist": {
+            "added": "900"
+        },
+        "HasShipTradeLoopCargoReservationOverride": {
+            "added": "900"
+        },
+        "HasStartAnimation": {
+            "added": "900"
+        },
+        "HasSubordinateAssignment": {
+            "added": "900"
+        },
+        "HasSuitableBuildModule": {
+            "added": "900"
+        },
+        "HasTerraformingProjectStarted": {
+            "added": "900"
+        },
+        "HasVenturerDock": {
+            "added": "900"
+        },
+        "HidePromo": {
+            "added": "900"
+        },
+        "ImportColorMap": {
+            "added": "900"
+        },
+        "ImportColorProfile": {
+            "added": "900"
+        },
+        "ImportCustomGameStart": {
+            "added": "900"
+        },
+        "ImportInputFeedbackConfig": {
+            "added": "900"
+        },
+        "ImportMapConstructionPlan": {
+            "added": "900"
+        },
+        "InstallEngineMod": {
+            "added": "900"
+        },
+        "InstallGroupedWeaponMod": {
+            "added": "900"
+        },
+        "InstallPaintMod": {
+            "added": "900"
+        },
+        "InstallShieldMod": {
+            "added": "900"
+        },
+        "InstallShipMod": {
+            "added": "900"
+        },
+        "InstallWeaponMod": {
+            "added": "900"
+        },
+        "InvalidateRadarCursorPosition": {
+            "added": "900"
+        },
+        "IsAAOptionSupported": {
+            "added": "900"
+        },
+        "IsActiveHeadTrackerAvailable": {
+            "added": "900"
+        },
+        "IsActiveHeadTrackerSettingSupported": {
+            "added": "900"
+        },
+        "IsAdvancedSatellite": {
+            "added": "900"
+        },
+        "IsAmmoMacroCompatible": {
+            "added": "900"
+        },
+        "IsAppStoreVersion": {
+            "added": "900"
+        },
+        "IsAsteroid": {
+            "added": "900"
+        },
+        "IsAutoPilotActive": {
+            "added": "900"
+        },
+        "IsAutotargetingActive": {
+            "added": "900"
+        },
+        "IsBomb": {
+            "added": "900"
+        },
+        "IsBoxTextWordWrap": {
+            "added": "900"
+        },
+        "IsBuilderBusy": {
+            "added": "900"
+        },
+        "IsBuildStorage": {
+            "added": "900"
+        },
+        "IsBuildWaitingForSecondaryComponentResources": {
+            "added": "900"
+        },
+        "IsCheckBoxActive": {
+            "added": "900"
+        },
+        "IsCheckBoxChecked": {
+            "added": "900"
+        },
+        "IsClientModified": {
+            "added": "900"
+        },
+        "IsCollectable": {
+            "added": "900"
+        },
+        "IsCommander": {
+            "added": "900"
+        },
+        "IsComponentBlacklisted": {
+            "added": "900"
+        },
+        "IsComponentClass": {
+            "added": "900"
+        },
+        "IsComponentOperational": {
+            "added": "900"
+        },
+        "IsComponentWrecked": {
+            "added": "900"
+        },
+        "IsConstructionPlanAvailableInCustomGameStart": {
+            "added": "900"
+        },
+        "IsConstructionPlanValid": {
+            "added": "900"
+        },
+        "IsContainerAmmoMacroCompatible": {
+            "added": "900"
+        },
+        "IsContainerTradingWithFactionRescricted": {
+            "added": "900"
+        },
+        "IsContainerTransmuteForFactionAllowed": {
+            "added": "900"
+        },
+        "IsContestedSector": {
+            "added": "900"
+        },
+        "IsControlPressed": {
+            "added": "900"
+        },
+        "IsConversationActive": {
+            "added": "900"
+        },
+        "IsConversationCancelling": {
+            "added": "900"
+        },
+        "IsCrate": {
+            "added": "900"
+        },
+        "IsCrystal": {
+            "added": "900"
+        },
+        "IsCurrentBuildMapPlotPositionDiscovered": {
+            "added": "900"
+        },
+        "IsCurrentBuildMapPlotValid": {
+            "added": "900"
+        },
+        "IsCurrentGPUDiscrete": {
+            "added": "900"
+        },
+        "IsCurrentlyScanning": {
+            "added": "900"
+        },
+        "IsCurrentOrderCritical": {
+            "added": "900"
+        },
+        "IsCustomGameStartPropertyChanged": {
+            "added": "900"
+        },
+        "IsDataVault": {
+            "added": "900"
+        },
+        "IsDefensibleBeingBoardedBy": {
+            "added": "900"
+        },
+        "IsDemoVersion": {
+            "added": "900"
+        },
+        "IsDeployableMacroCompatible": {
+            "added": "900"
+        },
+        "IsDestructible2": {
+            "added": "900"
+        },
+        "IsDetailUIElement": {
+            "added": "900"
+        },
+        "IsDiplomacyExcluded": {
+            "added": "900"
+        },
+        "IsDLSSFrameGenOptionSupported": {
+            "added": "900"
+        },
+        "IsDLSSFrameGenSupported": {
+            "added": "900"
+        },
+        "IsDLSSSupported": {
+            "added": "900"
+        },
+        "IsDroneTypeArmed": {
+            "added": "900"
+        },
+        "IsDroneTypeBlocked": {
+            "added": "900"
+        },
+        "IsDropDownActive": {
+            "added": "900"
+        },
+        "IsEditBoxActive": {
+            "added": "900"
+        },
+        "IsEditBoxInputEncrypted": {
+            "added": "900"
+        },
+        "IsEditBoxTextHidden": {
+            "added": "900"
+        },
+        "IsEditBoxTextSelectedOnActivation": {
+            "added": "900"
+        },
+        "IsEntity": {
+            "added": "900"
+        },
+        "IsErrorLogActive": {
+            "added": "900"
+        },
+        "IsExtensionEnabled": {
+            "added": "900"
+        },
+        "IsExternalTargetMode": {
+            "added": "900"
+        },
+        "IsExternalViewActive": {
+            "added": "900"
+        },
+        "IsExternalViewDisabled": {
+            "added": "900"
+        },
+        "IsFactionAllyToFaction": {
+            "added": "900"
+        },
+        "IsFactionEnemyToFaction": {
+            "added": "900"
+        },
+        "IsFactionHostileToFaction": {
+            "added": "900"
+        },
+        "IsFactionInRelationRangeToFaction": {
+            "added": "900"
+        },
+        "IsFleetManagerPlayerEnabled": {
+            "added": "900"
+        },
+        "IsFlightAssistActive": {
+            "added": "900"
+        },
+        "IsFloatingViewActive": {
+            "added": "900"
+        },
+        "IsFPSEnabled": {
+            "added": "900"
+        },
+        "IsFSRFrameGenSupported": {
+            "added": "900"
+        },
+        "IsFSROnWithoutAA": {
+            "added": "900"
+        },
+        "IsFullscreenCutsceneActive": {
+            "added": "900"
+        },
+        "IsFullscreenMenuDisplayed": {
+            "added": "900"
+        },
+        "IsGameModified": {
+            "added": "900"
+        },
+        "IsGameOver": {
+            "added": "900"
+        },
+        "IsGamePaused": {
+            "added": "900"
+        },
+        "IsGameStartModified": {
+            "added": "900"
+        },
+        "IsGate": {
+            "added": "900"
+        },
+        "IsGOGVersion": {
+            "added": "900"
+        },
+        "IsGPUAutomaticallySelected": {
+            "added": "900"
+        },
+        "IsGPUCompatible": {
+            "added": "900"
+        },
+        "IsHQ": {
+            "added": "900"
+        },
+        "IsHUDActive": {
+            "added": "900"
+        },
+        "IsHUDRadarActive": {
+            "added": "900"
+        },
+        "IsIconValid": {
+            "added": "900"
+        },
+        "IsInfoUnlockedForPlayer": {
+            "added": "900"
+        },
+        "IsInPanelMode": {
+            "added": "900"
+        },
+        "IsInputModifierPressed": {
+            "added": "900"
+        },
+        "IsJoystickSteeringAdapative": {
+            "added": "900"
+        },
+        "IsKnownItemRead": {
+            "added": "900"
+        },
+        "IsKnownRead": {
+            "added": "900"
+        },
+        "IsKnownToPlayer": {
+            "added": "900"
+        },
+        "IsLandmark": {
+            "added": "900"
+        },
+        "IsLanguageSettingEnabled": {
+            "added": "900"
+        },
+        "IsLanguageValid": {
+            "added": "900"
+        },
+        "IsLaserTower": {
+            "added": "900"
+        },
+        "IsLoadoutCompatible": {
+            "added": "900"
+        },
+        "IsLoadoutValid": {
+            "added": "900"
+        },
+        "IsLockbox": {
+            "added": "900"
+        },
+        "IsLowOnOxygen": {
+            "added": "900"
+        },
+        "IsMasterVersion": {
+            "added": "900"
+        },
+        "IsMine": {
+            "added": "900"
+        },
+        "IsMiniWidgetSystemUsed": {
+            "added": "900"
+        },
+        "IsMissileIncoming": {
+            "added": "900"
+        },
+        "IsMissileLockingOn": {
+            "added": "900"
+        },
+        "IsMissionLimitReached": {
+            "added": "900"
+        },
+        "IsMouseEmulationActive": {
+            "added": "900"
+        },
+        "IsMouseSteeringActive": {
+            "added": "900"
+        },
+        "IsMouseSteeringAdapative": {
+            "added": "900"
+        },
+        "IsMouseSteeringLineEnabled": {
+            "added": "900"
+        },
+        "IsMouseSteeringPersistent": {
+            "added": "900"
+        },
+        "IsNavBeacon": {
+            "added": "900"
+        },
+        "IsNetworkEngineEnabled": {
+            "added": "900"
+        },
+        "IsNewGame": {
+            "added": "900"
+        },
+        "IsNextStartAnimationSkipped": {
+            "added": "900"
+        },
+        "IsNPCLineSkippable": {
+            "added": "900"
+        },
+        "IsObjectKnown": {
+            "added": "900"
+        },
+        "IsObjectShootingDisabledByStanceOnly": {
+            "added": "900"
+        },
+        "IsOnlineEnabled": {
+            "added": "900"
+        },
+        "IsOpenTrackEnabled": {
+            "added": "900"
+        },
+        "IsOrderLoopable": {
+            "added": "900"
+        },
+        "IsOrderSelectableFor": {
+            "added": "900"
+        },
+        "IsPerson": {
+            "added": "900"
+        },
+        "IsPersonTransferScheduled": {
+            "added": "900"
+        },
+        "IsPlayerBlacklistDefault": {
+            "added": "900"
+        },
+        "IsPlayerCameraTargetViewPossible": {
+            "added": "900"
+        },
+        "IsPlayerContext": {
+            "added": "900"
+        },
+        "IsPlayerControlGroupValid": {
+            "added": "900"
+        },
+        "IsPlayerCoverable": {
+            "added": "900"
+        },
+        "IsPlayerFightRuleDefault": {
+            "added": "900"
+        },
+        "IsPlayerOccupiedShipDocked": {
+            "added": "900"
+        },
+        "IsPlayerTradeRuleDefault": {
+            "added": "900"
+        },
+        "IsPlayerValid": {
+            "added": "900"
+        },
+        "IsPresentModeAvailable": {
+            "added": "900"
+        },
+        "IsPresentModeOptionSupported": {
+            "added": "900"
+        },
+        "IsRealComponentClass": {
+            "added": "900"
+        },
+        "IsRecyclable": {
+            "added": "900"
+        },
+        "IsReducedSpeedModeActive": {
+            "added": "900"
+        },
+        "IsRequestedGPUCurrent": {
+            "added": "900"
+        },
+        "IsResourceProbe": {
+            "added": "900"
+        },
+        "IsRunningOnSteamDeck": {
+            "added": "900"
+        },
+        "IsSatellite": {
+            "added": "900"
+        },
+        "IsSaveListLoadingComplete": {
+            "added": "900"
+        },
+        "IsSaveValid": {
+            "added": "900"
+        },
+        "IsScenarioLoading": {
+            "added": "900"
+        },
+        "IsSetaActive": {
+            "added": "900"
+        },
+        "IsShiftPressed": {
+            "added": "900"
+        },
+        "IsShip": {
+            "added": "900"
+        },
+        "IsShipAtExternalDock": {
+            "added": "900"
+        },
+        "IsShipBeingRetrieved": {
+            "added": "900"
+        },
+        "IsSlotMandatory": {
+            "added": "900"
+        },
+        "IsSofttargetManagerActive": {
+            "added": "900"
+        },
+        "IsSoftwareDefault": {
+            "added": "900"
+        },
+        "IsStartmenu": {
+            "added": "900"
+        },
+        "IsStation": {
+            "added": "900"
+        },
+        "IsStationary": {
+            "added": "900"
+        },
+        "IsStoryFeatureUnlocked": {
+            "added": "900"
+        },
+        "IsSuperHighway": {
+            "added": "900"
+        },
+        "IsSupplyManual": {
+            "added": "900"
+        },
+        "IsSurfaceElement": {
+            "added": "900"
+        },
+        "IsTableMultiSelect": {
+            "added": "900"
+        },
+        "IsTableRowBorderBelowEnabled": {
+            "added": "900"
+        },
+        "IsTableRowInteractive": {
+            "added": "900"
+        },
+        "IsTargetable": {
+            "added": "900"
+        },
+        "IsTargetInPlayerWeaponRange": {
+            "added": "900"
+        },
+        "IsTargetMonitorNotification": {
+            "added": "900"
+        },
+        "IsTerraformingProjectOngoing": {
+            "added": "900"
+        },
+        "IsThrottleBidirectional": {
+            "added": "900"
+        },
+        "IsTimelinesScenario": {
+            "added": "900"
+        },
+        "IsTitleFontString": {
+            "added": "900"
+        },
+        "IsTitleStatusBar": {
+            "added": "900"
+        },
+        "IsTradeShowVersion": {
+            "added": "900"
+        },
+        "IsTurretGroupArmed": {
+            "added": "900"
+        },
+        "IsTutorial": {
+            "added": "900"
+        },
+        "IsUICoverOverridden": {
+            "added": "900"
+        },
+        "IsUnit": {
+            "added": "900"
+        },
+        "IsUnitMacroCompatible": {
+            "added": "900"
+        },
+        "IsUpgradeGroupMacroCompatible": {
+            "added": "900"
+        },
+        "IsUpgradeMacroCompatible": {
+            "added": "900"
+        },
+        "IsUpscalingOptionSupported": {
+            "added": "900"
+        },
+        "IsValidComponent": {
+            "added": "900"
+        },
+        "IsValidTrade": {
+            "added": "900"
+        },
+        "IsVentureExtensionSupported": {
+            "added": "900"
+        },
+        "IsVentureSeasonSupported": {
+            "added": "900"
+        },
+        "IsVentureShip": {
+            "added": "900"
+        },
+        "IsVirtualUpgradeMacroCompatible": {
+            "added": "900"
+        },
+        "IsWeaponArmed": {
+            "added": "900"
+        },
+        "IsWeaponModeCompatible": {
+            "added": "900"
+        },
+        "IsWidgetsystemRequestingCrosshairVisible": {
+            "added": "900"
+        },
+        "IsWillingToBuyFromPlayer": {
+            "added": "900"
+        },
+        "IsWillingToSellToPlayer": {
+            "added": "900"
+        },
+        "IsZone": {
+            "added": "900"
+        },
+        "IsZoneHighway": {
+            "added": "900"
+        },
+        "LaunchLaserTower": {
+            "added": "900"
+        },
+        "LaunchMine": {
+            "added": "900"
+        },
+        "LaunchNavBeacon": {
+            "added": "900"
+        },
+        "LaunchResourceProbe": {
+            "added": "900"
+        },
+        "LaunchSatellite": {
+            "added": "900"
+        },
+        "LearnBlueprint": {
+            "added": "900"
+        },
+        "LeaveScenarioConsole": {
+            "added": "900"
+        },
+        "MakePlayerOwnerOf": {
+            "added": "900"
+        },
+        "MapModifierButton": {
+            "added": "900"
+        },
+        "MarkIndicatorShown": {
+            "added": "900"
+        },
+        "MissionBriefingInteractButtonClicked": {
+            "added": "900"
+        },
+        "MovePlayerToSectorPos": {
+            "added": "900"
+        },
+        "MutePlayerAlert": {
+            "added": "900"
+        },
+        "NewGame": {
+            "added": "900"
+        },
+        "NewMultiplayerGame": {
+            "added": "900"
+        },
+        "NotifyChatMessageRead": {
+            "added": "900"
+        },
+        "NotifyDisplayNotification": {
+            "added": "900"
+        },
+        "NotifyErrorLogDispatching": {
+            "added": "900"
+        },
+        "NotifyErrorLogDispatchingDone": {
+            "added": "900"
+        },
+        "NotifyInteractMenuHidden": {
+            "added": "900"
+        },
+        "NotifyInteractMenuShown": {
+            "added": "900"
+        },
+        "NotifyMissionPosIDConnected": {
+            "added": "900"
+        },
+        "NotifyMissionPosIDDisconnected": {
+            "added": "900"
+        },
+        "OpenMovieMenu": {
+            "added": "900"
+        },
+        "OpenWebBrowser": {
+            "added": "900"
+        },
+        "PauseProcessingModule": {
+            "added": "900"
+        },
+        "PauseProductionModule": {
+            "added": "900"
+        },
+        "PayBuildPlotSize": {
+            "added": "900"
+        },
+        "PerformCompSlotPlayerAction": {
+            "added": "900"
+        },
+        "PerformCrewExchange2": {
+            "added": "900"
+        },
+        "PlayDetailmonitorCutscene": {
+            "added": "900"
+        },
+        "PrepareBuildSequenceResources2": {
+            "added": "900"
+        },
+        "PutShipIntoStorage": {
+            "added": "900"
+        },
+        "QueryGameServers": {
+            "added": "900"
+        },
+        "QuickDock": {
+            "added": "900"
+        },
+        "QuickMenuAccess": {
+            "added": "900"
+        },
+        "ReadAllInventoryWares": {
+            "added": "900"
+        },
+        "ReadAllKnownItems": {
+            "added": "900"
+        },
+        "ReadAllKnownSpaces": {
+            "added": "900"
+        },
+        "ReadInventoryWare": {
+            "added": "900"
+        },
+        "ReadKnownItem": {
+            "added": "900"
+        },
+        "ReassignControllableToFleetUnit": {
+            "added": "900"
+        },
+        "ReassignPeople": {
+            "added": "900"
+        },
+        "RedoConstructionMapChange": {
+            "added": "900"
+        },
+        "ReenableErrorLog": {
+            "added": "900"
+        },
+        "ReleaseConstructionMapState": {
+            "added": "900"
+        },
+        "ReleaseDetachedSubordinateGroup": {
+            "added": "900"
+        },
+        "ReleaseInteractionDescriptor": {
+            "added": "900"
+        },
+        "ReleaseOrderSyncPoint": {
+            "added": "900"
+        },
+        "ReleaseOrderSyncPointFromOrder": {
+            "added": "900"
+        },
+        "ReleasePersonFromCrewTransfer": {
+            "added": "900"
+        },
+        "ReloadSaveList": {
+            "added": "900"
+        },
+        "RemoveAllOrders": {
+            "added": "900"
+        },
+        "RemoveAllOrders2": {
+            "added": "900"
+        },
+        "RemoveAttackerFromBoardingOperation": {
+            "added": "900"
+        },
+        "RemoveBlacklist": {
+            "added": "900"
+        },
+        "RemoveBuildPlot2": {
+            "added": "900"
+        },
+        "RemoveBuildStorage": {
+            "added": "900"
+        },
+        "RemoveColorMapColorDefinition": {
+            "added": "900"
+        },
+        "RemoveColorProfile": {
+            "added": "900"
+        },
+        "RemoveCommander2": {
+            "added": "900"
+        },
+        "RemoveComponent": {
+            "added": "900"
+        },
+        "RemoveConstructionPlan": {
+            "added": "900"
+        },
+        "RemoveCustomGameStartPlayerProperty": {
+            "added": "900"
+        },
+        "RemoveDefaultOrderFailure": {
+            "added": "900"
+        },
+        "RemoveDockingBayReservation": {
+            "added": "900"
+        },
+        "RemoveFightRule": {
+            "added": "900"
+        },
+        "RemoveFill": {
+            "added": "900"
+        },
+        "RemoveFleetUnit": {
+            "added": "900"
+        },
+        "RemoveFloatingSequenceFromConstructionPlan": {
+            "added": "900"
+        },
+        "RemoveGateConnection": {
+            "added": "900"
+        },
+        "RemoveHoloMap": {
+            "added": "900"
+        },
+        "RemoveInputProfile": {
+            "added": "900"
+        },
+        "RemoveItemFromConstructionMap2": {
+            "added": "900"
+        },
+        "RemoveLoadout": {
+            "added": "900"
+        },
+        "RemoveOrder": {
+            "added": "900"
+        },
+        "RemoveOrder2": {
+            "added": "900"
+        },
+        "RemoveOrderFailure": {
+            "added": "900"
+        },
+        "RemoveOrderSyncPointID": {
+            "added": "900"
+        },
+        "RemoveOutline": {
+            "added": "900"
+        },
+        "RemovePerson": {
+            "added": "900"
+        },
+        "RemovePlannedDefaultOrder": {
+            "added": "900"
+        },
+        "RemovePlayerAlert": {
+            "added": "900"
+        },
+        "RemoveShipTradeLoopCargoReservationOverride": {
+            "added": "900"
+        },
+        "RemoveTrackedMenu": {
+            "added": "900"
+        },
+        "RemoveTradeRule": {
+            "added": "900"
+        },
+        "RemoveTradeWare": {
+            "added": "900"
+        },
+        "ReplaceGlyphsWithAToZ": {
+            "added": "900"
+        },
+        "ReplaceHighwaySpline": {
+            "added": "900"
+        },
+        "RequestDockAt": {
+            "added": "900"
+        },
+        "RequestDockAtReason": {
+            "added": "900"
+        },
+        "RequestGPU": {
+            "added": "900"
+        },
+        "RequestGPUAutomaticallySelected": {
+            "added": "900"
+        },
+        "RequestLanguageChange": {
+            "added": "900"
+        },
+        "RequestShipFromInternalStorage2": {
+            "added": "900"
+        },
+        "RequestSoundDeviceSwitch": {
+            "added": "900"
+        },
+        "ReserveBuildPlot": {
+            "added": "900"
+        },
+        "ResetConstructionMapModuleRotation": {
+            "added": "900"
+        },
+        "ResetCustomGameStart": {
+            "added": "900"
+        },
+        "ResetCustomGameStartProperty": {
+            "added": "900"
+        },
+        "ResetDefaultResponseToSignalForFaction": {
+            "added": "900"
+        },
+        "ResetEncryptedDirectInputData": {
+            "added": "900"
+        },
+        "ResetFollowCameraBasePos": {
+            "added": "900"
+        },
+        "ResetFollowCameraBasePosOverride": {
+            "added": "900"
+        },
+        "ResetMapPlayerRotation": {
+            "added": "900"
+        },
+        "ResetOrder": {
+            "added": "900"
+        },
+        "ResetOrderLoop": {
+            "added": "900"
+        },
+        "ResetResponseToSignalForControllable": {
+            "added": "900"
+        },
+        "ResetTimelinesProgress": {
+            "added": "900"
+        },
+        "RestoreAccessibilityOptions": {
+            "added": "900"
+        },
+        "RestoreMiscOptions": {
+            "added": "900"
+        },
+        "RevealEncyclopedia": {
+            "added": "900"
+        },
+        "RevealMap": {
+            "added": "900"
+        },
+        "RevealStations": {
+            "added": "900"
+        },
+        "SaveAAOption": {
+            "added": "900"
+        },
+        "SaveDLSSFrameGenOption": {
+            "added": "900"
+        },
+        "SaveDLSSModeOption": {
+            "added": "900"
+        },
+        "SaveDLSSOption": {
+            "added": "900"
+        },
+        "SaveFollowCameraBasePos": {
+            "added": "900"
+        },
+        "SaveFSRFrameGenOption": {
+            "added": "900"
+        },
+        "SaveLoadout": {
+            "added": "900"
+        },
+        "SaveLoadout2": {
+            "added": "900"
+        },
+        "SaveMapConstructionPlan": {
+            "added": "900"
+        },
+        "SavePresentModeOption": {
+            "added": "900"
+        },
+        "SaveUIUserData": {
+            "added": "900"
+        },
+        "SaveUpscalingOption": {
+            "added": "900"
+        },
+        "SelectBuildMapEntry": {
+            "added": "900"
+        },
+        "SelectPickedBuildMapEntry": {
+            "added": "900"
+        },
+        "SelectSimilarMapComponents": {
+            "added": "900"
+        },
+        "SelfDestructComponent": {
+            "added": "900"
+        },
+        "SellPlayerShip": {
+            "added": "900"
+        },
+        "SetAAOption": {
+            "added": "900"
+        },
+        "SetActiveFrame": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerAngleFactor": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerDeadzoneAngle": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerDeadzonePosition": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerGazeAngleFactor": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerGazeDeadzone": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerGazeFilterStrength": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerHeadFilterStrength": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerHeadPositionFactor": {
+            "added": "900"
+        },
+        "SetActiveHeadTrackerMode": {
+            "added": "900"
+        },
+        "SetActiveMission": {
+            "added": "900"
+        },
+        "SetAdaptiveSamplingOption": {
+            "added": "900"
+        },
+        "SetAgentDiplomacyShip": {
+            "added": "900"
+        },
+        "SetAllDronesArmed": {
+            "added": "900"
+        },
+        "SetAllMissileTurretModes": {
+            "added": "900"
+        },
+        "SetAllMissileTurretsArmed": {
+            "added": "900"
+        },
+        "SetAllNonMissileTurretModes": {
+            "added": "900"
+        },
+        "SetAllNonMissileTurretsArmed": {
+            "added": "900"
+        },
+        "SetAllowedWeaponSystems": {
+            "added": "900"
+        },
+        "SetAllTurretModes": {
+            "added": "900"
+        },
+        "SetAllTurretsArmed": {
+            "added": "900"
+        },
+        "SetAllUIInputIgnored": {
+            "added": "900"
+        },
+        "SetAmmoOfWeapon": {
+            "added": "900"
+        },
+        "SetArchivedDiplomacyActionOperationRead": {
+            "added": "900"
+        },
+        "SetArchivedDiplomacyEventOperationRead": {
+            "added": "900"
+        },
+        "SetAutoRoll": {
+            "added": "900"
+        },
+        "SetAutosaveIntervalOption": {
+            "added": "900"
+        },
+        "SetAutoZoomResetOption": {
+            "added": "900"
+        },
+        "SetBoxText": {
+            "added": "900"
+        },
+        "SetBoxTextBoxColor": {
+            "added": "900"
+        },
+        "SetBoxTextColor": {
+            "added": "900"
+        },
+        "SetBoxTextGlowFactor": {
+            "added": "900"
+        },
+        "SetBuildTaskTransferredMoney": {
+            "added": "900"
+        },
+        "SetButtonActive": {
+            "added": "900"
+        },
+        "SetButtonBorderColor": {
+            "added": "900"
+        },
+        "SetButtonGlowFactor": {
+            "added": "900"
+        },
+        "SetButtonHighlightColor": {
+            "added": "900"
+        },
+        "SetButtonHighlightGlowFactor": {
+            "added": "900"
+        },
+        "SetButtonIcon2Color": {
+            "added": "900"
+        },
+        "SetButtonIcon2GlowFactor": {
+            "added": "900"
+        },
+        "SetButtonIcon2ID": {
+            "added": "900"
+        },
+        "SetButtonIconColor": {
+            "added": "900"
+        },
+        "SetButtonIconGlowFactor": {
+            "added": "900"
+        },
+        "SetButtonIconID": {
+            "added": "900"
+        },
+        "SetButtonText2": {
+            "added": "900"
+        },
+        "SetButtonText2Color": {
+            "added": "900"
+        },
+        "SetButtonText2GlowFactor": {
+            "added": "900"
+        },
+        "SetButtonTextColor": {
+            "added": "900"
+        },
+        "SetButtonTextGlowFactor": {
+            "added": "900"
+        },
+        "SetCheckBoxChecked2": {
+            "added": "900"
+        },
+        "SetCheckBoxColor": {
+            "added": "900"
+        },
+        "SetCheckBoxSymbolGlowFactor": {
+            "added": "900"
+        },
+        "SetCheckpointSequence": {
+            "added": "900"
+        },
+        "SetChromaticAberrationOption": {
+            "added": "900"
+        },
+        "SetClusterBackground": {
+            "added": "900"
+        },
+        "SetCockpitCameraScaleOption": {
+            "added": "900"
+        },
+        "SetColorBlindOption": {
+            "added": "900"
+        },
+        "SetColorBlindOptionStrength": {
+            "added": "900"
+        },
+        "SetColorMapDefinition": {
+            "added": "900"
+        },
+        "SetColorMapReference": {
+            "added": "900"
+        },
+        "SetComponentDescription": {
+            "added": "900"
+        },
+        "SetComponentOwner": {
+            "added": "900"
+        },
+        "SetConfigSetting": {
+            "added": "900"
+        },
+        "SetConstructionMapBuildAngleStep": {
+            "added": "900"
+        },
+        "SetConstructionMapCollisionDetection": {
+            "added": "900"
+        },
+        "SetConstructionMapItemBookmarked": {
+            "added": "900"
+        },
+        "SetConstructionMapRenderSectorBackground": {
+            "added": "900"
+        },
+        "SetConstructionMapRenderTransformGizmo": {
+            "added": "900"
+        },
+        "SetConstructionSequenceFromConstructionMap": {
+            "added": "900"
+        },
+        "SetContainerBuildMethod": {
+            "added": "900"
+        },
+        "SetContainerBuildPriceFactor": {
+            "added": "900"
+        },
+        "SetContainerBuyLimitOverride": {
+            "added": "900"
+        },
+        "SetContainerGlobalPriceFactor": {
+            "added": "900"
+        },
+        "SetContainerSellLimitOverride": {
+            "added": "900"
+        },
+        "SetContainerTradeRule": {
+            "added": "900"
+        },
+        "SetContainerWareIsBuyable": {
+            "added": "900"
+        },
+        "SetContainerWareIsSellable": {
+            "added": "900"
+        },
+        "SetContainerWorkforceFillCapacity": {
+            "added": "900"
+        },
+        "SetControllableBlacklist": {
+            "added": "900"
+        },
+        "SetControllableFightRule": {
+            "added": "900"
+        },
+        "SetCrosshairMessage": {
+            "added": "900"
+        },
+        "SetCurrentLoopOrder": {
+            "added": "900"
+        },
+        "SetCustomGameStartBlueprintProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartBoolProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartEncyclopediaProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartFloatProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartInventoryProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartKnownProperty2": {
+            "added": "900"
+        },
+        "SetCustomGameStartMoneyProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyCount": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyMacroAndConstructionPlan2": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyMacroAndLoadout2": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyName": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyObjectMacro": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyPeople": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyPeopleFillPercentage2": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertyPerson": {
+            "added": "900"
+        },
+        "SetCustomGameStartPlayerPropertySectorAndOffset": {
+            "added": "900"
+        },
+        "SetCustomGameStartPosRotProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartRelationsProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartResearchProperty": {
+            "added": "900"
+        },
+        "SetCustomGameStartShipAndEmptyLoadout": {
+            "added": "900"
+        },
+        "SetCustomGameStartShipAndLoadoutProperty2": {
+            "added": "900"
+        },
+        "SetCustomGameStartShipPilot": {
+            "added": "900"
+        },
+        "SetCustomGameStartStory": {
+            "added": "900"
+        },
+        "SetCustomGameStartStringProperty": {
+            "added": "900"
+        },
+        "SetDefaultResponseToSignalForControllable": {
+            "added": "900"
+        },
+        "SetDefaultResponseToSignalForFaction2": {
+            "added": "900"
+        },
+        "SetDefensibleActiveWeaponGroup": {
+            "added": "900"
+        },
+        "SetDefensibleLoadoutLevel": {
+            "added": "900"
+        },
+        "SetDiplomacyEventOperationAgent": {
+            "added": "900"
+        },
+        "SetDiplomacyEventOperationOption": {
+            "added": "900"
+        },
+        "SetDLSSAutoFrameGenOption": {
+            "added": "900"
+        },
+        "SetDLSSFrameGenOption": {
+            "added": "900"
+        },
+        "SetDLSSModeOption": {
+            "added": "900"
+        },
+        "SetDLSSOption": {
+            "added": "900"
+        },
+        "SetDockingBayReservation": {
+            "added": "900"
+        },
+        "SetDroneMode": {
+            "added": "900"
+        },
+        "SetDroneTypeArmed": {
+            "added": "900"
+        },
+        "SetDropDownActive": {
+            "added": "900"
+        },
+        "SetDropDownCurOption": {
+            "added": "900"
+        },
+        "SetDropDownOptionTexts3": {
+            "added": "900"
+        },
+        "SetEditBoxActive": {
+            "added": "900"
+        },
+        "SetEditBoxText": {
+            "added": "900"
+        },
+        "SetEditBoxTextHidden": {
+            "added": "900"
+        },
+        "SetEditingFollowCameraSettings": {
+            "added": "900"
+        },
+        "SetEmergencyEjectOption": {
+            "added": "900"
+        },
+        "SetEnemyWarningAttackSound": {
+            "added": "900"
+        },
+        "SetEnemyWarningNearbySound": {
+            "added": "900"
+        },
+        "SetEntityToPost": {
+            "added": "900"
+        },
+        "SetEnvMapProbeInsideGlassFadeOption": {
+            "added": "900"
+        },
+        "SetEnvMapProbeOption": {
+            "added": "900"
+        },
+        "SetFactionBuildMethod": {
+            "added": "900"
+        },
+        "SetFactionDefaultWeaponMode": {
+            "added": "900"
+        },
+        "SetFactionRelationToPlayerFaction": {
+            "added": "900"
+        },
+        "SetFill": {
+            "added": "900"
+        },
+        "SetFleetLogo": {
+            "added": "900"
+        },
+        "SetFleetManagement": {
+            "added": "900"
+        },
+        "SetFleetName": {
+            "added": "900"
+        },
+        "SetFleetUnitCommander": {
+            "added": "900"
+        },
+        "SetFleetUnitSubordinateGroupAssignment": {
+            "added": "900"
+        },
+        "SetFlowChartEdgeColor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeCaptionText": {
+            "added": "900"
+        },
+        "SetFlowChartNodeCaptionTextColor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeCaptionTextGlowFactor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeCurValue": {
+            "added": "900"
+        },
+        "SetFlowchartNodeExpanded": {
+            "added": "900"
+        },
+        "SetFlowChartNodeMaxValue": {
+            "added": "900"
+        },
+        "SetFlowChartNodeOutlineColor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeSlider1Value": {
+            "added": "900"
+        },
+        "SetFlowChartNodeSlider2Value": {
+            "added": "900"
+        },
+        "SetFlowChartNodeSliderStep": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusBgIcon": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusColor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusGlowFactor": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusIcon": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusIconMouseOverText": {
+            "added": "900"
+        },
+        "SetFlowChartNodeStatusText": {
+            "added": "900"
+        },
+        "SetFocusMapComponent": {
+            "added": "900"
+        },
+        "SetFocusMapConstructionPlanEntry": {
+            "added": "900"
+        },
+        "SetFocusMapOrder": {
+            "added": "900"
+        },
+        "SetFollowCameraBasePos": {
+            "added": "900"
+        },
+        "SetFontStringGlowFactor": {
+            "added": "900"
+        },
+        "SetForceShootingAtCursorOption": {
+            "added": "900"
+        },
+        "SetFormationShape": {
+            "added": "900"
+        },
+        "SetFPSOverlayInMaster": {
+            "added": "900"
+        },
+        "SetFrameInteractiveObject": {
+            "added": "900"
+        },
+        "SetFrameRateLimit": {
+            "added": "900"
+        },
+        "SetFrameRateTarget": {
+            "added": "900"
+        },
+        "SetFSRFrameGenOption": {
+            "added": "900"
+        },
+        "SetGlobalLightScale": {
+            "added": "900"
+        },
+        "SetGroupAndAssignment": {
+            "added": "900"
+        },
+        "SetGuidance": {
+            "added": "900"
+        },
+        "SetHUDRadarActive": {
+            "added": "900"
+        },
+        "SetHUDRadarSeparate": {
+            "added": "900"
+        },
+        "SetHUDScaleOption": {
+            "added": "900"
+        },
+        "SetIcon": {
+            "added": "900"
+        },
+        "SetIconColor": {
+            "added": "900"
+        },
+        "SetIconGlowFactor": {
+            "added": "900"
+        },
+        "SetIconText": {
+            "added": "900"
+        },
+        "SetIconText2": {
+            "added": "900"
+        },
+        "SetIconText2Color": {
+            "added": "900"
+        },
+        "SetIconText2GlowFactor": {
+            "added": "900"
+        },
+        "SetIconTextColor": {
+            "added": "900"
+        },
+        "SetIconTextGlowFactor": {
+            "added": "900"
+        },
+        "SetImprovedControllerMode": {
+            "added": "900"
+        },
+        "SetInputFeedbackOption": {
+            "added": "900"
+        },
+        "SetInputFeedbackTextOption": {
+            "added": "900"
+        },
+        "SetInputFeedbackVoiceOption": {
+            "added": "900"
+        },
+        "SetInversionSetting": {
+            "added": "900"
+        },
+        "SetJoystickSteeringAdapative": {
+            "added": "900"
+        },
+        "SetKnownRead": {
+            "added": "900"
+        },
+        "SetKnownTo": {
+            "added": "900"
+        },
+        "SetLongRangeScanIndicatorOption": {
+            "added": "900"
+        },
+        "SetLUTMode": {
+            "added": "900"
+        },
+        "SetMacroMapLocalLinearHighways": {
+            "added": "900"
+        },
+        "SetMacroMapLocalRingHighways": {
+            "added": "900"
+        },
+        "SetMacroMapSelection": {
+            "added": "900"
+        },
+        "SetMapAlertFilter": {
+            "added": "900"
+        },
+        "SetMapBehaviourInspectionComponent": {
+            "added": "900"
+        },
+        "SetMapDefaultOrderParamObjectFilter": {
+            "added": "900"
+        },
+        "SetMapDiplomaticActionTargetObjectFilter": {
+            "added": "900"
+        },
+        "SetMapFactionRelationColorOption": {
+            "added": "900"
+        },
+        "SetMapFilterSectors": {
+            "added": "900"
+        },
+        "SetMapFilterString": {
+            "added": "900"
+        },
+        "SetMapFocus": {
+            "added": "900"
+        },
+        "SetMapMiningResource": {
+            "added": "900"
+        },
+        "SetMapObjectFilter": {
+            "added": "900"
+        },
+        "SetMapOrderParamObjectFilter": {
+            "added": "900"
+        },
+        "SetMapPaintMod": {
+            "added": "900"
+        },
+        "SetMapPanOffset": {
+            "added": "900"
+        },
+        "SetMapPicking": {
+            "added": "900"
+        },
+        "SetMapRelativeMousePosition": {
+            "added": "900"
+        },
+        "SetMapRenderAllAllyOrderQueues": {
+            "added": "900"
+        },
+        "SetMapRenderAllGateConnections": {
+            "added": "900"
+        },
+        "SetMapRenderAllOrderQueues": {
+            "added": "900"
+        },
+        "SetMapRenderCivilianShips": {
+            "added": "900"
+        },
+        "SetMapRenderEclipticLines": {
+            "added": "900"
+        },
+        "SetMapRenderMissionGuidance": {
+            "added": "900"
+        },
+        "SetMapRenderMissionOffers": {
+            "added": "900"
+        },
+        "SetMapRenderResourceInfo": {
+            "added": "900"
+        },
+        "SetMapRenderSatelliteRadarRange": {
+            "added": "900"
+        },
+        "SetMapRenderSelectionLines": {
+            "added": "900"
+        },
+        "SetMapRenderTradeOffers": {
+            "added": "900"
+        },
+        "SetMapRenderWrecks": {
+            "added": "900"
+        },
+        "SetMapSelectedFleetCommander": {
+            "added": "900"
+        },
+        "SetMapState": {
+            "added": "900"
+        },
+        "SetMapStationInfoBoxMargin": {
+            "added": "900"
+        },
+        "SetMapTargetDistance": {
+            "added": "900"
+        },
+        "SetMapTopTradesCount": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByMaxPrice": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByMinTotalVolume": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByPlayerOffer": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByWare": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByWareTransport": {
+            "added": "900"
+        },
+        "SetMapTradeFilterByWillingToTradeWithPlayer": {
+            "added": "900"
+        },
+        "SetMenuWidthScale": {
+            "added": "900"
+        },
+        "SetMessageRead": {
+            "added": "900"
+        },
+        "SetModifierButtonPosition": {
+            "added": "900"
+        },
+        "SetMonitorExtents": {
+            "added": "900"
+        },
+        "SetMonitorRenderState": {
+            "added": "900"
+        },
+        "SetMouseCursorPosition": {
+            "added": "900"
+        },
+        "SetMouseInputBlockedByAnarkElement": {
+            "added": "900"
+        },
+        "SetMouseOverText": {
+            "added": "900"
+        },
+        "SetMouseOverTextAdditional": {
+            "added": "900"
+        },
+        "SetMouseOverTextOption": {
+            "added": "900"
+        },
+        "SetMouseSteeringAdapative": {
+            "added": "900"
+        },
+        "SetMouseSteeringInvertedOption": {
+            "added": "900"
+        },
+        "SetMouseSteeringLine": {
+            "added": "900"
+        },
+        "SetMouseSteeringPersistent": {
+            "added": "900"
+        },
+        "SetMultipleGfxModes3": {
+            "added": "900"
+        },
+        "SetNewsItemHidden": {
+            "added": "900"
+        },
+        "SetNotificationTypeEnabled": {
+            "added": "900"
+        },
+        "SetObjectCoverFaction": {
+            "added": "900"
+        },
+        "SetObjectForcedRadarVisible": {
+            "added": "900"
+        },
+        "SetObjectSectorPos": {
+            "added": "900"
+        },
+        "SetOpenTrackSupportOption": {
+            "added": "900"
+        },
+        "SetOrderLoop": {
+            "added": "900"
+        },
+        "SetOrderQueueOption": {
+            "added": "900"
+        },
+        "SetOrderSyncPointID": {
+            "added": "900"
+        },
+        "SetOutline": {
+            "added": "900"
+        },
+        "SetPaintModLocked": {
+            "added": "900"
+        },
+        "SetPlayerBlacklistDefault": {
+            "added": "900"
+        },
+        "SetPlayerCameraCinematicView": {
+            "added": "900"
+        },
+        "SetPlayerCameraCockpitView": {
+            "added": "900"
+        },
+        "SetPlayerCameraTargetView": {
+            "added": "900"
+        },
+        "SetPlayerClothingTheme": {
+            "added": "900"
+        },
+        "SetPlayerFactionName": {
+            "added": "900"
+        },
+        "SetPlayerFightRuleDefault": {
+            "added": "900"
+        },
+        "SetPlayerGlobalLoadoutLevel": {
+            "added": "900"
+        },
+        "SetPlayerIllegalWare": {
+            "added": "900"
+        },
+        "SetPlayerLastCoverFaction": {
+            "added": "900"
+        },
+        "SetPlayerLogo": {
+            "added": "900"
+        },
+        "SetPlayerPaintTheme": {
+            "added": "900"
+        },
+        "SetPlayerShipsWaitForPlayer": {
+            "added": "900"
+        },
+        "SetPlayerTaxiWaitsForPlayer": {
+            "added": "900"
+        },
+        "SetPlayerTradeLoopCargoReservationSetting": {
+            "added": "900"
+        },
+        "SetPlayerTradeRuleDefault": {
+            "added": "900"
+        },
+        "SetPOMOption": {
+            "added": "900"
+        },
+        "SetPositionalOffset": {
+            "added": "900"
+        },
+        "SetPresentModeOption2": {
+            "added": "900"
+        },
+        "SetRadarMousePosition": {
+            "added": "900"
+        },
+        "SetRadarRenderTarget2": {
+            "added": "900"
+        },
+        "SetRadarRenderTargetOnTarget2": {
+            "added": "900"
+        },
+        "SetReducedSpeedModeOption": {
+            "added": "900"
+        },
+        "SetRegionDefinition": {
+            "added": "900"
+        },
+        "SetRelationBoostToFaction": {
+            "added": "900"
+        },
+        "SetSceneCameraActive": {
+            "added": "900"
+        },
+        "SetSelectedMapComponent": {
+            "added": "900"
+        },
+        "SetSelectedMapComponents": {
+            "added": "900"
+        },
+        "SetSelectedMapGroup": {
+            "added": "900"
+        },
+        "SetSelectedMapMacroSlot": {
+            "added": "900"
+        },
+        "SetSelectedMapMacroSlots": {
+            "added": "900"
+        },
+        "SetShieldHullBarGlowFactor": {
+            "added": "900"
+        },
+        "SetShieldHullBarHullPercent": {
+            "added": "900"
+        },
+        "SetShieldHullBarShieldPercent": {
+            "added": "900"
+        },
+        "SetShipStance": {
+            "added": "900"
+        },
+        "SetShipTradeLoopCargoReservationOverride": {
+            "added": "900"
+        },
+        "SetSignalLeakIndicatorOption": {
+            "added": "900"
+        },
+        "SetSliderCellMaxFactor": {
+            "added": "900"
+        },
+        "SetSliderCellMaxSelectValue": {
+            "added": "900"
+        },
+        "SetSliderCellMaxValue": {
+            "added": "900"
+        },
+        "SetSliderCellMinSelectValue": {
+            "added": "900"
+        },
+        "SetSliderCellMinValue": {
+            "added": "900"
+        },
+        "SetSliderCellValue": {
+            "added": "900"
+        },
+        "SetSofttarget": {
+            "added": "900"
+        },
+        "SetSpeakTargetNameOption": {
+            "added": "900"
+        },
+        "SetSSROption2": {
+            "added": "900"
+        },
+        "SetStardustIntensityOption": {
+            "added": "900"
+        },
+        "SetStartmenuBackgroundOption": {
+            "added": "900"
+        },
+        "SetStationModuleLoadoutLevel": {
+            "added": "900"
+        },
+        "SetStationOverviewGraphWare": {
+            "added": "900"
+        },
+        "SetStatusBarCurrentValue": {
+            "added": "900"
+        },
+        "SetStatusBarMaxValue": {
+            "added": "900"
+        },
+        "SetStatusBarStartValue": {
+            "added": "900"
+        },
+        "SetSubordinateGroupAssignment": {
+            "added": "900"
+        },
+        "SetSubordinateGroupAttackOnSight": {
+            "added": "900"
+        },
+        "SetSubordinateGroupDockAtCommander": {
+            "added": "900"
+        },
+        "SetSubordinateGroupProtectedLocation": {
+            "added": "900"
+        },
+        "SetSubordinateGroupReinforceFleet": {
+            "added": "900"
+        },
+        "SetSubordinateGroupRespondToDistressCalls": {
+            "added": "900"
+        },
+        "SetSubordinateGroupResupplyAtFleet": {
+            "added": "900"
+        },
+        "SetSupplyManual": {
+            "added": "900"
+        },
+        "SetSyncPointAutoRelease": {
+            "added": "900"
+        },
+        "SetSyncPointAutoReleaseFromOrder": {
+            "added": "900"
+        },
+        "SetTableNextConnectedTable": {
+            "added": "900"
+        },
+        "SetTableNextHorizontalConnectedTable": {
+            "added": "900"
+        },
+        "SetTablePreviousConnectedTable": {
+            "added": "900"
+        },
+        "SetTablePreviousHorizontalConnectedTable": {
+            "added": "900"
+        },
+        "SetTextureQualityOption": {
+            "added": "900"
+        },
+        "SetThirdPersonFlightOption": {
+            "added": "900"
+        },
+        "SetThrottleBidirectional": {
+            "added": "900"
+        },
+        "SetTrackedMenuFullscreen": {
+            "added": "900"
+        },
+        "SetTurretGroupArmed": {
+            "added": "900"
+        },
+        "SetTurretGroupMode2": {
+            "added": "900"
+        },
+        "SetUICoverOverride": {
+            "added": "900"
+        },
+        "SetUIGlowIntensity": {
+            "added": "900"
+        },
+        "SetUIGlowOption": {
+            "added": "900"
+        },
+        "SetUIScaleFactor": {
+            "added": "900"
+        },
+        "SetupConstructionSequenceModulesCache": {
+            "added": "900"
+        },
+        "SetUpscalingOption": {
+            "added": "900"
+        },
+        "SetUserData": {
+            "added": "900"
+        },
+        "SetVelocityIndicatorOption": {
+            "added": "900"
+        },
+        "SetVisitorNamesShownOption": {
+            "added": "900"
+        },
+        "SetVolumetricFogOption": {
+            "added": "900"
+        },
+        "SetWeaponArmed": {
+            "added": "900"
+        },
+        "SetWeaponGroup": {
+            "added": "900"
+        },
+        "SetWeaponMode": {
+            "added": "900"
+        },
+        "SetWidgetAssociatedElement": {
+            "added": "900"
+        },
+        "SetWidgetViewScheduled": {
+            "added": "900"
+        },
+        "ShouldContainerFillWorkforceCapacity": {
+            "added": "900"
+        },
+        "ShouldEditBoxRestoreInteractiveObject": {
+            "added": "900"
+        },
+        "ShouldPlayerShipsWaitForPlayer": {
+            "added": "900"
+        },
+        "ShouldPlayerTaxiWaitForPlayer": {
+            "added": "900"
+        },
+        "ShouldRenderTargetBeCleared": {
+            "added": "900"
+        },
+        "ShouldShowMouseSteeringHelperLine": {
+            "added": "900"
+        },
+        "ShouldShowShieldBar": {
+            "added": "900"
+        },
+        "ShouldSubordinateGroupAttackOnSight": {
+            "added": "900"
+        },
+        "ShouldSubordinateGroupDockAtCommander": {
+            "added": "900"
+        },
+        "ShouldSubordinateGroupReinforceFleet": {
+            "added": "900"
+        },
+        "ShouldSubordinateGroupRespondToDistressCalls": {
+            "added": "900"
+        },
+        "ShouldSubordinateGroupResupplyAtFleet": {
+            "added": "900"
+        },
+        "ShowBuildPlotPlacementMap": {
+            "added": "900"
+        },
+        "ShowConstructionMap": {
+            "added": "900"
+        },
+        "ShowEditorMap": {
+            "added": "900"
+        },
+        "ShowGamepadTextInput": {
+            "added": "900"
+        },
+        "ShowInfoLine": {
+            "added": "900"
+        },
+        "ShowInteractMenu": {
+            "added": "900"
+        },
+        "ShowMultiverseMap": {
+            "added": "900"
+        },
+        "ShowObjectConfigurationMap2": {
+            "added": "900"
+        },
+        "ShowPromo": {
+            "added": "900"
+        },
+        "ShowUniverseMacroMap2": {
+            "added": "900"
+        },
+        "ShowUniverseMap2": {
+            "added": "900"
+        },
+        "ShuffleMapConstructionPlan2": {
+            "added": "900"
+        },
+        "SignalObjectWithNPCSeed": {
+            "added": "900"
+        },
+        "SignalObjectWithNPCSeedAndMissionID": {
+            "added": "900"
+        },
+        "SkipNextStartAnimation": {
+            "added": "900"
+        },
+        "SpawnLocalHighwayAtPos": {
+            "added": "900"
+        },
+        "SpawnObjectAtPos": {
+            "added": "900"
+        },
+        "SpawnObjectAtPos2": {
+            "added": "900"
+        },
+        "SpawnRegionAtPos": {
+            "added": "900"
+        },
+        "SpawnStationAtPos": {
+            "added": "900"
+        },
+        "StartBoardingOperation": {
+            "added": "900"
+        },
+        "StartBriefing": {
+            "added": "900"
+        },
+        "StartControlPanelHack": {
+            "added": "900"
+        },
+        "StartIntroAnimation": {
+            "added": "900"
+        },
+        "StartMapBoxSelect": {
+            "added": "900"
+        },
+        "StartPanMap": {
+            "added": "900"
+        },
+        "StartPlayerActivity": {
+            "added": "900"
+        },
+        "StartResearch": {
+            "added": "900"
+        },
+        "StartRotateMap": {
+            "added": "900"
+        },
+        "StartStartMenuBGMusic": {
+            "added": "900"
+        },
+        "StartTerraformingProject": {
+            "added": "900"
+        },
+        "StartVoiceSequence2": {
+            "added": "900"
+        },
+        "StopBriefing": {
+            "added": "900"
+        },
+        "StopDetailmonitorCutscene": {
+            "added": "900"
+        },
+        "StopMapBoxSelect": {
+            "added": "900"
+        },
+        "StopPanMap": {
+            "added": "900"
+        },
+        "StopPlayerActivity": {
+            "added": "900"
+        },
+        "StopRotateMap": {
+            "added": "900"
+        },
+        "StopStartMenuBGMusic": {
+            "added": "900"
+        },
+        "StopVoiceSequence": {
+            "added": "900"
+        },
+        "StoreConstructionMapState": {
+            "added": "900"
+        },
+        "TakeShipFromInternalStorage": {
+            "added": "900"
+        },
+        "TeleportPlayerTo": {
+            "added": "900"
+        },
+        "ToggleAutoPilot": {
+            "added": "900"
+        },
+        "ToggleDrones": {
+            "added": "900"
+        },
+        "ToggleFlightAssist": {
+            "added": "900"
+        },
+        "ToggleMapPanToRotate": {
+            "added": "900"
+        },
+        "ToggleScreenDisplayOption": {
+            "added": "900"
+        },
+        "TrackMenu": {
+            "added": "900"
+        },
+        "TransportPlayerToTarget": {
+            "added": "900"
+        },
+        "TriggerAutosave": {
+            "added": "900"
+        },
+        "TriggerCompSlotAnimation": {
+            "added": "900"
+        },
+        "TriggerInputFeedback": {
+            "added": "900"
+        },
+        "UndockPlayerShip": {
+            "added": "900"
+        },
+        "UndoConstructionMapChange": {
+            "added": "900"
+        },
+        "UnmapModifierButton": {
+            "added": "900"
+        },
+        "UnmutePlayerAlert": {
+            "added": "900"
+        },
+        "UnsetRadarRenderTarget": {
+            "added": "900"
+        },
+        "UpdateAttackerOfBoardingOperation": {
+            "added": "900"
+        },
+        "UpdateBlacklist2": {
+            "added": "900"
+        },
+        "UpdateBoardingOperation": {
+            "added": "900"
+        },
+        "UpdateConstructionMapBuildPlot": {
+            "added": "900"
+        },
+        "UpdateConstructionMapItemLoadout": {
+            "added": "900"
+        },
+        "UpdateFightRule": {
+            "added": "900"
+        },
+        "UpdateMapBuildPlot": {
+            "added": "900"
+        },
+        "UpdateObjectConfigurationMap": {
+            "added": "900"
+        },
+        "UpdatePlayerAlert2": {
+            "added": "900"
+        },
+        "UpdateProduction": {
+            "added": "900"
+        },
+        "UpdateProductionTradeOffers": {
+            "added": "900"
+        },
+        "UpdateSupplyOverrides": {
+            "added": "900"
+        },
+        "UpdateTradeRule": {
+            "added": "900"
+        },
+        "WasSessionOnline": {
+            "added": "900"
+        },
+        "ZoomMap": {
+            "added": "900"
+        },
+        "GetAllEquipment2": {
+            "added": "900-600626"
+        },
+        "GetComponentKnownName": {
+            "added": "900-600626"
+        },
+        "GetExtensionErrorText": {
+            "added": "900-600626"
+        },
+        "GetNumAllEquipment2": {
+            "added": "900-600626"
+        },
+        "GetProductionMethodInfo2": {
+            "added": "900-603990"
+        },
+        "SetMapRenderResourceProbeRange": {
+            "added": "900-605025"
+        },
+        "GetFleetUnitLoadout": {
+            "added": "900-607977"
+        },
+        "GetFleetUnitLoadoutCounts": {
+            "added": "900-607977"
+        },
+        "GetNumPlayerEquipmentWares": {
+            "added": "900-607977"
+        },
+        "GetPlayerEquipmentWares": {
+            "added": "900-607977"
+        },
+        "SetFleetUnitLoadout": {
+            "added": "900-607977"
+        },
+        "ArePersonalVenturesEnabled": {
+            "added": "900-611726"
+        },
+        "AreVentureFeaturesEnabled": {
+            "added": "900-611726"
+        },
+        "AreVentureTeamsEnabled": {
+            "added": "900-611726"
+        },
+        "GetAmmoCount": {
+            "added": "900-611726"
+        },
+        "GetMostRecentOrderFromInteractMenu": {
+            "added": "900-611726"
+        },
+        "IsVentureChatEnabled": {
+            "added": "900-611726"
+        }
+    }
+}

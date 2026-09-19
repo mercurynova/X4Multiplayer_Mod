@@ -69,11 +69,12 @@ Start the host first, then the client.
 - [ ] **Client:** run `x4mp.bat` → role `2` → host IP → same save name →
       **start mode `2` AUTO-START**.
 
-> **Use AUTO-START, not the in-game menu.** The "Host Multiplayer" /
-> "Join Multiplayer" menu entries currently lose their socket when the universe
-> loads (x4native re-discovers and shuts down the extensions; the reloaded
-> extension does not remember the request). Auto-start survives because it
-> re-reads `X4MP_AUTO` from the environment on every init. See STATE.md.
+> Either start mode works as of 2026-09-18. The in-game menu used to lose its
+> socket when the universe loaded; x4mp now parks the request in the process
+> environment and resumes it after x4native restarts the extension
+> (`x4mp: resuming host after extension reload`). Auto-start remains the
+> simplest path for a scripted test because the launcher passes everything in
+> one go.
 
 ### What to check, in order
 
@@ -104,16 +105,24 @@ by this build. The mod writes its own logs to:
 X4's own log needs `-debug all -logfile <name>.txt` and lands in the same
 per-account folder.
 
-## Known not to work on Windows 9.00
+## Hooks: check these lines at startup
 
-- **Combat kills, boarding captures, boarding inert-exemptions.** x4native
-  cannot resolve the MD event hook (`EventQueue_InsertOrDispatch`) for build
-  900, and all of these ride on MD events. Expect them to be silently absent —
-  this is not something the mod can work around.
-- **The in-game menu host/join path** — see above.
-- `X4_FrameTick` is also unresolved on this build, which may affect per-frame
-  pinning.
+With `native/version_db/` in place, `x4native.log` should open with:
 
-Realistic expectation for a first clean session: **shared player positions,
-ships and stations** (the ✅ core features) — and nothing that depends on MD
-events.
+```
+GameAPI: Resolved 2065/2065 game functions
+GameAPI: Resolved 22 internal function(s) from RVA database
+Native frame hook installed (on_native_frame_update)
+Radar visibility hook installed (on_radar_changed)
+MD event hook installed (on_md_before/on_md_after, 600 type slots)
+```
+
+If you instead see `not resolved (missing RVA for this build?)`, the
+`version_db` folder is missing or your game build has no entry in it — and
+combat kills, boarding captures and the boarding inert-exemptions will be
+silently dead, because they all ride on MD events.
+
+Realistic expectation for a first clean session: the ✅ core features (shared
+player positions, ships, stations) should hold up; the 🟡 features (kills,
+captures, trading) are now *reachable* on Windows but have still never been
+confirmed by anyone actually doing them in-game.

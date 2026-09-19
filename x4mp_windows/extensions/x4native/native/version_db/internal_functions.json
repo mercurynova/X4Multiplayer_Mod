@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "description": "RVA database for non-exported (internal) X4.exe functions, resolved via base + rva at runtime. IMPORTANT: _find_hints must NEVER reference custom given names (they are lost on new builds). Use only: PE export names, RTTI strings, binary string literals, immediate constants, byte signatures, and structural descriptions (caller count, function size, callee count).",
+  "functions": {
+    "CreateDynamicInterior": {
+      "_find_hints": {
+        "method": "unique_string",
+        "steps": [
+          "1. Search for string 'virtual_navcontext_macro' — it has a unique reference inside this function (lazy static init)",
+          "2. The containing function is CreateDynamicInterior",
+          "3. Verify: must have exactly 2 callers, ~928 instructions, 172 basic blocks",
+          "4. Verify: references strings 'window' (connection tag search) and 'Controllable::CreateDynamicInterior()' (error message)"
+        ],
+        "verify_strings": ["virtual_navcontext_macro", "Controllable::CreateDynamicInterior()"],
+        "byte_sig": "48 8B C4 4C 89 48 20 4C 89 40 18 48 89 50 10 48 89 48 08 55 53 56 57 41 54 41 55 41 56 41 57 48",
+        "byte_sig_note": "First 32 bytes of prologue: mov rax,rsp + save r9/r8/rdx/rcx to home area + push rbp/rbx/rsi/rdi/r12-r15."
+      },
+      "900-606138": { "rva": "0x00415D70" },
+      "900-607242": { "rva": "0x00416320" },
+      "900-607977": { "rva": "0x00417890" },
+      "900-611726": { "rva": "0x004547B0" }
+    },
+    "MacroRegistry_Lookup": {
+      "_find_hints": {
+        "method": "unique_string",
+        "steps": [
+          "1. Search for string 'Cannot find XML file component macro' — referenced in this function's error path",
+          "2. Also references 'Attempting to access macro' for venture extension validation",
+          "3. Verify: uses FNV-1a constants 0x811C9DC5 / 0x1000193 for hashing macro name",
+          "4. Verify: heavy callee count (200+), large function (~0x580 bytes in 603098, ~0xB40 bytes in 603990)"
+        ],
+        "verify_strings": ["Cannot find XML file component macro '%s' in index '%s'"],
+        "byte_sig": "44 88 44 24 18 48 89 54 24 10 48 89 4C 24 08 55 53 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 41 0F B6 F8 4C 8B D2 48 8B D9 45 33 E4",
+        "byte_sig_note": "Prologue + body head: home (r8b,rdx,rcx); push rbp,rbx,rsi,rdi,r12-r15; lea rbp,[rsp-N]; sub rsp,M; movzx edi,r8b; mov r10,rdx; mov rbx,rcx; xor r12d,r12d. Frame lea disp + sub imm wildcarded. Extended past prologue to be unique (1 match in .text). Captured @ 611726 0xA2F0D0, verified via 'Cannot find XML file component macro' + FNV prime 0x1000193."
+      },
+      "900-606138": { "rva": "0x009EBF10" },
+      "900-607242": { "rva": "0x009EF7B0" },
+      "900-607977": { "rva": "0x009F1B60" },
+      "900-611726": { "rva": "0x00A2F0D0" }
+    },
+    "MD_CreateDynamicInterior_Handler": {
+      "_find_hints": {
+        "method": "caller_chain",
+        "steps": [
+          "1. Find CreateDynamicInterior first (via 'virtual_navcontext_macro' string)",
+          "2. CreateDynamicInterior has exactly 2 callers. This is the LARGER one (~0xB49 bytes)",
+          "3. Verify: passes 14 arguments to CreateDynamicInterior at a single call site",
+          "4. Verify: size ~0xB49 bytes (the other caller is ~0x300)"
+        ],
+        "byte_sig": "48 89 5C 24 10 48 89 4C 24 08 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 4D 8B F8",
+        "byte_sig_note": "Prologue: home (rbx,rcx); push rbp,rsi,rdi,r12-r15 (no push rbx); lea rbp,[rsp-N]; sub rsp,M; mov r15,r8. Frame lea disp + sub imm wildcarded. Captured @ 611726 0xBA6890. Identity by caller_chain (0 direct callers — indirect MD handler dispatch), not string."
+      },
+      "900-606138": { "rva": "0x00B64E50" },
+      "900-607242": { "rva": "0x00B687C0" },
+      "900-607977": { "rva": "0x00B6AF20" },
+      "900-611726": { "rva": "0x00BA6890" }
+    },
+    "Component_GetCombinedSeed": {
+      "_find_hints": {
+        "method": "byte_sig",
+        "steps": [
+          "1. Search for byte pattern 48 8B 81 C0 03 00 00 C3 — this is the COMPLETE function (mov rax,[rcx+3C0h]; ret)",
+          "2. Should have very few matches (offset 0x3C0 is distinctive)",
+          "3. Verify: 2-instruction function, exactly 8 bytes"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 8B 81 C0 03 00 00 C3",
+        "byte_sig_note": "Complete 2-instruction function: mov rax,[rcx+3C0h]; ret. Offset 0x3C0 = combined seed field."
+      },
+      "900-606138": { "rva": "0x003163C0" },
+      "900-607242": { "rva": "0x003160D0" },
+      "900-607977": { "rva": "0x00317450" },
+      "900-611726": { "rva": "0x000F0E80" }
+    },
+    "ComponentRegistry_Find": {
+      "_find_hints": {
+        "method": "structural",
+        "steps": [
+          "1. Highest-callee-count function in the binary (~1900+ callers) — universal UniverseID to Object* resolver",
+          "2. Byte signature is distinctive: checks a2 for null, masks a3 with 0x1FFFFFF",
+          "3. Verify: first arg is a global pointer (the component registry), second is uint64 ID, third is access type"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 08 45 8B D8 4C 8B CA 48 85 D2 0F 84",
+        "byte_sig_note": "First 16 bytes. Bytes 15-18 are a conditional jump offset that may vary."
+      },
+      "900-606138": { "rva": "0x000CE890" },
+      "900-607242": { "rva": "0x000CE910" },
+      "900-607977": { "rva": "0x000CECA0" },
+      "900-611726": { "rva": "0x000CED70" }
+    },
+    "PlanEntry_Construct": {
+      "_find_hints": {
+        "method": "structural",
+        "steps": [
+          "1. Function is ~0xD0 bytes. Writes fields at offsets: +0=id(int64), +8=macro(ptr), +16=conn(ptr), +24=pred(ptr), +32=pred_conn(ptr), +48=transform(64B), +520-522=flags(bytes)",
+          "2. If id param == 0, enters a critical section and increments a global int64 counter (auto-ID assignment)",
+          "3. Verify: 5 callers total, calls a loadout-init function at this+112",
+          "4. Find via: locate the function containing 'ConstructionDB::AddPlan: Construciton plan is null' (typo preserved), then find its callers — one of them calls PlanEntry_Construct in a loop"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 10 48 89 4C 24 08 57 48 83 EC 20 48",
+        "byte_sig_note": "First 16 bytes: save rbx+rcx to home area, push rdi, sub rsp 20h."
+      },
+      "900-606138": { "rva": "0x00D0F770" },
+      "900-607242": { "rva": "0x00D13F90" },
+      "900-607977": { "rva": "0x00D16D70" },
+      "900-611726": { "rva": "0x00D57880" }
+    },
+    "GameAlloc": {
+      "_find_hints": {
+        "method": "structural",
+        "steps": [
+          "1. Extremely high caller count (thousands) — the game's C++ operator new equivalent",
+          "2. First param = size, last param = alignment (typically 16)",
+          "3. Verify: calls into Windows heap allocation (import: HeapAlloc or VirtualAlloc)",
+          "4. Verify: large stack frame (~0x130), middle params (a2-a4) are unused register passthrough"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 08 48 89 74 24 10 57 48 81 EC 30 01",
+        "byte_sig_note": "First 16 bytes: save rbx+rsi, push rdi, sub rsp 130h."
+      },
+      "900-606138": { "rva": "0x01462250" },
+      "900-607242": { "rva": "0x01467360" },
+      "900-607977": { "rva": "0x0146C1D0" },
+      "900-611726": { "rva": "0x014B7140" }
+    },
+    "ConstructionDB_CreatePlanDirect": {
+      "_find_hints": {
+        "method": "structural",
+        "steps": [
+          "1. Find ConstructionDB_AddPlan first (via 'Construciton plan is null' typo string)",
+          "2. ConstructionDB_AddPlan has few callers. This function is a small (~0xB4 bytes) caller that allocates 296 bytes (0x128)",
+          "3. Verify: references RTTI string 'EditableConstructionPlan@U@@6B@' for vtable assignment",
+          "4. Verify: calls ConstructionDB_AddPlan as its last major callee"
+        ],
+        "verify_strings": ["EditableConstructionPlan@U@@6B@"],
+        "byte_sig": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 48",
+        "byte_sig_note": "First 16 bytes: standard register save (rbx, rbp, rsi to home area). Small function (~0xB4)."
+      },
+      "900-606138": { "rva": "0x00D14160" },
+      "900-607242": { "rva": "0x00D18980" },
+      "900-607977": { "rva": "0x00D1B760" },
+      "900-611726": { "rva": "0x00D5C310" }
+    },
+    "ConstructionDB_AddPlan": {
+      "_find_hints": {
+        "method": "unique_string",
+        "steps": [
+          "1. Search for string 'ConstructionDB::AddPlan: Construciton plan is null' (note: game has typo 'Construciton')",
+          "2. Also references 'ConstructionDB::AddPlan: Construction plan with id' (duplicate check)",
+          "3. Verify: uses FNV-1a constants 0x811C9DC5 / 0x1000193 for hashing plan id",
+          "4. Verify: medium function (~0x1A0 bytes), performs RB-tree insertion"
+        ],
+        "verify_strings": ["ConstructionDB::AddPlan: Construciton plan is null", "ConstructionDB::AddPlan: Construction plan with id"],
+        "byte_sig": "4C 89 44 24 18 53 48 83 EC 40 48 8B D9 4D 85 C0",
+        "byte_sig_note": "First 16 bytes: save r8 to home area, push rbx, sub rsp 40h, mov rbx=rcx, test r8."
+      },
+      "900-606138": { "rva": "0x00D13FC0" },
+      "900-607242": { "rva": "0x00D187E0" },
+      "900-607977": { "rva": "0x00D1B5C0" },
+      "900-611726": { "rva": "0x00D5C170" }
+    },
+    "RadarVisibilityChanged_BuildEvent": {
+      "_find_hints": {
+        "method": "vtable_xref",
+        "steps": [
+          "1. Search for RTTI string 'RadarVisibilityChangedEvent@U' in .data section",
+          "2. From the RTTI type_info, find the vtable in .rdata (follow RTTI hierarchy: R0 → R4 → vtable)",
+          "3. Find all code xrefs to the vtable — should be exactly 3 functions",
+          "4. This is the SMALLEST of the 3 (~0xE8 bytes), called from a single massive jump-table function (~0x3AD8 bytes)",
+          "5. Verify: allocates 0x28 bytes, searches a property array for an integer ID (714 in 603098, 721 in 603990, 723 in 611726), reads a bool property (1281 in 603098, 1289 in 603990, 1293 in 611726)"
+        ],
+        "verify_strings": ["RadarVisibilityChangedEvent@U"],
+        "byte_sig": "48 89 5C 24 08 57 48 83 EC 30 48 8B F9 C7 44 24 20 10 00 00 00 B9 28 00 00 00",
+        "byte_sig_note": "First 25 bytes: mov [rsp+8],rbx; push rdi; sub rsp,30h; mov rdi,rcx; mov [rsp+20h],10h; mov ecx,28h. Verified against binary."
+      },
+      "900-606138": { "rva": "0x00A328A0" },
+      "900-607242": { "rva": "0x00A35E60" },
+      "900-607977": { "rva": "0x00A38180" },
+      "900-611726": { "rva": "0x00A753E0" }
+    },
+    "IsRadarVisible_ReadByte": {
+      "_find_hints": {
+        "method": "byte_sig",
+        "steps": [
+          "1. Search for byte pattern 0F B6 81 00 04 00 00 C3 — this is the COMPLETE function (movzx eax,byte ptr [rcx+400h]; ret)",
+          "2. Offset 0x400 is the radar_visible byte on Object-class entities — distinctive immediate",
+          "3. Verify: exactly 2 callers — one is a 32KB Lua property dispatcher, the other is a ~120KB MD evaluator",
+          "4. Alternative: in the 32KB Lua dispatcher, search for FNV-1 hash 0xF601BD3789210E2B — the handler at that hash calls this function"
+        ],
+        "verify_strings": [],
+        "byte_sig": "0F B6 81 00 04 00 00 C3",
+        "byte_sig_note": "Complete function. 8 bytes: movzx eax,byte ptr [rcx+400h]; ret."
+      },
+      "900-606138": { "rva": "0x0011CD70" },
+      "900-607242": { "rva": "0x0011CFE0" },
+      "900-607977": { "rva": "0x0011D300" },
+      "900-611726": { "rva": "0x00154DE0" }
+    },
+    "SetObjectRadarVisible_Action": {
+      "_find_hints": {
+        "method": "vtable_xref",
+        "steps": [
+          "1. Same vtable as RadarVisibilityChanged_BuildEvent — find via RTTI 'RadarVisibilityChangedEvent@U'",
+          "2. Of the 3 vtable xrefs, this is the MEDIUM-sized one (~0x197 bytes) that writes to component+0x400",
+          "3. Verify: contains the instruction pattern 'mov [reg+400h], al' (88 87 00 04 00 00)",
+          "4. Verify: propagates to derived children via a vtable IsDerived(109) type-check loop after the event dispatch"
+        ],
+        "verify_strings": ["RadarVisibilityChangedEvent@U"],
+        "byte_sig": "40 53 56 57 48 83 EC 50 48 8B F1 48 8D 54 24 70 48 83 C1 28 49 8B",
+        "byte_sig_note": "First 21 bytes: REX push rbx; push rsi; push rdi; sub rsp,50h; mov rsi,rcx; lea rdx,[rsp+70h]; add rcx,28h; mov reg,r8. Verified against binary."
+      },
+      "900-606138": { "rva": "0x00B92620" },
+      "900-607242": { "rva": "0x00B96270" },
+      "900-607977": { "rva": "0x00B98A20" },
+      "900-611726": { "rva": "0x00BD4010" }
+    },
+    "X4_FrameTick": {
+      "_find_hints": {
+        "method": "caller_chain",
+        "steps": [
+          "1. Find PE import PeekMessageW (USER32.dll) — its sole code-caller is the game's message pump",
+          "2. The message pump has exactly one heavy callee (>400 insns) that is called from WinMain — that is X4_FrameTick",
+          "3. Verify: calls PE export 'IsGamePaused_0' (this is a named export that survives builds)",
+          "4. Verify: references string 'Failed to read system high-performance counter!'"
+        ],
+        "verify_strings": ["Failed to read system high-performance counter!"],
+        "byte_sig": "48 89 5C 24 10 55 56 57 41 54 41 55 41 56 41 57",
+        "byte_sig_note": "First 16 bytes: mov [rsp+10h],rbx + push rbp/rsi/rdi/r12-r15."
+      },
+      "900-606138": { "rva": "0x00F53F80" },
+      "900-607242": { "rva": "0x00F58520" },
+      "900-607977": { "rva": "0x00F5D0C0" },
+      "900-611726": { "rva": "0x00FA2D70" }
+    },
+    "CreateOrderInternal": {
+      "_find_hints": {
+        "method": "caller_chain",
+        "steps": [
+          "1. Find exported CreateOrder3 (PE export table)",
+          "2. CreateOrder3 has a player-ownership check ('is not player-owned! Aborting call.')",
+          "3. After the check, it calls CreateOrderInternal — the only non-trivial callee that receives the entity pointer",
+          "4. Verify: references string 'CreateOrderFromUI(): Unknown order definition ID' in the error path",
+          "5. Verify: takes 4 params (entity*, string_view*, int mode, char override)"
+        ],
+        "verify_strings": ["CreateOrderFromUI(): Unknown order definition ID"],
+        "byte_sig": "48 89 5C 24 08 48 89 6C 24 18 48 89 74 24 20 57 41 54 41 55 41 56 41 57 48 83 EC 50 45 0F B6 E9",
+        "byte_sig_note": "First 32 bytes: mov [rsp+8],rbx; mov [rsp+18h],rbp; mov [rsp+20h],rsi; push rdi; push r12; push r13; push r14; push r15; sub rsp,50h; movzx r13d,r9b."
+      },
+      "900-606138": { "rva": "0x004248C0" },
+      "900-607242": { "rva": "0x00424D00" },
+      "900-607977": { "rva": "0x00426240" },
+      "900-611726": { "rva": "0x00463400" }
+    },
+    "SetOrderParamInternal": {
+      "_find_hints": {
+        "method": "caller_chain",
+        "steps": [
+          "1. Find Lua global registration function (largest function, ~15700 bytes, registers all Lua C closures)",
+          "2. Search for 'SetOrderParam' string — the preceding lua_pushcclosure call has the native handler address",
+          "3. The native handler (~0x460 bytes) validates args, gets entity+order, then calls SetOrderParamInternal",
+          "4. SetOrderParamInternal is the callee that receives (order*, param_idx, value*)",
+          "5. Verify: references U::AIOrderParamEditedEvent vtable string in RTTI"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 60 0F 29 74 24 50 4D 8B F0",
+        "byte_sig_note": "First 32 bytes: mov [rsp+8],rbx; mov [rsp+10h],rbp; mov [rsp+18h],rsi; push rdi; push r14; push r15; sub rsp,60h; movaps [rsp+50h],xmm6; mov r14,r8."
+      },
+      "900-606138": { "rva": "0x010274A0" },
+      "900-607242": { "rva": "0x0102B7D0" },
+      "900-607977": { "rva": "0x01030480" },
+      "900-611726": { "rva": "0x010764D0" }
+    },
+    "SetCommander": {
+      "_find_hints": {
+        "method": "pe_export",
+        "steps": [
+          "1. PE export 'SetCommander' — resolve via GetProcAddress or PE export table",
+          "2. Listed in x4_game_func_table.h untyped exports (no FFI signature, RE-derived)",
+          "3. Verify: takes 3 params (UniverseID controllableid, UniverseID commanderid, const char* assignment)",
+          "4. Verify: no ownership check — works for NPC factions"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 20 48 8B F2 49 8B F8 48 8B",
+        "byte_sig_note": "First 31 bytes: mov [rsp+8],rbx; mov [rsp+10h],rbp; mov [rsp+18h],rsi; push rdi; push r14; push r15; sub rsp,20h; mov rsi,rdx; mov rdi,r8; mov rdx,rcx (partial)."
+      },
+      "900-606138": { "rva": "0x001C6170" },
+      "900-607242": { "rva": "0x001C6460" },
+      "900-607977": { "rva": "0x001C7190" },
+      "900-611726": { "rva": "0x001FF400" }
+    },
+    "SetAssignment": {
+      "_find_hints": {
+        "method": "pe_export",
+        "steps": [
+          "1. PE export 'SetAssignment' — resolve via GetProcAddress or PE export table",
+          "2. Listed in x4_game_func_table.h untyped exports (no FFI signature, RE-derived)",
+          "3. Verify: takes 2 params (UniverseID controllableid, const char* assignment)"
+        ],
+        "verify_strings": [],
+        "byte_sig": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 48 89 7C 24 20 41 56 48 83 EC 60 48 8B DA 48 8B F9",
+        "byte_sig_note": "First 30 bytes: mov [rsp+8],rbx; mov [rsp+10h],rbp; mov [rsp+18h],rsi; mov [rsp+20h],rdi; push r14; sub rsp,60h; mov rbx,rdx; mov rdi,rcx."
+      },
+      "900-606138": { "rva": "0x001C5F40" },
+      "900-607242": { "rva": "0x001C6230" },
+      "900-607977": { "rva": "0x001C6F60" },
+      "900-611726": { "rva": "0x001FF1D0" }
+    },
+    "GetFactionBuildMethod": {
+      "_find_hints": {
+        "method": "pe_export",
+        "steps": [
+          "1. PE export 'GetFactionBuildMethod' — resolve via GetProcAddress or PE export table (ordinal 617)",
+          "2. Listed in x4_game_func_table.h untyped exports (no FFI signature, RE-derived)",
+          "3. Verify: takes 1 param (const char* factionid), returns const char* method string",
+          "4. Verify: resolves faction → buildrules override → primary race → 'default' fallback"
+        ],
+        "verify_strings": ["GetFactionBuildMethod"],
+        "byte_sig": "48 83 EC 28 4C 8B C9 48 85 C9 75 18 48 8D 0D",
+        "byte_sig_note": "First 15 bytes of prologue: sub rsp,28h; mov r9,rcx; test rcx,rcx; jne +18h; lea rcx,[rip+...]. Null-check guard on factionid param."
+      },
+      "900-606138": { "rva": "0x00194CC0" },
+      "900-607242": { "rva": "0x00194FB0" },
+      "900-607977": { "rva": "0x001953C0" },
+      "900-611726": { "rva": "0x001CD310" }
+    },
+    "EventQueue_InsertOrDispatch": {
+      "_find_hints": {
+        "method": "caller_chain",
+        "steps": [
+          "1. Central MD event dispatch funnel — ALL MD events pass through this function (1245+ callers)",
+          "2. Search for RTTI string 'EventSource@U@@' in .rdata, find vtable via COL",
+          "3. Follow code xrefs to the vtable — vtable consumers include the dispatch functions",
+          "4. The target function takes 4 args: (event_source* rcx, event_object* rdx, double xmm2 timestamp, char r9 immediate)",
+          "5. If immediate && timestamp <= current_time + 0.0001: calls ImmediateDispatch, else inserts into priority queue",
+          "6. ImmediateDispatch (called from this function) iterates up to 2048 registered cue listeners",
+          "7. Verify: function size ~200 bytes in 603098, ~0x327 bytes in 603990. Contains timestamp + 0.0001 comparison"
+        ],
+        "byte_sig": "48 85 D2 0F 84 ?? ?? ?? ?? 48 89 5C 24 08 48 89 74 24 20 F2 0F 11 54 24 18 57 48 83 EC 60",
+        "byte_sig_note": "Prologue (603990): test rdx,rdx; jz end; save rbx/rsi; movsd [rsp+18h],xmm2 (timestamp); push rdi; sub rsp,60h. Unique match. Old sig (603098) was generic 20-byte prologue with 146 matches — do not use."
+      },
+      "900-606138": { "rva": "0x00959360" },
+      "900-607242": { "rva": "0x0095CA80" },
+      "900-607977": { "rva": "0x0095E7C0" },
+      "900-611726": { "rva": "0x0099A3F0" }
+    },
+    "FactionRelation_LookupReasonID": {
+      "_find_hints": {
+        "method": "string_search",
+        "steps": [
+          "1. Open binary tool on x4.exe; search Strings tab for 'relationchangereason.' (vanilla XSD prefix).",
+          "2. Each match is one entry in the sorted reason table at 0x143C9A530 (BSS).",
+          "3. Xref any entry's xrefs-to → finds the populator (FactionRelation_InitReasonTable) and the consumer.",
+          "4. The CONSUMER does memcmp-based binary search over 24-byte entries `{char* str, uint64 len, int32 reason_id}` — it's FactionRelation_LookupReasonID.",
+          "5. Verify: 2-arg function (rcx=void*unused, rdx=string_view*); returns int32 in eax; calls memcmp inside the loop.",
+          "6. Alt (string cache miss): decompile SetFactionRelationToPlayerFaction (PE export) — the callee taking (faction_node, string_view{reasonid,len}) and returning the int32 reason id passed to the mutation dispatcher is this function.",
+          "7. Cross-check the docs at `X4Native/docs/rev/FACTION_RELATIONS.md §3.2`."
+        ],
+        "verify_strings": ["relationchangereason."],
+        "byte_sig": "4C 8B DC 49 89 4B 08 53 56 57 41 55 48 83 EC ?? 48 8B 05 ?? ?? ?? ?? 48 8D 1D ?? ?? ?? ?? 4C 8B EA 48 8D 0C 40 48 8D 0C CD 00 00 00 00 48 8D 04 19 48 89 44 24 ?? 48 B8 AB AA AA AA AA AA AA 2A",
+        "byte_sig_note": "Prologue + ×24 index setup: mov r11,rsp; mov [r11+8],rcx; push rbx,rsi,rdi,r13; sub rsp,N; mov rax,[rip+tableptr]; lea rbx,[rip+table]; mov r13,rdx; lea rcx,[rax+rax*2]; lea rcx,[rcx*8]; lea rax,[rcx+rbx]; mov [rsp+X],rax; mov rax,2AAAAAAAAAAAAAABh. Frame imm, both RIP disps, and frame store offset wildcarded. NOT unique (~10 matches — the ×24 sorted-table binary-search idiom is common; the distinguishing table address is build-variable, hence wildcarded). Sufficient as an RVA-anchored check. Captured @ 611726 0x30C2F0, verified via callers SetFactionRelationToPlayerFaction/SetRelationBoostToFaction + memcmp + magic 0x2AAAAAAAAAAAAAAB."
+      },
+      "900-606138": { "rva": "0x002CBF00" },
+      "900-607242": { "rva": "0x002CBE10" },
+      "900-607977": { "rva": "0x002CD050" },
+      "900-611726": { "rva": "0x0030C2F0" }
+    },
+    "FactionRelation_GetFloat": {
+      "_find_hints": {
+        "method": "caller_chain_unique_size",
+        "steps": [
+          "1. Find SetFactionRelationToPlayerFaction (PE export) — it inlines the FNV-1+RBTree faction lookup.",
+          "2. From its body, identify the call site that reaches FactionRelation_ApplyMutation (large faction-event dispatcher with old/new float event payload — builds U::FactionRelationChangedEvent).",
+          "3. Inside ApplyMutation, the FIRST callee that takes (rcx=this_faction, rdx=other_faction) and returns float in xmm0 is FactionRelation_GetFloat.",
+          "4. Verify: very small function (~0x37 bytes). `if (other != this) return ReadRawFloat(*(this+0x280)+0x10, other);` — same-faction fast path returns a fixed value, slow path reads RelationData at this+0x280 and tailcalls FactionRelation_ReadRawFloat.",
+          "5. Cross-check the docs at `X4Native/docs/rev/FACTION_RELATIONS.md §2.2`."
+        ],
+        "verify_strings": [],
+        "byte_sig": "4C 8B C2 48 3B D1 75 ?? F3 0F 10 05",
+        "byte_sig_note": "Prologue: mov r8,rdx; cmp rdx,rcx; jnz short; movss xmm0,Y. Distinctive — function-pair-equality fast path with movss xmm0,RIP-relative. The jnz displacement varies between builds (06 in 606138, 09 in 611726) — wildcarded. If the whole prologue changes, fall back to the ApplyMutation caller-chain method above."
+      },
+      "900-606138": { "rva": "0x0030F700" },
+      "900-607242": { "rva": "0x0030F500" },
+      "900-607977": { "rva": "0x00310800" },
+      "900-611726": { "rva": "0x0034CA70" }
+    },
+    "Screenshot_ArmSingleShot": {
+      "_find_hints": {
+        "method": "unique_string",
+        "steps": [
+          "1. Search for string 'screen_%Y-%m-%d_%H-%M-%S' (the single-shot screenshot filename pattern) — referenced by exactly two adjacent functions.",
+          "2. This is the one that takes a single std::string* arg (an optional sub-directory): it strcpy's 'screenshots' into a global string and validates the sub-dir via 'Illegal sub-directory name '%s''. The OTHER referencer builds 'screenshots/<timestamp>/info.txt' (the high-res screenshot MODE) — not this one.",
+          "3. Verify: reads the std::string size at +0x10 and short-circuits the sub-dir logic when empty; sets the single-shot pending flag (a global byte) to 1 near the end; ~0x6ce bytes.",
+          "4. The render-thread writer (a separate function) consumes that pending flag and writes screenshots/screen_<datetime>.<ext> (PNG by default), keeping the UI visible."
+        ],
+        "verify_strings": ["screenshots", "screen_%Y-%m-%d_%H-%M-%S", "Illegal sub-directory name '%s'"],
+        "byte_sig": "48 89 5C 24 08 48 89 74 24 18 48 89 7C 24 20 55 41 54 41 55 41 56 41 57 48 8D 6C 24 ?? 48 81 EC ?? ?? ?? ?? 48 8B F9",
+        "byte_sig_note": "Prologue: home (rbx,rsi,rdi); push rbp,r12-r15; lea rbp,[rsp-N]; sub rsp,M; mov rdi,rcx. Frame lea disp + sub imm wildcarded (were literal + truncated mid-immediate before). Captured @ 611726 0x122DFA0, verified via all three screenshot strings."
+      },
+      "900-611726": { "rva": "0x0122DFA0" }
+    }
+  }
+}

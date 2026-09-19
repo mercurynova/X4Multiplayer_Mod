@@ -1,0 +1,105 @@
+diff --git a/examples/x4mp/x4mp.cpp b/examples/x4mp/x4mp.cpp
+index 3a9a76a..7ae8a1d 100644
+--- a/examples/x4mp/x4mp.cpp
++++ b/examples/x4mp/x4mp.cpp
+@@ -2885,6 +2885,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
+     g_api->log(X4NATIVE_LOG_INFO, "x4mp: HOST requested (in-game menu)");
+     g_auto = "host";                       // set role at runtime (menu-driven)
+     if (module && *module) g_module = module;
++    // Starting a game reloads the game's Lua state, which makes x4native
++    // re-discover and RESTART this extension -- every global here, including
++    // g_auto, is destroyed and the listening socket is closed. Park the request
++    // in the process environment so the next x4native_init() can resume it.
++    x4mp_setenv("X4MP_RESUME_ROLE", "host");
++    if (!g_module.empty()) x4mp_setenv("X4MP_RESUME_MODULE", g_module.c_str());
+     net_start();                           // start our custom network (UDP 7777) now
+     if (!g_save.empty()) {
+         g_save_pending = true;             // load the save first; do_host on game loaded
+@@ -2909,6 +2915,10 @@ static void on_join_request(const char* /*event_name*/, void* data, void* /*user
+     g_api->log(X4NATIVE_LOG_INFO, "x4mp: JOIN requested (in-game menu)");
+     g_auto = "client";                     // set role at runtime (menu-driven)
+     if (ip && *ip) { g_server_ip = ip; g_net_host_ip = ip; }
++    // See on_host_request(): survive the extension restart that the save load
++    // triggers.
++    x4mp_setenv("X4MP_RESUME_ROLE", "client");
++    if (!g_net_host_ip.empty()) x4mp_setenv("X4MP_RESUME_IP", g_net_host_ip.c_str());
+     net_start();                           // connect our custom network (UDP 7777) now
+     if (!g_save.empty()) {
+         g_save_pending = true;             // load the same save; client logic connects
+@@ -3289,6 +3299,33 @@ X4NATIVE_EXPORT int x4native_init(X4NativeAPI* api) {
+     // them to the host over the control channel.
+     g_sub_send_act = api->subscribe("x4mp.send_act", on_send_act, nullptr, api);
+ 
++    // Resume a menu-driven host/join across the extension restart that the
++    // game's Lua-state reload causes (see on_host_request). X4MP_AUTO, when
++    // set, wins -- it means the launcher asked for a role explicitly.
++    //
++    // Unlike the X4MP_AUTO paths below we deliberately do NOT schedule another
++    // save load / new game here: the click that preceded this reload already
++    // started one. We only restore the role (net_start() at the end of this
++    // function re-opens the listener / reconnects) and mark the load as
++    // in-flight so on_game_loaded finishes the job -- do_host() for a host,
++    // wait-for-universe-ready for a client.
++    if (g_auto.empty()) {
++        const char* resume = std::getenv("X4MP_RESUME_ROLE");
++        if (resume && *resume) {
++            g_auto = resume;
++            const char* rip = std::getenv("X4MP_RESUME_IP");
++            if (rip && *rip) { g_server_ip = rip; g_net_host_ip = rip; }
++            const char* rmod = std::getenv("X4MP_RESUME_MODULE");
++            if (rmod && *rmod) g_module = rmod;
++            if (!g_save.empty()) g_save_loading = true;
++            char rbuf[256];
++            snprintf(rbuf, sizeof(rbuf),
++                     "x4mp: resuming %s after extension reload (in-game menu request)",
++                     g_auto.c_str());
++            api->log(X4NATIVE_LOG_INFO, rbuf);
++        }
++    }
++
+     // Optional env-driven fallback (OFF by default).
+     if (g_auto == "client") {
+         // THIN CLIENT (Option 1 intermediate): load the SAME save as the host
+diff --git a/examples/x4mp_platform.h b/examples/x4mp_platform.h
+index 81ca750..399d836 100644
+--- a/examples/x4mp_platform.h
++++ b/examples/x4mp_platform.h
+@@ -89,7 +89,10 @@ static inline int x4mp_sock_set_nonblocking(int fd) {
+ }
+ 
+ static inline const char* x4mp_winsock_strerror(int e) {
+-    char buf[256];
++    // NOTE: must NOT be a plain local -- the caller reads the pointer after we
++    // return. thread_local keeps it valid and keeps the net threads from
++    // clobbering each other's message.
++    static thread_local char buf[256];
+     if (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                        0, (DWORD)e, 0, buf, (DWORD)sizeof(buf), 0) == 0) {
+         buf[0] = 0;
+@@ -109,6 +112,15 @@ static inline int x4mp_sock_ensure_init(void) {
+     return 0;
+ }
+ 
++// Set a variable in THIS PROCESS's environment. x4native tears the extension
++// down and re-initializes it whenever the game reloads its Lua state (a save
++// load), which destroys all of our globals; the environment survives because
++// it belongs to the process, not to this DLL. See the resume logic in
++// x4native_init().
++static inline int x4mp_setenv(const char* name, const char* value) {
++    return _putenv_s(name, value ? value : "");
++}
++
+ // dirent stubs: net_dump_fds() is Linux-only diagnostics (reads /proc/self/fd).
+ // opendir() returns null so the function no-ops on Windows.
+ typedef void DIR;
+@@ -137,4 +149,10 @@ static inline ssize_t         readlink(const char*, char*, size_t) { return -1;
+ // POSIX: WinSock is not a thing; socket() works immediately.
+ static inline int x4mp_sock_ensure_init(void) { return 0; }
+ 
++// See the Windows branch: survives the extension reload because it lives in
++// the process, not in this DLL.
++static inline int x4mp_setenv(const char* name, const char* value) {
++    return setenv(name, value ? value : "", 1);
++}
++
+ #endif

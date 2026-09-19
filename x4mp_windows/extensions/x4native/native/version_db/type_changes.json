@@ -1,0 +1,1157 @@
+{
+    "schema_version": 1,
+    "baseline": "900",
+    "versions": [
+        "900",
+        "900-600626",
+        "900-602526",
+        "900-603098",
+        "900-603990",
+        "900-604402",
+        "900-605025",
+        "900-606138",
+        "900-607242",
+        "900-607977",
+        "900-611726"
+    ],
+    "struct_count": 283,
+    "structs": {
+        "AddBuildTask6Container": {
+            "added": "900",
+            "fingerprint": "BlacklistTypeID* blacklists; uint32_t numblacklists; FightRuleTypeID* fightrules; uint32_t numfightrules; const char* paintmodwareid;"
+        },
+        "AmmoData": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* ware; uint32_t amount; uint32_t capacity;"
+        },
+        "ArrowDetails": {
+            "added": "900",
+            "fingerprint": "float angle; bool inside; bool valid;"
+        },
+        "AutosaveIntervalInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t mintime; uint32_t maxtime; float factor;"
+        },
+        "BlacklistCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t nummacros; uint32_t numfactions;"
+        },
+        "BlacklistInfo2": {
+            "added": "900",
+            "fingerprint": "uint32_t id; const char* type; const char* name; bool usemacrowhitelist; uint32_t nummacros; const char** macros; bool usefactionwhitelist; uint32_t numfactions; const char** factions; const char* relation; bool hazardous;"
+        },
+        "BlacklistTypeID": {
+            "added": "900",
+            "fingerprint": "BlacklistID id; const char* type;"
+        },
+        "BoardingBehaviour": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* text;"
+        },
+        "BoardingPhase": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* text;"
+        },
+        "BoardingRiskThresholds": {
+            "added": "900",
+            "fingerprint": "uint32_t approach; uint32_t insertion;"
+        },
+        "BuildTaskInfo": {
+            "added": "900",
+            "fingerprint": "BuildTaskID id; UniverseID buildingcontainer; UniverseID component; const char* macro; const char* factionid; UniverseID buildercomponent; int64_t price; bool ismissingresources; uint32_t queueposition;"
+        },
+        "Color": {
+            "added": "900",
+            "fingerprint": "uint32_t red; uint32_t green; uint32_t blue; uint32_t alpha;"
+        },
+        "ColorMapEntry": {
+            "added": "900",
+            "fingerprint": "const char* id; Color color; float glowfactor;"
+        },
+        "CommanderInfo": {
+            "added": "900",
+            "fingerprint": "UniverseID controllableid; FleetUnitID fleetunitid; int32_t groupindex;"
+        },
+        "CompassMenuEntry": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* control; uint32_t controlid; uint32_t contextid; bool active;"
+        },
+        "ComponentClassPair": {
+            "added": "900",
+            "fingerprint": "const char* class1name; const char* class2name; uint32_t class1id; uint32_t class2id; bool isclass;"
+        },
+        "ComponentDetails": {
+            "added": "900",
+            "fingerprint": "const char* name; float hull; float shield; int speed; bool hasShield;"
+        },
+        "ControlPanelInfo": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* name; const char* desc; const char* hackeddesc; int64_t price; int32_t numrequiredwares; bool ishack; bool hacked; double hackduration; double hackexpiretime;"
+        },
+        "ControlPostInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name;"
+        },
+        "Coord2D": {
+            "added": "900",
+            "fingerprint": "int x; int y;"
+        },
+        "Coord3D": {
+            "added": "900",
+            "fingerprint": "float x; float y; float z;"
+        },
+        "CrewTransferContainer": {
+            "added": "900",
+            "fingerprint": "const char* newroleid; NPCSeed seed; uint32_t amount;"
+        },
+        "CrewTransferContainer2": {
+            "added": "900",
+            "fingerprint": "const char* newroleid; NPCSeed seed; uint32_t amount; int64_t price;"
+        },
+        "CrewTransferInfo2": {
+            "added": "900",
+            "fingerprint": "CrewTransferContainer2* removed; uint32_t numremoved; CrewTransferContainer2* added; uint32_t numadded; CrewTransferContainer2* transferred; uint32_t numtransferred;"
+        },
+        "CrewTransferInfoCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numremoved; uint32_t numadded; uint32_t numtransferred;"
+        },
+        "CrosshairMessage": {
+            "added": "900",
+            "fingerprint": "uint32_t messageID; bool obstructed;"
+        },
+        "CursorInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t width; uint32_t height; uint32_t xHotspot; uint32_t yHotspot;"
+        },
+        "CustomGameStartBlueprint": {
+            "added": "900",
+            "fingerprint": "const char* ware;"
+        },
+        "CustomGameStartBlueprintPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; uint32_t numvalues; uint32_t numdefaultvalues;"
+        },
+        "CustomGameStartBoolPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; bool defaultvalue;"
+        },
+        "CustomGameStartBudgetDetail": {
+            "added": "900",
+            "fingerprint": "const char* id; int64_t value;"
+        },
+        "CustomGameStartBudgetGroupInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; bool isresearch;"
+        },
+        "CustomGameStartBudgetInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; int64_t value; int64_t limit; uint32_t numdetails;"
+        },
+        "CustomGameStartContentCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t nummacros; uint32_t numblueprints; uint32_t numconstructionplans; bool hasincompatibleloadout;"
+        },
+        "CustomGameStartContentData2": {
+            "added": "900",
+            "fingerprint": "UIMacroCount* macros; uint32_t nummacros; const char** blueprints; uint32_t numblueprints; const char** constructionplanids; uint32_t numconstructionplans;"
+        },
+        "CustomGameStartEncyclopediaEntry": {
+            "added": "900",
+            "fingerprint": "const char* library; const char* item;"
+        },
+        "CustomGameStartEncyclopediaPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state;"
+        },
+        "CustomGameStartFloatPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; float defaultvalue;"
+        },
+        "CustomGameStartInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* filename;"
+        },
+        "CustomGameStartInventory": {
+            "added": "900",
+            "fingerprint": "const char* ware; int32_t amount;"
+        },
+        "CustomGameStartInventoryPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; uint32_t numvalues; uint32_t numdefaultvalues;"
+        },
+        "CustomGameStartKnownEntry2": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* item; const char* classid; int64_t budgetvalue; bool unlocked; bool hidden;"
+        },
+        "CustomGameStartKnownPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; uint32_t numvalues; uint32_t numdefaultvalues;"
+        },
+        "CustomGameStartLoadoutPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state;"
+        },
+        "CustomGameStartMoneyPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; int64_t defaultvalue; int64_t minvalue; int64_t maxvalue;"
+        },
+        "CustomGameStartPersonEntry": {
+            "added": "900",
+            "fingerprint": "const char* race; const char* tags; uint32_t numskills; SkillInfo* skills;"
+        },
+        "CustomGameStartPlayerProperty3": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* id; const char* sector; UIPosRot offset; const char* dockedatid; const char* commanderid; const char* macroname; const char* name; const char* constructionplanid; const char* paintmod; const char* peopledefid; float peoplefillpercentage; uint32_t numcargo; UIWareInfo* cargo; uint32_t count;"
+        },
+        "CustomGameStartPlayerPropertyCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numcargo;"
+        },
+        "CustomGameStartPlayerPropertyPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; uint32_t numvalues;"
+        },
+        "CustomGameStartPosRotPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; UIPosRot defaultvalue;"
+        },
+        "CustomGameStartRelationInfo": {
+            "added": "900",
+            "fingerprint": "const char* factionid; const char* otherfactionid; int32_t relation;"
+        },
+        "CustomGameStartRelationsPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state;"
+        },
+        "CustomGameStartResearchPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state;"
+        },
+        "CustomGameStartStoryInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; const char* groupid; const char* wareid; int32_t index; int64_t budgetvalue; uint32_t numdependencylists;"
+        },
+        "CustomGameStartStoryState": {
+            "added": "900",
+            "fingerprint": "const char* state; uint32_t numvalues; uint32_t numdefaultvalues;"
+        },
+        "CustomGameStartStringPropertyState": {
+            "added": "900",
+            "fingerprint": "const char* state; const char* defaultvalue; const char* options;"
+        },
+        "DiplomacyActionInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* category; const char* paramtype; const char* name; const char* desc; const char* shortdesc; const char* iconid; const char* imageid; const char* rewardtext; const char* successtext; const char* failuretext; const char* agenttype; const char* agentexpname; const char* agentrisk; const char* giftwaretags; double duration; double cooldown; int32_t agentexp; int32_t successchance; int64_t price; int32_t influencerequirement; uint32_t exclusivefactionparamidx; uint32_t warecostscaleparamidx; uint32_t targetobjectparamidx; uint32_t numwarerequirements; bool unique; bool hidden; bool eventtrigger;"
+        },
+        "DiplomacyActionOperation": {
+            "added": "900",
+            "fingerprint": "OperationID id; const char* actionid; UniverseID agentid; const char* agentname; const char* agentimageid; const char* agentresultstate; int32_t agentexp_negotiation; int32_t agentexp_espionage; const char* giftwareid; double starttime; double endtime; bool read; bool successful;"
+        },
+        "DiplomacyAgentAttributeData": {
+            "added": "900",
+            "fingerprint": "const char* rankname; const char* rankiconid; const char* exp_negotiation_name; const char* exp_espionage_name;"
+        },
+        "DiplomacyEventInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* desc; const char* shortdesc; const char* iconid; const char* imageid; double duration; uint32_t numoptions;"
+        },
+        "DiplomacyEventOperation": {
+            "added": "900",
+            "fingerprint": "OperationID id; OperationID sourceactionoperationid; const char* eventid; UniverseID agentid; const char* agentname; const char* agentimageid; const char* agentresultstate; int32_t agentexp_negotiation; int32_t agentexp_espionage; const char* faction; const char* otherfaction; const char* option; const char* outcome; double starttime; bool read; int32_t startrelation;"
+        },
+        "DiplomacyEventOptionInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* desc; const char* result; const char* conclusion; const char* agentrisk; int32_t successchance; float relationchange; int64_t price; int32_t influencerequirement; int32_t menuposition; uint32_t numwarerequirements;"
+        },
+        "DPSData": {
+            "added": "900",
+            "fingerprint": "float dps; uint32_t quadranttextid;"
+        },
+        "DroneModeInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; bool possible;"
+        },
+        "DroneState": {
+            "added": "900",
+            "fingerprint": "bool armed; bool blocked; const char* modeIcon; bool pending; bool possible; uint32_t total; uint32_t undocked;"
+        },
+        "DropDownBackgroundInfo": {
+            "added": "900",
+            "fingerprint": "GlowColor color; uint32_t width; uint32_t height; int32_t x; int32_t y;"
+        },
+        "DropDownIconInfo": {
+            "added": "900",
+            "fingerprint": "Color color; uint32_t width; uint32_t height; uint32_t x; uint32_t y; float glowfactor;"
+        },
+        "DropDownInfo": {
+            "added": "900",
+            "fingerprint": "const char* startoption; bool active; bool rightsidearrow; bool mouseoverinteraction; uint32_t optionwidth; uint32_t optionheight; uint32_t numoptions;"
+        },
+        "DropDownOption3": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* iconid; const char* text1; const char* text2; const char* text3; const char* text4; const char* mouseovertext; const char* font; Color overrideColor; bool displayRemoveOption; bool active; bool hasOverrideColor;"
+        },
+        "DropDownTextInfo": {
+            "added": "900",
+            "fingerprint": "Color color; Font font; const char* alignment; uint32_t x; uint32_t y; const char* textOverride; float glowfactor;"
+        },
+        "EditableColorMapEntry": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* referenceid; Color color; float glowfactor; bool ispersonal; bool isdeletable;"
+        },
+        "EquipmentCompatibilityInfo": {
+            "added": "900",
+            "fingerprint": "const char* tag; const char* name;"
+        },
+        "EquipmentModInfo": {
+            "added": "900",
+            "fingerprint": "const char* PropertyType; float MinValueFloat; float MaxValueFloat; uint32_t MinValueUINT; uint32_t MaxValueUINT; uint32_t BonusMax; float BonusChance;"
+        },
+        "EquipmentModPropertyInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; const char* propdatatype; float basevalue; bool poseffect;"
+        },
+        "EquipmentWareInfo": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* ware; const char* macro; int amount;"
+        },
+        "FactionDetails": {
+            "added": "900",
+            "fingerprint": "const char* factionID; const char* factionName; const char* factionIcon;"
+        },
+        "FactionDetails2": {
+            "added": "900",
+            "fingerprint": "const char* factionID; const char* factionName; const char* factionIcon; Color factionColor; float glowfactor;"
+        },
+        "FactionDiplomacyExclusionInfo": {
+            "added": "900",
+            "fingerprint": "bool excluded; uint32_t numexclusionreasons;"
+        },
+        "FightRuleCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numfactions;"
+        },
+        "FightRuleInfo": {
+            "added": "900",
+            "fingerprint": "FightRuleID id; const char* name; uint32_t numfactions; UIFightRuleSetting* factions;"
+        },
+        "FightRuleTypeID": {
+            "added": "900",
+            "fingerprint": "FightRuleID id; const char* type;"
+        },
+        "FleetUnitInfo": {
+            "added": "900",
+            "fingerprint": "FleetUnitID fleetunitid; const char* name; const char* idcode; const char* macro; BuildTaskID buildtaskid; UniverseID replacementid;"
+        },
+        "FloatRange": {
+            "added": "900",
+            "fingerprint": "float min; float max;"
+        },
+        "Font": {
+            "added": "900",
+            "fingerprint": "const char* name; uint32_t size;"
+        },
+        "FPSDetails": {
+            "added": "900",
+            "fingerprint": "double fps; double moveTime; double renderTime; double gpuTime;"
+        },
+        "GameStartDateInfo": {
+            "added": "900",
+            "fingerprint": "int32_t year; uint32_t month; uint32_t day; bool isvalid;"
+        },
+        "GameStartGroupInfo": {
+            "added": "900",
+            "fingerprint": "int32_t id; const char* name;"
+        },
+        "GameVersion": {
+            "added": "900",
+            "fingerprint": "int major; int minor;"
+        },
+        "GenericActor": {
+            "added": "900",
+            "fingerprint": "UniverseID entity; UniverseID personcontrollable; NPCSeed personseed;"
+        },
+        "GlowColor": {
+            "added": "900",
+            "fingerprint": "uint32_t red; uint32_t green; uint32_t blue; uint32_t alpha; float glow;"
+        },
+        "GraphAxisInfo2": {
+            "added": "900",
+            "fingerprint": "GraphTextInfo label; double startvalue; double endvalue; double granularity; double offset; bool grid; Color color; Color gridcolor; float glowfactor; const char* unittext;"
+        },
+        "GraphDataPoint2": {
+            "added": "900",
+            "fingerprint": "double x; double y; bool inactive;"
+        },
+        "GraphDataRecord": {
+            "added": "900",
+            "fingerprint": "uint32_t MarkerType; uint32_t MarkerSize; Color MarkerColor; float MarkerGlowFactor; uint32_t LineType; uint32_t LineWidth; Color LineColor; float LineGlowFactor; size_t NumData; bool Highlighted; const char* MouseOverText;"
+        },
+        "GraphIcon": {
+            "added": "900",
+            "fingerprint": "size_t DataRecordIdx; size_t DataIdx; const char* IconID; const char* MouseOverText;"
+        },
+        "GraphInitialSelectionInfo": {
+            "added": "900",
+            "fingerprint": "size_t InitialSelectedRecordIdx; size_t InitialSelectedDataIdx;"
+        },
+        "GraphTextInfo": {
+            "added": "900",
+            "fingerprint": "const char* text; Font font; Color color;"
+        },
+        "HoloMapState": {
+            "added": "900",
+            "fingerprint": "UIPosRot offset; float cameradistance;"
+        },
+        "HotkeyInfo": {
+            "added": "900",
+            "fingerprint": "const char* iconid; uint32_t x; uint32_t y; bool display;"
+        },
+        "IconInfo": {
+            "added": "900",
+            "fingerprint": "{ GlowColor color; const char* iconid; const char* swapiconid; const char* anchorid; uint32_t width; uint32_t height; int32_t x; int32_t y;"
+        },
+        "IconSet": {
+            "added": "900",
+            "fingerprint": "const char* active; const char* inactive; const char* select;"
+        },
+        "InputData": {
+            "added": "900",
+            "fingerprint": "int32_t source; int32_t code; int32_t signum; bool istoggle;"
+        },
+        "InputFeedbackConfig": {
+            "added": "900",
+            "fingerprint": "const char* type; uint32_t id; const char* idname; const char* textoption; const char* voiceoption;"
+        },
+        "InvalidPatchInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; int32_t state; const char* requiredversion; const char* installedversion;"
+        },
+        "LanguageInfo": {
+            "added": "900",
+            "fingerprint": "int32_t id; const char* name; const char* warning; const char* font; bool voice;"
+        },
+        "LastAttackerInfo": {
+            "added": "900",
+            "fingerprint": "UniverseID attacker; double time; const char* method;"
+        },
+        "LicenceInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* icon;"
+        },
+        "LoadingHint": {
+            "added": "900",
+            "fingerprint": "const char* HintText; uint32_t HintID;"
+        },
+        "MailCount": {
+            "added": "900",
+            "fingerprint": "size_t numImportantMails; size_t numNormalMails;"
+        },
+        "MessageDetails": {
+            "added": "900",
+            "fingerprint": "uint64_t poiID; UniverseID componentID; const char* messageType; const char* connectionName; bool isAssociative; bool isMissionObjective; bool showIndicator;"
+        },
+        "MessageDetails3": {
+            "added": "900",
+            "fingerprint": "uint64_t poiID; UniverseID componentID; const char* messageType; const char* connectionName; bool isAssociative; bool isMissionTarget; bool isPriorityMissionTarget; bool showIndicator; bool hasAdditionalOffset;"
+        },
+        "MessageInfo": {
+            "added": "900",
+            "fingerprint": "MessageID id; double time; const char* category; const char* title; const char* text; const char* source; UniverseID sourcecomponent; const char* interaction; UniverseID interactioncomponent; const char* interactiontext; const char* interactionshorttext; const char* cutscenekey; const char* entityname; const char* factionname; int64_t money; int64_t bonus; bool highlighted; bool isread;"
+        },
+        "MissionBriefingIconInfo": {
+            "added": "900",
+            "fingerprint": "const char* icon; const char* caption;"
+        },
+        "MissionDetails": {
+            "added": "900",
+            "fingerprint": "const char* missionName; const char* missionDescription; int difficulty; int upkeepalertlevel; const char* threadType; const char* mainType; const char* subType; const char* subTypeName; const char* faction; int64_t reward; const char* rewardText; size_t numBriefingObjectives; int activeBriefingStep; const char* opposingFaction; const char* license; float timeLeft; double duration; bool abortable; bool hasObjective; UniverseID associatedComponent; UniverseID threadMissionID;"
+        },
+        "MissionDetails2": {
+            "added": "900",
+            "fingerprint": "const char* missionName; const char* missionDescription; const char* missionIcon; int difficulty; int upkeepalertlevel; const char* threadType; const char* mainType; const char* subType; const char* subTypeName; const char* faction; int64_t reward; const char* rewardText; size_t numBriefingObjectives; int activeBriefingStep; const char* opposingFaction; const char* license; float timeLeft; double duration; bool abortable; bool hasObjective; UniverseID associatedComponent; UniverseID threadMissionID;"
+        },
+        "MissionGroupDetails2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; bool isstory;"
+        },
+        "MissionInfo3": {
+            "added": "900",
+            "fingerprint": "bool active; bool callbackMode; uint32_t barLine; float barPercent; const char* line1Left; const char* line1Right; const char* line2Left; const char* line2Right; const char* line3Left; const char* line3Right; const char* line4Left; const char* line4Right; const char* line5Left; const char* line5Right; const char* missionBarText;"
+        },
+        "MissionNPCInfo": {
+            "added": "900",
+            "fingerprint": "MissionID missionid; uint32_t amount; uint32_t numskills; SkillInfo* skills;"
+        },
+        "MissionObjective2": {
+            "added": "900",
+            "fingerprint": "const char* objectiveText; float timeout; const char* progressname; uint32_t curProgress; uint32_t maxProgress; size_t numTargets;"
+        },
+        "MissionObjectiveStep3": {
+            "added": "900",
+            "fingerprint": "const char* text; const char* actiontext; const char* detailtext; int step; bool failed; bool completedoutofsequence;"
+        },
+        "MissionShipDeliveryInfo": {
+            "added": "900",
+            "fingerprint": "MissionID missionid; const char* macroname; uint32_t amount;"
+        },
+        "MissionWareDeliveryCounts": {
+            "added": "900",
+            "fingerprint": "UniverseID target; uint32_t numwares; MissionID missionid;"
+        },
+        "MissionWareDeliveryInfo": {
+            "added": "900",
+            "fingerprint": "UniverseID target; UIWareAmount* wares; uint32_t numwares;"
+        },
+        "MoneyLogEntry": {
+            "added": "900",
+            "fingerprint": "double time; int64_t money; int64_t entryid;"
+        },
+        "MonitorExtents": {
+            "added": "900",
+            "fingerprint": "float x; float y; float width; float height;"
+        },
+        "MultiverseMapPickInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t id; bool ispin; bool ishome;"
+        },
+        "NewGameParameter": {
+            "added": "900",
+            "fingerprint": "const char* key; const char* value;"
+        },
+        "NewsInfo2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* extensionid; const char* icon; const char* text; const char* link; bool islinkappid;"
+        },
+        "NPCInfo": {
+            "added": "900",
+            "fingerprint": "NPCSeed seed; const char* roleid; int32_t tierid; const char* name; int32_t combinedskill;"
+        },
+        "OnlineMissionInfo": {
+            "added": "900",
+            "fingerprint": "const char* chapter; const char* onlineid;"
+        },
+        "Order": {
+            "added": "900",
+            "fingerprint": "size_t queueidx; const char* state; const char* statename; const char* orderdef; size_t actualparams; bool enabled; bool isinfinite; bool issyncpointreached; bool istemporder;"
+        },
+        "Order2": {
+            "added": "900",
+            "fingerprint": "size_t queueidx; const char* state; const char* statename; const char* orderdef; size_t actualparams; bool enabled; bool isinfinite; bool issyncpointreached; bool istemporder; bool isoverride;"
+        },
+        "Order3": {
+            "added": "900",
+            "fingerprint": "size_t queueidx; const char* state; const char* statename; const char* orderdef; size_t actualparams; bool enabled; bool isinfinite; bool issyncpointreached; bool istemporder; bool isoverride; bool ispriority;"
+        },
+        "OrderDefinition": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* icon; const char* description; const char* category; const char* categoryname; bool infinite; uint32_t requiredSkill;"
+        },
+        "OrderFailure": {
+            "added": "900",
+            "fingerprint": "uint32_t id; AIOrderID orderid; const char* orderdef; const char* message; double timestamp; bool wasdefaultorder; bool wasinloop;"
+        },
+        "OverlayCellInfo3": {
+            "added": "900",
+            "fingerprint": "uint32_t colidx; uint32_t colspan; const char* text; Color textcolor; float textglowfactor; uint32_t fontsize; bool wordwrap; bool typewritereffect; const char* icon; Color iconcolor; float iconglowfactor; uint32_t iconwidth; uint32_t iconheight; int32_t offsetx; int32_t offsety; uint32_t cellheight; const char* halign; const char* valign; Color backgroundcolor; float backgroundglowfactor; double flashduration; double flashinterval; Color flashcolor; float flashglowfactor;"
+        },
+        "OverlayInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t numrows; float fadein; float fadeout; float relwidth; float reloffsetx; float reloffsety; bool fromright; bool fromtop;"
+        },
+        "OverlayRowInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t numcols; float reloffsetx; float reloffsety; bool fromright; bool fromtop;"
+        },
+        "PaddingInfo": {
+            "added": "900",
+            "fingerprint": "int32_t top; int32_t bottom; int32_t left; int32_t right;"
+        },
+        "PeopleDefinitionInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* desc;"
+        },
+        "PeopleInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* desc; uint32_t amount; uint32_t numtiers; bool canhire;"
+        },
+        "PlayerAlertCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numspaces;"
+        },
+        "PlayerAlertInfo2": {
+            "added": "900",
+            "fingerprint": "size_t index; double interval; bool repeats; bool muted; uint32_t numspaces; UniverseID* spaceids; const char* objectclass; const char* objectpurpose; const char* objectidcode; const char* objectowner; const char* name; const char* message; const char* soundid;"
+        },
+        "POIDetails": {
+            "added": "900",
+            "fingerprint": "const char* POIName; const char* POIType;"
+        },
+        "Position2D": {
+            "added": "900",
+            "fingerprint": "float x; float y;"
+        },
+        "PosRot": {
+            "added": "900",
+            "fingerprint": "float x; float y; float z; float yaw; float pitch; float roll;"
+        },
+        "ProductionMethodInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name;"
+        },
+        "ProductionMethodInfo2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; double productiontime; double productionamount;",
+            "removed": "900-603990"
+        },
+        "RaceInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* shortname; const char* description; const char* icon;"
+        },
+        "RegionBoundary": {
+            "added": "900",
+            "fingerprint": "const char* classid; Coord3D size; bool inverted;"
+        },
+        "RegionDefinition": {
+            "added": "900",
+            "fingerprint": "const char* id; uint32_t numfields; uint32_t numboundaries; uint32_t numresources; Coord3D size; float density; float speed; float rotationSpeed; float defaultNoiseScale; float defaultMinNoiseValue; float defaultMaxNoiseValue;"
+        },
+        "RegionField": {
+            "added": "900",
+            "fingerprint": "const char* fieldtype; const char* groupref;"
+        },
+        "RegionResource": {
+            "added": "900",
+            "fingerprint": "const char* wareid; const char* yield;"
+        },
+        "RelationDetails": {
+            "added": "900",
+            "fingerprint": "int relationStatus; int relationValue; int relationLEDValue; bool isBoostedValue;"
+        },
+        "RelationDetails2": {
+            "added": "900",
+            "fingerprint": "int relationStatus; int relationValue; int relationLEDValue; bool isBoostedValue; const char* owningFactionID;"
+        },
+        "RelationImplication": {
+            "added": "900",
+            "fingerprint": "const char* text; const char* textcondition; int32_t relationcondition; bool positive;"
+        },
+        "RelationRangeInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* colorid;"
+        },
+        "ResolutionInfo": {
+            "added": "900",
+            "fingerprint": "int x; int y;"
+        },
+        "ResponseInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description;"
+        },
+        "RoleTierData": {
+            "added": "900",
+            "fingerprint": "const char* name; int32_t skilllevel; uint32_t amount;"
+        },
+        "Rotation": {
+            "added": "900",
+            "fingerprint": "float yaw; float pitch; float roll;"
+        },
+        "RowGroupInfo": {
+            "added": "900",
+            "fingerprint": "GlowColor color; uint32_t groupid; uint32_t level; uint32_t firstrow; uint32_t numrows;"
+        },
+        "ScenarioLoadingData": {
+            "added": "900",
+            "fingerprint": "bool active; bool reverse; uint32_t numtexts; uint32_t numinfotexts;"
+        },
+        "ScenarioStat": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* desc; const char* value; float score; float maxscore; bool hasscore;"
+        },
+        "ScreenPos": {
+            "added": "900",
+            "fingerprint": "float x; float y; bool onScreen;"
+        },
+        "ShieldGroup": {
+            "added": "900",
+            "fingerprint": "UniverseID context; const char* group; UniverseID component;"
+        },
+        "ShipStanceInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; const char* iconid;"
+        },
+        "SignalInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; uint32_t numresponses; const char* defaultresponse; bool ask;"
+        },
+        "Skill2": {
+            "added": "900",
+            "fingerprint": "uint32_t textid; uint32_t descriptionid; uint32_t value; uint32_t relevance;"
+        },
+        "SkillInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; uint32_t textid; uint32_t descriptionid; uint32_t value; uint32_t relevance; const char* ware;"
+        },
+        "SliderCellDetails": {
+            "added": "900",
+            "fingerprint": "double min; double minSelect; double max; double maxSelect; double start; double step; double infinitevalue; uint32_t maxfactor; bool exceedmax; bool hidemaxvalue; bool righttoleft; bool fromcenter; bool readonly; bool useinfinitevalue; bool usetimeformat;"
+        },
+        "SofttargetDetails2": {
+            "added": "900",
+            "fingerprint": "UniverseID softtargetID; const char* softtargetConnectionName; uint32_t messageID;"
+        },
+        "SoftwareSlot": {
+            "added": "900",
+            "fingerprint": "const char* max; const char* current;"
+        },
+        "SoundInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name;"
+        },
+        "SpecialNPCSet": {
+            "added": "900",
+            "fingerprint": "bool factionNPC; bool missionActor; bool shadyGuy;"
+        },
+        "SpeedInfo": {
+            "added": "900",
+            "fingerprint": "float speed; float boostspeed; float travelspeed;"
+        },
+        "SplineData": {
+            "added": "900",
+            "fingerprint": "Coord3D offset; Coord3D tangent; float weight; float inlength; float outlength;"
+        },
+        "StartmenuBackgroundInfo": {
+            "added": "900",
+            "fingerprint": "const char* cutsceneid; uint32_t extensionidx; bool isdefault;"
+        },
+        "StorageInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* transport; uint32_t spaceused; uint32_t capacity;"
+        },
+        "SubordinateGroup": {
+            "added": "900",
+            "fingerprint": "UniverseID controllableid; int group;"
+        },
+        "SupplyBudget": {
+            "added": "900",
+            "fingerprint": "int64_t trade; int64_t defence; int64_t build; int64_t repair; int64_t missile;"
+        },
+        "SupplyOverride": {
+            "added": "900",
+            "fingerprint": "const char* macro; int amount;"
+        },
+        "SupplyResourceInfo": {
+            "added": "900",
+            "fingerprint": "const char* ware; int total; int current; const char* supplytypes;"
+        },
+        "SyncPointInfo2": {
+            "added": "900",
+            "fingerprint": "uint32_t id; UniverseID owningcontrollable; size_t owningorderidx; bool reached;"
+        },
+        "TableRowInfo": {
+            "added": "900",
+            "fingerprint": "PaddingInfo padding; uint32_t group; bool selectable; bool interactive; bool borderbelow;"
+        },
+        "TableSelectionInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t toprow; uint32_t selectedrow; uint32_t selectedcol; uint32_t shiftstart; uint32_t shiftend;"
+        },
+        "TextEntry": {
+            "added": "900",
+            "fingerprint": "const char* text; const char* mouseovertext;"
+        },
+        "TextInfo": {
+            "added": "900",
+            "fingerprint": "const char* text; int32_t x; int32_t y; const char* alignment; Color color; Font font; float glowfactor;"
+        },
+        "TickerCacheEntry": {
+            "added": "900",
+            "fingerprint": "TickerCacheID id; double time; const char* category; const char* title; const char* text;"
+        },
+        "TimelineInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; const char* image; const char* video; const char* voice; float date; uint32_t group;"
+        },
+        "TradeRuleCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numfactions;"
+        },
+        "TradeRuleInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t id; const char* name; uint32_t numfactions; const char** factions; bool iswhitelist;"
+        },
+        "TransactionLogEntry": {
+            "added": "900",
+            "fingerprint": "double time; int64_t money; int64_t entryid; const char* eventtype; const char* eventtypename; UniverseID partnerid; const char* partnername; const char* partneridcode; int64_t tradeentryid; const char* tradeeventtype; const char* tradeeventtypename; UniverseID buyerid; UniverseID sellerid; const char* ware; uint32_t amount; int64_t price; bool complete;"
+        },
+        "TurretDetails": {
+            "added": "900",
+            "fingerprint": "const char* icon; const char* mode; uint32_t damageState; bool active; bool usesAmmo; uint32_t ammo;"
+        },
+        "UIAccountStatData": {
+            "added": "900",
+            "fingerprint": "double time; int64_t money;"
+        },
+        "UIAction": {
+            "added": "900",
+            "fingerprint": "uint32_t id; const char* text; const char* type; bool ispossible; bool istobedisplayed;"
+        },
+        "UIBlueprint": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* ware; const char* productionmethodid;"
+        },
+        "UIBuildOrderList": {
+            "added": "900",
+            "fingerprint": "UniverseID shipid; const char* macroname; UILoadout loadout; uint32_t amount;"
+        },
+        "UICargoStat": {
+            "added": "900",
+            "fingerprint": "const char* wareid; UICargoStatData* data; uint32_t numdata;"
+        },
+        "UICargoStatData": {
+            "added": "900",
+            "fingerprint": "double time; uint64_t amount;"
+        },
+        "UICelestialBodyInfo2": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* typeclass; const char* geology; const char* atmosphere; const char* population; const char* settlements; uint32_t nummoons; bool hasterraforming;"
+        },
+        "UIClothingTheme": {
+            "added": "900",
+            "fingerprint": "const char* ID; const char* Name; const char* RawName;"
+        },
+        "UIColorProfileInfo": {
+            "added": "900",
+            "fingerprint": "const char* filename; const char* name;"
+        },
+        "UIComponentSlot": {
+            "added": "900",
+            "fingerprint": "UniverseID component; const char* connection;"
+        },
+        "UIConstructionPlan": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* id; const char* source; bool deleteable;"
+        },
+        "UIConstructionPlanEntry": {
+            "added": "900",
+            "fingerprint": "size_t idx; const char* macroid; UniverseID componentid; UIPosRot offset; const char* connectionid; size_t predecessoridx; const char* predecessorconnectionid; bool isfixed;"
+        },
+        "UIConstructionPlanEntry2": {
+            "added": "900",
+            "fingerprint": "size_t idx; const char* macroid; UniverseID componentid; UIPosRot offset; const char* connectionid; size_t predecessoridx; const char* predecessorconnectionid; bool isfixed; uint32_t bookmarknum;"
+        },
+        "UIConstructionPlanInfo": {
+            "added": "900",
+            "fingerprint": "const char* filename; const char* name; const char* id;"
+        },
+        "UICrewExchangeResult": {
+            "added": "900",
+            "fingerprint": "const char* reason; NPCSeed person; NPCSeed partnerperson;"
+        },
+        "UIEngineMod2": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality; const char* PropertyType; float ForwardThrustFactor; float StrafeAccFactor; float StrafeThrustFactor; float RotationThrustFactor; float BoostAccFactor; float BoostThrustFactor; float BoostDurationFactor; float BoostAttackTimeFactor; float BoostReleaseTimeFactor; float BoostChargeTimeFactor; float BoostRechargeTimeFactor; float TravelThrustFactor; float TravelStartThrustFactor; float TravelAttackTimeFactor; float TravelReleaseTimeFactor; float TravelChargeTimeFactor;"
+        },
+        "UIEquipmentMod": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality;"
+        },
+        "UIFightRuleSetting": {
+            "added": "900",
+            "fingerprint": "const char* factionid; const char* civiliansetting; const char* militarysetting;"
+        },
+        "UIFormationInfo": {
+            "added": "900",
+            "fingerprint": "const char* shape; const char* name; uint32_t requiredSkill; float radius; bool rollMembers; bool rollFormation; size_t maxShipsPerLine;"
+        },
+        "UIFrameBorderInfo": {
+            "added": "900",
+            "fingerprint": "IconInfo icon; IconInfo icon2; GlowColor color; const char* id; uint32_t linewidth; int32_t offsetTop; int32_t offsetBottom; int32_t offsetLeft; int32_t offsetRight; bool active;"
+        },
+        "UIFrameTextureInfo": {
+            "added": "900",
+            "fingerprint": "const char* iconid; Color color; uint32_t width; uint32_t height; int32_t rotationrate; uint32_t rotstart; float rotduration; float rotinterval; float initscale; float scaleduration; float glowfactor;"
+        },
+        "UILoadout": {
+            "added": "900",
+            "fingerprint": "UILoadoutMacroData* weapons; uint32_t numweapons; UILoadoutMacroData* turrets; uint32_t numturrets; UILoadoutMacroData* shields; uint32_t numshields; UILoadoutMacroData* engines; uint32_t numengines; UILoadoutGroupData* turretgroups; uint32_t numturretgroups; UILoadoutGroupData* shieldgroups; uint32_t numshieldgroups; UILoadoutAmmoData* ammo; uint32_t numammo; UILoadoutAmmoData* units; uint32_t numunits; UILoadoutSoftwareData* software; uint32_t numsoftware; UILoadoutVirtualMacroData thruster;"
+        },
+        "UILoadout2": {
+            "added": "900",
+            "fingerprint": "UILoadoutMacroData2* weapons; uint32_t numweapons; UILoadoutMacroData2* turrets; uint32_t numturrets; UILoadoutMacroData2* shields; uint32_t numshields; UILoadoutMacroData2* engines; uint32_t numengines; UILoadoutGroupData2* turretgroups; uint32_t numturretgroups; UILoadoutGroupData2* shieldgroups; uint32_t numshieldgroups; UILoadoutAmmoData* ammo; uint32_t numammo; UILoadoutAmmoData* units; uint32_t numunits; UILoadoutSoftwareData* software; uint32_t numsoftware; UILoadoutVirtualMacroData thruster; uint32_t numcrew; UILoadoutCrewData* crew; bool hascrewexperience;"
+        },
+        "UILoadoutAmmoData": {
+            "added": "900",
+            "fingerprint": "const char* macro; uint32_t amount; bool optional;"
+        },
+        "UILoadoutCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numweapons; uint32_t numturrets; uint32_t numshields; uint32_t numengines; uint32_t numturretgroups; uint32_t numshieldgroups; uint32_t numammo; uint32_t numunits; uint32_t numsoftware;"
+        },
+        "UILoadoutCounts2": {
+            "added": "900",
+            "fingerprint": "uint32_t numweapons; uint32_t numturrets; uint32_t numshields; uint32_t numengines; uint32_t numturretgroups; uint32_t numshieldgroups; uint32_t numammo; uint32_t numunits; uint32_t numsoftware; uint32_t numcrew;"
+        },
+        "UILoadoutCrewData": {
+            "added": "900",
+            "fingerprint": "const char* roleid; uint32_t count; bool optional;"
+        },
+        "UILoadoutGroupData": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* path; const char* group; uint32_t count; bool optional;"
+        },
+        "UILoadoutGroupData2": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* path; const char* group; uint32_t count; bool optional; UILoadoutWeaponSetting weaponsetting;"
+        },
+        "UILoadoutInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* iconid; bool deleteable;"
+        },
+        "UILoadoutMacroData": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* upgradetypename; size_t slot; bool optional;"
+        },
+        "UILoadoutMacroData2": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* upgradetypename; size_t slot; bool optional; UILoadoutWeaponSetting weaponsetting;"
+        },
+        "UILoadoutSlot": {
+            "added": "900",
+            "fingerprint": "const char* upgradetype; size_t slot;"
+        },
+        "UILoadoutSoftwareData": {
+            "added": "900",
+            "fingerprint": "const char* ware;"
+        },
+        "UILoadoutStatistics5": {
+            "added": "900",
+            "fingerprint": "float HullValue; float ShieldValue; double ShieldDelay; float ShieldRate; float GroupedShieldValue; double GroupedShieldDelay; float GroupedShieldRate; float BurstDPS; float SustainedDPS; float TurretBurstDPS; float TurretSustainedDPS; float GroupedTurretBurstDPS; float GroupedTurretSustainedDPS; float ForwardSpeed; float BoostSpeed; float TravelSpeed; float YawSpeed; float PitchSpeed; float RollSpeed; float HorizontalStrafeSpeed; float VerticalStrafeSpeed; float ForwardAcceleration; float HorizontalStrafeAcceleration; float VerticalStrafeAcceleration; float BoostAcceleration; float BoostRechargeRate; float BoostMaxDuration; float TravelAcceleration; float TravelChargeTime; uint32_t NumDocksShipMedium; uint32_t NumDocksShipSmall; uint32_t ShipCapacityMedium; uint32_t ShipCapacitySmall; uint32_t CrewCapacity; uint32_t ContainerCapacity; uint32_t SolidCapacity; uint32_t LiquidCapacity; uint32_t CondensateCapacity; uint32_t UnitCapacity; uint32_t MissileCapacity; uint32_t CountermeasureCapacity; uint32_t DeployableCapacity; float RadarRange;"
+        },
+        "UILoadoutVirtualMacroData": {
+            "added": "900",
+            "fingerprint": "const char* macro; bool optional;"
+        },
+        "UILoadoutWeaponSetting": {
+            "added": "900",
+            "fingerprint": "const char* ammomacroname; const char* weaponmode;"
+        },
+        "UILogo": {
+            "added": "900",
+            "fingerprint": "const char* file; const char* icon; bool ispersonal;"
+        },
+        "UIMacroCount": {
+            "added": "900",
+            "fingerprint": "const char* macro; uint32_t amount;"
+        },
+        "UIMapTradeVolumeParameter": {
+            "added": "900",
+            "fingerprint": "const char* icon; Color color; uint32_t volume_s; uint32_t volume_m; uint32_t volume_l;"
+        },
+        "UIModuleSet": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name;"
+        },
+        "UINotificationType2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* desc; const char* category; bool enabled; bool enabledByDefault;"
+        },
+        "UIOverlayInfo3": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* text; int32_t x; int32_t y; uint32_t width; uint32_t height; bool highlightonly; bool usebackgroundspan;"
+        },
+        "UIPaintMod": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality; uint32_t Amount;"
+        },
+        "UIPaintTheme": {
+            "added": "900",
+            "fingerprint": "const char* ID; const char* Name; const char* RawName; const char* Icon;"
+        },
+        "UIPosRot": {
+            "added": "900",
+            "fingerprint": "float x; float y; float z; float yaw; float pitch; float roll;"
+        },
+        "UISaveInfo": {
+            "added": "900",
+            "fingerprint": "const char* filename; const char* name; const char* description; const char* version; uint32_t rawversion; const char* time; int64_t rawtime; double playtime; const char* playername; const char* location; int64_t money; bool error; bool invalidgameid; bool invalidversion; uint32_t numinvalidpatches;"
+        },
+        "UIShieldMod": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality; const char* PropertyType; float CapacityFactor; float RechargeDelayFactor; float RechargeRateFactor;"
+        },
+        "UIShipMod2": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality; const char* PropertyType; float MassFactor; float DragFactor; float MaxHullFactor; float RadarRangeFactor; uint32_t AddedUnitCapacity; uint32_t AddedMissileCapacity; uint32_t AddedCountermeasureCapacity; uint32_t AddedDeployableCapacity; float RadarCloakFactor; float RegionDamageProtection; float HideCargoChance;"
+        },
+        "UISpaceInfo": {
+            "added": "900",
+            "fingerprint": "const char* environment;"
+        },
+        "UISunInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* typeclass;"
+        },
+        "UISystemInfo2": {
+            "added": "900",
+            "fingerprint": "UISpaceInfo space; uint32_t numsuns; UISunInfo* suns; uint32_t numplanets; UICelestialBodyInfo2* planets;"
+        },
+        "UISystemInfoCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numsuns; uint32_t numplanets;"
+        },
+        "UITerraformingDroneInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t numbuildsinprogress; uint32_t numbuildsinqueue; uint32_t numcurrentdeliveries;"
+        },
+        "UITerraformingMissionInfo": {
+            "added": "900",
+            "fingerprint": "MissionID missionid; bool missioncompleted;"
+        },
+        "UITerraformingProject2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* group; const char* name; const char* description; double duration; double repeatcooldown; uint32_t timescompleted; int32_t successchance; bool resilient; bool showalways; int64_t price; float payoutfactor; const char* requiredresearchid; const char* pricescale; const char* pricescaletext; bool anypredecessor; uint32_t numpredecessors; uint32_t numpredecessorgroups; uint32_t numblockingprojects; uint32_t numconditions; uint32_t numprimaryeffects; uint32_t numsideeffects; uint32_t numblockedprojects; uint32_t numblockedgroups; uint32_t numrebates; uint32_t numresources; uint32_t numremovedprojects;"
+        },
+        "UITerraformingProjectCondition": {
+            "added": "900",
+            "fingerprint": "const char* stat; uint32_t min; uint32_t max; uint64_t minvalue; uint64_t maxvalue; bool issatisfied;"
+        },
+        "UITerraformingProjectEffect": {
+            "added": "900",
+            "fingerprint": "const char* text; const char* stat; int32_t change; uint64_t value; uint64_t minvalue; uint64_t maxvalue; bool onfail; bool issideeffect; uint32_t chance; uint32_t setbackpercent; bool isbeneficial;"
+        },
+        "UITerraformingProjectGroup": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name;"
+        },
+        "UITerraformingProjectPredecessorGroup": {
+            "added": "900",
+            "fingerprint": "const char* id; bool anyproject;"
+        },
+        "UITerraformingProjectRebate": {
+            "added": "900",
+            "fingerprint": "const char* ware; const char* waregroupname; uint32_t value;"
+        },
+        "UITerraformingStat": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* description; const char* inactivetext; const char* iconid; bool dynamic; uint64_t value; uint32_t state; bool useranges; uint32_t numranges;"
+        },
+        "UITerraformingStatRange": {
+            "added": "900",
+            "fingerprint": "uint64_t endvalue; uint32_t state; Color color; const char* description;"
+        },
+        "UITerraformingWorldInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; bool ismoon;"
+        },
+        "UITradeOfferStat": {
+            "added": "900",
+            "fingerprint": "const char* wareid; bool isSellOffer; UITradeOfferStatData* data; uint32_t numdata;"
+        },
+        "UITradeOfferStatData": {
+            "added": "900",
+            "fingerprint": "double time; int64_t price; int amount; int limit;"
+        },
+        "UIVentureInfo": {
+            "added": "900",
+            "fingerprint": "const char* name; const char* rawname; const char* icon; const char* rewardicon; int64_t remainingtime; uint32_t numships;"
+        },
+        "UIWareAmount": {
+            "added": "900",
+            "fingerprint": "const char* wareid; uint32_t amount;"
+        },
+        "UIWareInfo": {
+            "added": "900",
+            "fingerprint": "const char* ware; const char* macro; int amount;"
+        },
+        "UIWeaponGroup": {
+            "added": "900",
+            "fingerprint": "bool primary; uint32_t idx;"
+        },
+        "UIWeaponMod": {
+            "added": "900",
+            "fingerprint": "const char* Name; const char* RawName; const char* Ware; uint32_t Quality; const char* PropertyType; float DamageFactor; float CoolingFactor; float ReloadFactor; float SpeedFactor; float LifeTimeFactor; float MiningFactor; float StickTimeFactor; float ChargeTimeFactor; float BeamLengthFactor; uint32_t AddedAmount; float RotationSpeedFactor; float SurfaceElementFactor;"
+        },
+        "UIWorkforceInfluence": {
+            "added": "900",
+            "fingerprint": "const char* type; const char* name; float value; bool active;"
+        },
+        "UnitData": {
+            "added": "900",
+            "fingerprint": "const char* macro; const char* category; uint32_t amount;"
+        },
+        "UpgradeGroup": {
+            "added": "900",
+            "fingerprint": "const char* path; const char* group;"
+        },
+        "UpgradeGroup2": {
+            "added": "900",
+            "fingerprint": "UniverseID contextid; const char* path; const char* group;"
+        },
+        "UpgradeGroupInfo": {
+            "added": "900",
+            "fingerprint": "UniverseID currentcomponent; const char* currentmacro; const char* slotsize; uint32_t count; uint32_t operational; uint32_t total;"
+        },
+        "VelocityInfo": {
+            "added": "900",
+            "fingerprint": "float speed; float screenx; float screeny; bool onscreen;"
+        },
+        "WareGroupInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* icon; const char* factoryname; const char* factorydesc; const char* factorymapicon; const char* factoryhudicon; uint32_t tier;"
+        },
+        "WareGroupInfo2": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; const char* icon; const char* factoryname; const char* factorydesc; const char* factorymapicon; const char* factoryhudicon; const char* tags; uint32_t tier; uint32_t priority;"
+        },
+        "WareReservationInfo2": {
+            "added": "900",
+            "fingerprint": "UniverseID reserverid; const char* ware; uint32_t amount; bool isbuyreservation; double eta; TradeID tradedealid; MissionID missionid; bool isvirtual; bool issupply;"
+        },
+        "WareSource": {
+            "added": "900",
+            "fingerprint": "const char* sourcetype; const char* sourcelocation;"
+        },
+        "WareTransportInfo": {
+            "added": "900",
+            "fingerprint": "const char* transport; const char* name; int value;"
+        },
+        "WareYield": {
+            "added": "900",
+            "fingerprint": "const char* ware; int32_t current; int32_t max;"
+        },
+        "WeaponDetails": {
+            "added": "900",
+            "fingerprint": "const char* icon; uint32_t damageState; bool active; bool usesAmmo; uint32_t ammo; uint32_t mode; float reloadPercent; uint32_t heatState; float heatPercent; float lockPercent; uint64_t counterMeasureTarget;"
+        },
+        "WeaponDetails4": {
+            "added": "900",
+            "fingerprint": "const char* icon; uint32_t damageState; bool active; bool usesAmmo; uint32_t ammo; int32_t currentclip; int32_t maxclip; uint32_t mode; float reloadPercent; bool isAutoReloading; double clipReloadTime; uint32_t heatState; float heatPercent; float nextShotHeatPercent; float lockPercent; uint64_t counterMeasureTarget;"
+        },
+        "WeaponSystemInfo": {
+            "added": "900",
+            "fingerprint": "const char* id; const char* name; bool active;"
+        },
+        "WorkforceInfluenceCounts": {
+            "added": "900",
+            "fingerprint": "uint32_t numcapacityinfluences; uint32_t numgrowthinfluences;"
+        },
+        "WorkforceInfluenceInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t numcapacityinfluences; UIWorkforceInfluence* capacityinfluences; uint32_t numgrowthinfluences; UIWorkforceInfluence* growthinfluences; float basegrowth; uint32_t capacity; uint32_t current; uint32_t sustainable; uint32_t target; int32_t change;"
+        },
+        "WorkForceInfo": {
+            "added": "900",
+            "fingerprint": "uint32_t current; uint32_t capacity; uint32_t optimal; uint32_t available; uint32_t maxavailable; double timeuntilnextupdate;"
+        },
+        "YieldInfo": {
+            "added": "900",
+            "fingerprint": "const char* wareid; int32_t amount;"
+        },
+        "ProductionMethodInfo3": {
+            "added": "900-603990",
+            "fingerprint": "const char* id; const char* name; const char* tags; double productiontime; double productionamount;"
+        }
+    }
+}

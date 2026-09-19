@@ -31,7 +31,8 @@ Compatibility,glibc >= 2.38 (Ubuntu 24.04),✅ Working,--,local sqrtf shim drops
 Launcher,Driver-aware Vulkan forcing,✅ Working,--,only forces AMD radv when no NVIDIA ICD; X4MP_FORCE_RADV override; fixes NVIDIA startup
 Windows,Extensions load (DLLs into retail X4 9.00),✅ Verified 2026-09-18,--,x4native 2065/2065 functions resolved; x4native/x4mp/x4mp_stream all loaded; menu entries appear
 Windows,Host binds + simulates (auto-start),✅ Verified 2026-09-18,--,X4MP_AUTO=host: TCP 7778 LISTENING; 92k ships streamed; heartbeat HOST active
-Windows,Host via in-game menu,❌ Broken,--,Universe load triggers x4native re-discovery -> extension shutdown -> listener closed; menu click state does not survive. Use auto-start
+Windows,Host via in-game menu,✅ Fixed 2026-09-18,--,x4mp parks the request in the process env (X4MP_RESUME_ROLE) and resumes after x4native restarts the extension; listener verified alive through a full universe load
 Windows,Launcher environment reaches the game,🟡 Needs steam_appid.txt,--,X4 relaunches via Steam and drops the env; put steam_appid.txt (392160) next to X4.exe or every X4MP_* setting is ignored
-Windows,MD events (kills / captures / boarding),❌ Blocked on 9.00,--,x4native cannot resolve EventQueue_InsertOrDispatch for build 900; MD-event features cannot work until it does
+Windows,MD events (kills / captures / boarding),✅ Fixed 2026-09-18,--,Was a packaging bug: x4native/native/version_db was missing from the package. With it shipped: 22 internal functions resolved; frame/radar/MD hooks all installed on build 900-611726
 Windows,Two-machine host<->client session,⚪ Untested,--,Single-machine smoke test only; no client has connected to a Windows host
+Windows,Toolchain for rebuilds,✅ Working,--,MinGW-w64 GCC 16.2 (winlibs) on Windows: g++ -shared -std=c++23 -O2 -static -I sdk -I sdk/sdk x4mp.cpp -lws2_32
