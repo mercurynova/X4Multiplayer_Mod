@@ -5,7 +5,42 @@ one machine runs the **HOST** (the authoritative universe) and one or more
 machines join as **CLIENTS**. Every participant renders a normal X4 window —
 no headless server, no Steam/EgoNet, direct IP networking over your LAN.
 
-Built for the **Linux** version of X4: Foundations (x86-64).
+Originally built for the **Linux** version of X4: Foundations (x86-64).
+A Windows build lives in [`x4mp_windows/`](x4mp_windows/) with a double-click
+installer — read the caveats below before you hand it to anyone.
+
+## Status — read this before installing
+
+This is an **early beta built by hobbyists**, not a product. It is shared in
+the spirit of "here is what we got working", not "this is ready".
+
+**What has actually been verified, and where:**
+
+| | Linux | Windows |
+|---|---|---|
+| Extensions load, in-game menu appears | ✅ | ✅ |
+| Host starts, binds its port, simulates the universe | ✅ | ✅ |
+| Two machines in one universe, flying together | ✅ | ⚪ **never tested** |
+| Combat kills / boarding captures / trading cargo | 🟡 deployed, unproven | 🟡 reachable, unproven |
+
+**The honest Windows caveat:** every Windows result so far comes from a *single*
+machine hosting on its own. The **client half of the mod has never run** — not
+once, on any Windows machine. Joining a host will be the first execution of that
+code path, so treat the first session as debugging, not as play. The installer
+itself has also only been exercised against one Steam layout; it falls back to
+asking for the path when auto-detection fails.
+
+**Not shared between players yet:** shot-level combat damage, trading *credits*,
+a station's own production economy, and the boarding operation (marines/phases)
+on other clients. Kills, captures and cargo are.
+
+**Practicalities:** every player needs their own copy of X4 — this does not share
+a purchase. Everyone must run the same game version, the same extension build,
+and load the *same savegame file*. Don't use a save you would be upset to lose;
+the host's autosave can bake mod objects into it.
+
+See [`STATE.md`](STATE.md) for the full session history and
+[`FEATURES.csv`](FEATURES.csv) for the feature-by-feature matrix.
 
 ## What works today
 
