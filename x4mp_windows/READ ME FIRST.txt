@@ -1,0 +1,152 @@
+===============================================================
+  X4 MULTIPLAYER  --  how to set it up
+===============================================================
+
+This lets you and your friends fly around the SAME X4 universe
+over your network. One person hosts, everyone else joins.
+
+You do not need to understand any of it. Follow the steps.
+
+
+---------------------------------------------------------------
+  BEFORE YOU START
+---------------------------------------------------------------
+
+  * You need X4: Foundations installed (bought on Steam).
+  * Everyone needs their OWN copy of the game. This does not
+    let two people share one purchase.
+  * Everyone needs the SAME version of the game, and the same
+    copy of this folder.
+  * Easiest if nobody has other X4 mods installed. Other mods
+    do not break it, but everyone has to have exactly the same
+    ones, which is a headache.
+
+
+---------------------------------------------------------------
+  STEP 1 -- INSTALL  (1 minute)
+---------------------------------------------------------------
+
+  Double-click:   Install.bat
+
+  A black window opens and does everything for you: it finds
+  your X4 folder, copies the mod in, and offers to put an
+  "X4 Multiplayer" shortcut on your Desktop. Say yes.
+
+  If Windows shows a blue "Windows protected your PC" box,
+  click "More info" then "Run anyway". That appears because
+  the file was downloaded, not because anything is wrong.
+
+  If it says the Visual C++ runtime is missing, install it from
+  the link it prints, then run Install.bat again.
+
+
+---------------------------------------------------------------
+  STEP 2 -- TURN THE MOD ON  (1 minute, ONCE)
+---------------------------------------------------------------
+
+  1. Start X4 normally from Steam.
+  2. Main menu -> Settings -> Extensions.
+  3. Tick these three:
+         x4native
+         x4mp
+         x4mp_stream
+  4. Close X4 completely, then start it again.
+
+  If you skip this, nothing will work -- the game ignores the
+  mod until you tick the boxes.
+
+
+---------------------------------------------------------------
+  STEP 3 -- THE SHARED SAVEGAME  (the part people get wrong)
+---------------------------------------------------------------
+
+  EVERYONE must load the SAME savegame file. Not a similar one.
+  The same one, copied from the host.
+
+  So the host does this once:
+
+    1. Start a new game (on their own), fly out of the intro,
+       and SAVE.
+    2. Find that save file here -- paste this into the address
+       bar of any Explorer window:
+
+         %USERPROFILE%\Documents\Egosoft\X4
+
+       Inside is a folder with a long number as its name, and
+       inside that is a "save" folder. The saves are the
+       .xml.gz files.
+    3. Send that file to everyone (Discord, Dropbox, USB...).
+
+  Everyone else puts that file into their OWN:
+
+         %USERPROFILE%\Documents\Egosoft\X4\<long number>\save\
+
+  Now everyone has the same starting universe.
+
+
+---------------------------------------------------------------
+  STEP 4 -- PLAY
+---------------------------------------------------------------
+
+  Use the "X4 Multiplayer" shortcut on your Desktop (NOT the
+  normal Steam launch -- that starts the game without the
+  multiplayer settings).
+
+  THE HOST:
+    - Choose  1  (HOST)
+    - Choose  2  (LOAD SAVE) and pick the shared save
+    - Press Enter to accept everything else
+    - Tell your friends the IP address it shows you
+    - If Windows asks about the firewall, click ALLOW and make
+      sure "Private networks" is ticked
+
+  EVERYONE ELSE:
+    - Choose  2  (CLIENT)
+    - Type the host's IP address
+    - Pick the SAME save
+    - Press Enter to accept everything else
+
+  Start the host first, then everyone else.
+
+
+---------------------------------------------------------------
+  IF IT DOES NOT WORK
+---------------------------------------------------------------
+
+  "Nothing happens / I do not see my friend"
+      Did everyone tick the three boxes in Step 2 and restart?
+      Is everyone on the same savegame?
+
+  "I cannot connect to the host"
+      The host's firewall is the usual cause. On the HOST:
+      Windows Security -> Firewall -> Allow an app -> find X4
+      and tick Private. Also check you typed the right IP.
+
+  "It worked yesterday and not today"
+      If X4 updated, the mod may need rebuilding. Ask whoever
+      gave you this folder.
+
+  Want to send someone the details? The mod writes a log here:
+      %USERPROFILE%\Documents\Egosoft\X4\<long number>\x4native\
+  x4native.log is the useful one.
+
+
+---------------------------------------------------------------
+  REMOVING IT
+---------------------------------------------------------------
+
+  Double-click:   Uninstall.bat
+
+  That puts the game back to normal. Your savegames are NOT
+  touched.
+
+
+---------------------------------------------------------------
+  HONEST STATUS
+---------------------------------------------------------------
+
+  This is an early beta made by hobbyists, not a finished
+  product. Flying together, seeing each other, and building
+  stations all work. Combat damage, trading money and some
+  boarding details are not shared yet. Expect rough edges,
+  and do not use a savegame you would be sad to lose.
