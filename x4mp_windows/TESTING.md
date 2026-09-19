@@ -90,6 +90,23 @@ Start the host first, then the client.
 5. **Ships agree** — pick a busy sector and compare; the client log's `[FLK]`
    line should show `drift=0` in ghost-rendering mode.
 
+### Testing the host without a second machine
+
+`tools/fake_client.py` speaks the wire protocol well enough to exercise the host
+side on its own — accept, client registration, faction assignment, sector
+selection and the object stream:
+
+```bash
+python x4mp_windows/tools/fake_client.py --host 127.0.0.1 --duration 25
+```
+
+It prints what the host sent, by verb, and exits non-zero if the handshake or
+the stream failed. A healthy host looks like `WELCOME`, then thousands of `OBJ`
+lines, `FULL` snapshots, `SNAP` (camera snap) and `PLAYER` relays.
+
+It does **not** test any client-side behaviour — binding, pinning, ghost
+rendering and drift are only exercised by a real X4 client.
+
 ### Logs (Windows)
 
 The launcher's log option does **not** apply on Windows — `X4MP_LOG` is not read

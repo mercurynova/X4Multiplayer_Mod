@@ -36,3 +36,5 @@ Windows,Launcher environment reaches the game,🟡 Needs steam_appid.txt,--,X4 r
 Windows,MD events (kills / captures / boarding),✅ Fixed 2026-09-18,--,Was a packaging bug: x4native/native/version_db was missing from the package. With it shipped: 22 internal functions resolved; frame/radar/MD hooks all installed on build 900-611726
 Windows,Two-machine host<->client session,⚪ Untested,--,Single-machine smoke test only; no client has connected to a Windows host
 Windows,Toolchain for rebuilds,✅ Working,--,MinGW-w64 GCC 16.2 (winlibs) on Windows: g++ -shared -std=c++23 -O2 -static -I sdk -I sdk/sdk x4mp.cpp -lws2_32
+Networking,FULL snapshot framing,✅ Fixed 2026-09-19,--,memcpy copied 6 of 7 bytes of "FULL 1\n" so the first OBJ of every full snapshot was glued to the header line and dropped by the client parser; found with tools/fake_client.py
+Tooling,Synthetic client harness,✅ Working,--,x4mp_windows/tools/fake_client.py: JOIN/WELCOME/PLAYER + stream check against a live host, no second copy of X4 needed

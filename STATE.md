@@ -1115,3 +1115,57 @@ unstripped DWARF debug sections.
 * Cosmetic: after a resume the init still logs `X4MP_AUTO=host — will host a NEW
   game on game loaded`, which is the shared code path, not the env var. Confusing
   in a debug log; worth rewording.
+
+
+---
+
+## 2026-09-19 — FULL-snapshot framing bug found by a synthetic client
+
+Built `x4mp_windows/tools/fake_client.py`: a small Python client that speaks the
+consolidated-TCP protocol (`JOIN` -> `WELCOME` -> `PLAYER` -> stream) so the HOST
+side can be exercised without a second copy of X4. It reports what the host sent,
+by verb, and exits non-zero if the handshake or the object stream failed.
+
+### The host side works
+
+Against a Windows host on save_010 (92k ships indexed):
+
+    host welcomed us as client id 1
+    OBJ      101208      SNAP 1885      PLAYER 1885
+    FULL       1869      PING    7      WELCOME  1
+    distinct object ids streamed: 59
+    handshake (WELCOME): PASS     object stream: PASS
+
+Accept, client registration, ghost-faction assignment, sector selection, the
+FULL snapshot and the continuous OBJ stream all behave. `SNAP` (the host
+swinging its camera to the client) and the relay of the host's own `PLAYER`
+line are there too.
+
+### The bug it found (fixed)
+
+    memcpy(batch, "FULL 1\n", 6);   // the string is 7 bytes -- '\n' is dropped
+    used = 6;
+
+The newline after the `FULL 1` header was truncated, so the first OBJ of every
+full snapshot arrived glued to the header:
+
+    FULL 1OBJ 462355 cluster_30_sector001_macro 107204.594 ...
+
+A real client splits on '\n', matches `strncmp(line, "FULL", 4)` and treats the
+whole thing as the FULL marker -- **the object payload on that line is dropped**.
+This path sends a complete snapshot every tick, and the object order is stable,
+so it is plausibly the same ship being dropped over and over.
+
+That makes it a candidate explanation for the open item from the 2026-08-22/23
+anti-flicker work: *"a single nearby ship still flickers visually despite
+drift=0"*. Not proven -- confirming it needs a real client rendering the stream
+-- but the shape matches, and the sibling call site
+(`net_send_obj_batch_to(&c, "FULL 1\n", 7)`) already used the correct length.
+
+Fixed by copying 7 bytes. Verified with the harness: the `FULL` line now arrives
+clean, with no OBJ glued to it.
+
+### What the harness cannot do
+
+Only the host half. Binding, pinning, ghost rendering, prune/converge and the
+`[FLK] drift=0` diagnostics are client-side and still need a real second X4.

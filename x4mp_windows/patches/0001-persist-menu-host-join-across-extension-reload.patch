@@ -1,7 +1,18 @@
 diff --git a/examples/x4mp/x4mp.cpp b/examples/x4mp/x4mp.cpp
-index 3a9a76a..7ae8a1d 100644
+index 3a9a76a..9b4ff65 100644
 --- a/examples/x4mp/x4mp.cpp
 +++ b/examples/x4mp/x4mp.cpp
+@@ -1374,8 +1374,8 @@ static void net_send_client_objects(NetClient& c) {
+     // Always send the COMPLETE region state every tick. LAN bandwidth is cheap,
+     // and a full authoritative snapshot every tick keeps the client's view
+     // exact — no delta-compression staleness to cause prune/respawn flicker.
+-    memcpy(batch, "FULL 1\n", 6);
+-    used = 6;
++    memcpy(batch, "FULL 1\n", 7);
++    used = 7;
+     // Append one OBJ line (handles the batch flush).
+     auto append = [&](ZoneObj* zo) {
+         UniverseID obj = (UniverseID)zo->id;
 @@ -2885,6 +2885,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
      g_api->log(X4NATIVE_LOG_INFO, "x4mp: HOST requested (in-game menu)");
      g_auto = "host";                       // set role at runtime (menu-driven)
