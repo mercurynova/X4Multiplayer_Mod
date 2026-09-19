@@ -346,7 +346,24 @@ set "X4MP_SOFT_PIN_SPEED=3000"
 set "X4MP_SOFT_PIN_MIN=50"
 set "X4MP_DRIFT_ALERT_M=5"
 set "X4MP_DRIFT_VERBOSE_M=1000"
+REM ============================================================
+REM  steam_appid.txt -- without it X4 relaunches itself through Steam,
+REM  which replaces this launcher's environment and silently discards
+REM  every X4MP_* setting chosen above. See README.txt.
+REM ============================================================
+set "APPID_STATE=present"
+if not exist "%~dp0X4.exe" goto appid_nogame
+if exist "%~dp0steam_appid.txt" goto appid_done
+>"%~dp0steam_appid.txt" echo 392160
+set "APPID_STATE=created"
+if not exist "%~dp0steam_appid.txt" set "APPID_STATE=COULD NOT CREATE - settings will be ignored"
+goto appid_done
+:appid_nogame
+set "APPID_STATE=skipped (no X4.exe next to this script)"
+:appid_done
+
 goto summary
+
 
 
 REM ============================================================
@@ -380,6 +397,7 @@ echo    Net mode   : legacy=%X4MP_LEGACY_NET%
 echo    Region     : %X4MP_REGION%
 echo    Debug      : %X4MP_DEBUG%
 echo    Log file   : %X4MP_LOG%
+echo    appid file : %APPID_STATE%
 if not "%EXTRA_FLAGS%"=="" echo    Extra flags: %EXTRA_FLAGS%
 echo  ==================================================
 set /p GO=Start X4 now [Y/n]: 
