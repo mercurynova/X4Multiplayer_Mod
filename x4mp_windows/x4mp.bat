@@ -14,7 +14,21 @@ REM  Written with flat goto flow (no nested if-blocks) so that
 REM  variables set by a prompt are visible to the very next line.
 REM ============================================================
 
-set "SAVE_DIR=%USERPROFILE%\Documents\EgoSoft\X4\save"
+REM  X4 keeps savegames under a per-account folder:
+REM      %USERPROFILE%\Documents\Egosoft\X4\<account id>\save
+REM  Find it (newest first); override with X4MP_SAVE_DIR if yours is elsewhere.
+set "X4_USER_DIR=%USERPROFILE%\Documents\Egosoft\X4"
+set "SAVE_DIR=%X4MP_SAVE_DIR%"
+if defined SAVE_DIR goto save_dir_done
+for /f "delims=" %%d in ('dir /b /ad /o-d "%X4_USER_DIR%" 2^>nul') do call :try_save_dir "%X4_USER_DIR%\%%d"
+if defined SAVE_DIR goto save_dir_done
+if exist "%X4_USER_DIR%\save" set "SAVE_DIR=%X4_USER_DIR%\save"
+if defined SAVE_DIR goto save_dir_done
+set "SAVE_DIR=%X4_USER_DIR%\save"
+echo  WARN: no X4 save folder found under %X4_USER_DIR%
+echo        falling back to %SAVE_DIR% -- set X4MP_SAVE_DIR to override.
+:save_dir_done
+
 set "DEFAULT_IP=192.168.1.16"
 set "KEY_FILE=%~dp0x4mp_client.key"
 set "EXTRA_FLAGS="
@@ -62,6 +76,7 @@ echo  Client identity: name=%X4MP_CLIENT_NAME% key=%X4MP_CLIENT_KEY%
 REM --- which save must match the host ---
 echo.
 echo  The client MUST load the exact same save as the host.
+echo  Local save folder: %SAVE_DIR%
 set /p SAVE_BASE=Save name to use [save_010]: 
 if "%SAVE_BASE%"=="" set "SAVE_BASE=save_010"
 set "SAVE_BASE=%SAVE_BASE:.xml.gz=%"
@@ -74,8 +89,17 @@ echo  Save not found locally. Copy it from the host?
 echo  (Windows 10/11 ships OpenSSH; you may be asked for the host password)
 set /p DO_SCP=Transfer save from host via scp [Y/n]: 
 if /i "%DO_SCP%"=="n" goto save_present
-set /p REMOTE_SAVE=Full path to the save on the host: 
-if "%REMOTE_SAVE%"=="" set "REMOTE_SAVE=%X4MP_SERVER_IP%:%SAVE_DIR%\%SAVE_NAME%"
+set /p SSH_USER=SSH user on the host [%USERNAME%]: 
+if "%SSH_USER%"=="" set "SSH_USER=%USERNAME%"
+echo.
+echo  Save folder ON THE HOST (not this machine). Examples:
+echo    Linux host  : /home/%SSH_USER%/.config/EgoSoft/X4/^<id^>/save
+echo    Windows host: C:/Users/%SSH_USER%/Documents/Egosoft/X4/^<id^>/save
+set /p REMOTE_SAVE_DIR=Host save folder: 
+if "%REMOTE_SAVE_DIR%"=="" set "REMOTE_SAVE_DIR=%SAVE_DIR%"
+set "REMOTE_SAVE_DIR=%REMOTE_SAVE_DIR:\=/%"
+set "REMOTE_SAVE=%SSH_USER%@%X4MP_SERVER_IP%:%REMOTE_SAVE_DIR%/%SAVE_NAME%"
+if not exist "%SAVE_DIR%" md "%SAVE_DIR%"
 scp -o ConnectTimeout=10 "%REMOTE_SAVE%" "%LOCAL_SAVE%"
 if exist "%LOCAL_SAVE%" goto save_present
 echo.
@@ -157,7 +181,7 @@ goto host_newgame
 echo.
 echo  Available savegames in %SAVE_DIR%:
 set /a n=0
-for %%f in ("%SAVE_DIR%\*.xml.gz") do call :list_save %%~nxf
+for %%f in ("%SAVE_DIR%\*.xml.gz") do call :list_save "%%~nxf"
 echo.
 set /p SAVE_BASE=Save name to load [save_010]: 
 if "%SAVE_BASE%"=="" set "SAVE_BASE=save_010"
@@ -275,6 +299,13 @@ goto dbg_done
 :dbg_on
 set "X4MP_DEBUG=1"
 :dbg_done
+set /p LOGF=Write an on-disk log file [Y/n]: 
+if /i "%LOGF%"=="n" goto log_off
+set "X4MP_LOG=1"
+goto log_done
+:log_off
+set "X4MP_LOG=0"
+:log_done
 goto defaults
 
 
@@ -348,6 +379,7 @@ echo    Transport  : %X4MP_TRANSPORT%
 echo    Net mode   : legacy=%X4MP_LEGACY_NET%
 echo    Region     : %X4MP_REGION%
 echo    Debug      : %X4MP_DEBUG%
+echo    Log file   : %X4MP_LOG%
 if not "%EXTRA_FLAGS%"=="" echo    Extra flags: %EXTRA_FLAGS%
 echo  ==================================================
 set /p GO=Start X4 now [Y/n]: 
@@ -389,10 +421,23 @@ goto :eof
 
 :add_flag
 if "%~1"=="" goto :eof
-if "%~1"=="1" set "EXTRA_FLAGS=%EXTRA_FLAGS% -showfps" & goto :eof
-if "%~1"=="2" set "EXTRA_FLAGS=%EXTRA_FLAGS% -nocputhrottle" & goto :eof
+if "%~1"=="1" goto add_flag_fps
+if "%~1"=="2" goto add_flag_throttle
 REM any other token that starts with a dash is passed through as-is
-for %%c in ("%~1") do if "%%~c1"=="-" set "EXTRA_FLAGS=%EXTRA_FLAGS% %~1"
+set "FLAG_TOK=%~1"
+if not "%FLAG_TOK:~0,1%"=="-" goto :eof
+set "EXTRA_FLAGS=%EXTRA_FLAGS% %FLAG_TOK%"
+goto :eof
+:add_flag_fps
+set "EXTRA_FLAGS=%EXTRA_FLAGS% -showfps"
+goto :eof
+:add_flag_throttle
+set "EXTRA_FLAGS=%EXTRA_FLAGS% -nocputhrottle"
+goto :eof
+
+:try_save_dir
+if defined SAVE_DIR goto :eof
+if exist "%~1\save" set "SAVE_DIR=%~1\save"
 goto :eof
 
 :list_save

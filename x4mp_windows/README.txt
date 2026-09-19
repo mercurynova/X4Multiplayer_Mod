@@ -16,8 +16,11 @@ CONTENTS
 REQUIREMENTS
   * Windows 10 or 11 (64-bit)
   * X4: Foundations installed
-  * No extra runtimes needed -- the DLLs are statically linked and depend
-    only on Windows system libraries.
+  * Microsoft Visual C++ 2015-2022 Redistributable (x64). The x4mp and
+    x4mp_stream DLLs are self-contained, but x4native_64.dll /
+    x4native_core.dll import MSVCP140.dll and VCRUNTIME140.dll. Without
+    the redist the extension silently fails to load.
+    Get it from: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 INSTALL
   1. Copy the three extension folders into your game's extensions dir:
@@ -31,6 +34,10 @@ LAUNCHING
   role (host/client), universe or save, transport (tcp/udp), net mode,
   region streaming, simulation mode, anti-flicker rendering, debug
   logging, and extra X4 flags -- then starts X4.exe.
+
+  Savegames are read from %USERPROFILE%\Documents\Egosoft\X4\<account
+  id>\save -- the launcher finds that folder itself; set X4MP_SAVE_DIR to
+  override it.
 
   Your client identity is stored in x4mp_client.key next to the launcher
   (created on first client run). Keep it if you want the host to remember
