@@ -242,8 +242,16 @@ of the same save).
 - Full boarding *operation* replication (marines/phases) and trading
   *credits* are **not** yet replicated (position + ships + both directions of
   station builds + combat kills + trading cargo + boarding captures are).
-- Linux only for now (the native extensions are compiled `.so` files; a
-  Windows port of the extensions is future work).
+- **Windows**: a Windows build of the extensions now exists in
+  `x4mp_windows/` (DLLs + `x4mp.bat`). It is **partly validated** — the DLLs
+  load into retail X4 9.00, the menu entries appear and a host binds TCP 7778
+  and simulates — but two Windows-specific issues apply (see the 2026-09-18
+  entry in `STATE.md`): X4's Steam relaunch discards the launcher's environment
+  unless a `steam_appid.txt` (`392160`) sits next to `X4.exe`, and the in-game
+  **menu** host path loses its listener when the universe loads, so you must use
+  **auto-start**. Two-machine play on Windows is still untested.
+- Linux is the primary platform (the native extensions there are compiled
+  `.so` files).
 - The host's own autosave can bake ghost objects (player ghosts, simulation
   satellites) into the save file — restart from a known-good save if ghost
   ships appear "from nowhere".

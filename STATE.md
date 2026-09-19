@@ -902,3 +902,121 @@ spawns the client ghost with the correct `cfaction`.
 **Deployed md5 (this fix):** x4mp.so `efb4f15ded4a0b4272cc0ceca27a1634`
 (both machines + release). x4mp_stream.so unchanged
 `14ec256989ba92acd3a34434d72fc1da`. Tarball rebuilt.
+
+
+---
+
+## 2026-09-18 — WINDOWS PORT: first smoke test on real hardware (3 defects found)
+
+First time the Windows build (`x4mp_windows/`, committed 2026-08-27 as "untested")
+has been run against a retail game. Machine: Windows 11, X4 **9.00 (611726)**,
+Steam install, RTX 3070, ~70 other extensions installed alongside.
+
+### What works (verified)
+
+- **The DLLs load.** All four native modules are in the process (`tasklist /m`):
+  `x4native_64.dll`, `x4native_core_live.dll`, `x4mp_live.dll`,
+  `x4mp_stream_live.dll`. The MinGW-w64 build is fine against the retail binary;
+  x4native resolved **2065/2065** game functions for build 900.
+- **Lua UI injection.** "Host Multiplayer" / "Join Multiplayer" appear in the
+  start menu; `X4MP menu: main-menu buttons installed`.
+- **The bridge works.** MD → Lua → C++ round trip: `universe_ready`,
+  `game_started`, and `x4mp_host_request` all dispatch.
+- **Winsock works.** `socket`/`bind`/`listen` all succeed; `x4mp_sock_ensure_init`
+  is present in the DLL. The host binds **TCP 7778** and holds it.
+- **The host simulation runs.** With auto-start: `HOST refreshed ALL ships: 92395
+  (highsim sectors: 1, streamed: 92395)`, `heartbeat — HOST active`, listener
+  still up through a full universe load.
+
+### Defect 1 — environment variables never reach the game (Windows only)
+
+X4 relaunches itself **through Steam** (`SteamAPI_RestartAppIfNecessary`). The
+relaunched process keeps the command line but gets **steam.exe's environment**,
+not the launcher's. Verified: `ppid` of the running X4 was `steam.exe`, and the
+DLL never logged the `X4MP_AUTO=host` line even though it was exported.
+
+Consequence: every `X4MP_*` setting `x4mp.bat` prompts for was silently
+discarded, and the mod always ran on its built-in defaults.
+
+**Workaround that works:** a `steam_appid.txt` containing `392160` next to
+`X4.exe` suppresses the relaunch. After adding it the parent was the launching
+shell and the DLL logged `x4mp: X4MP_AUTO=host — will host a NEW game on game
+loaded`. The launcher should create this file if it is missing; the robust fix
+is for `x4mp` to read a config file next to the extension instead of relying on
+the environment.
+
+### Defect 2 — the in-game menu host path loses its listener
+
+Clicking "Host Multiplayer" binds the socket and then loses it ~0.5 s later:
+
+    02:55:49.757  X4MP menu: requesting HOST
+    02:55:49.759  x4mp: net: HOST listening on TCP port 7778
+    02:55:49.763  x4mp: HOST — NewMultiplayerGame
+    02:55:50.321  Re-discovery: shutting down 2 existing extension(s)
+    02:55:50.328  x4mp: net: CLOSE fd=4916 site=shutdown_listen
+
+Loading a universe makes x4native emit `Lua state updated (UI reload)` and
+**re-discover** native extensions, shutting both down. The re-initialised x4mp
+has no memory of the host request, so it never re-opens the listener.
+`x4native_settings.json` with `{"autoreload": false}` does **not** prevent this
+(tested) — the teardown is on the UI-reload path, not the autoreload path.
+
+**Auto-start survives it** because the fresh instance re-reads `X4MP_AUTO` from
+the environment and re-arms itself:
+
+    03:01:17.897  Re-discovery: shutting down 2 existing extension(s)
+    03:01:17.903  x4mp: net: CLOSE fd=6064 site=shutdown_listen
+    03:01:17.994  x4mp: X4MP_AUTO=host — will host a NEW game on game loaded
+    03:01:17.995  x4mp: net: HOST listening on TCP port 7778     <- back up
+
+So on Windows today: **use auto-start, not the in-game menu.**
+
+**Not Windows-specific in the code.** `Lua state updated (UI reload)`,
+`Re-discovery: shutting down {} existing extension(s)` and `Shutting down
+extension: {}` are all present in the Linux `x4native_core.so` too — worth
+checking whether the menu path has the same hole on Linux, where it is the
+documented default. The fix belongs in `x4mp`: persist the host-requested state
+across shutdown (file or env, since the DLL is unloaded) and re-open the
+listener on the `game loaded` event it already subscribes to.
+
+### Defect 3 — three x4native hooks unresolved on build 9.00
+
+    [warn] Native frame hook: X4_FrameTick not resolved (missing RVA for this build?)
+    [warn] Radar visibility hook: RadarVisibilityChanged_BuildEvent not resolved
+    [warn] MD event hook: EventQueue_InsertOrDispatch not resolved
+
+The MD event hook is the serious one: combat kills (`Killed`), boarding captures
+(`EntityChangedOwner`) and the thin-client boarding exemptions
+(`BoardingOperationStarted`/`Removed`) all ride on MD events. On this build they
+likely never reach the mod, so the 🟡 features cannot be validated on Windows
+9.00 until x4native gains RVAs for it. `X4_FrameTick` unresolved may also affect
+per-frame pinning.
+
+### Smaller findings
+
+- `X4MP_LOG` is **not read** by the Windows build (no such string in the DLL,
+  no `logs/` directory created). Logging goes to
+  `%USERPROFILE%\Documents\Egosoft\X4\<id>\x4native\` instead:
+  `x4native.log`, `x4mp/x4mp.log`, `x4mp_stream/x4mp_stream.log`.
+- A leftover Linux path (`/tmp/x4mp_perf.log`) is still compiled into the
+  Windows DLL for `X4MP_PERF_LOG`.
+- The signature warnings for `x4mp`/`x4native` files are normal for unsigned
+  extensions and can be ignored.
+- `x4mp_windows/` ships no `x4native_settings.json` (the Linux package has one).
+  Adding it changed nothing in testing, but the asymmetry is unintended.
+- x4mp_stream ticks normally in client mode on the host (`objs=0 ghosts=0
+  bindings=0`) — idle, not broken.
+
+### Launcher fixes committed the same day (`x4mp.bat`)
+
+- `SAVE_DIR` pointed at `Documents\EgoSoft\X4\save`; X4 actually stores saves
+  under `Documents\Egosoft\X4\<account id>\save`, so the host save list was
+  always empty. Now auto-detected, `X4MP_SAVE_DIR` overrides.
+- `:add_flag` dropped any flag typed directly (the passthrough compared
+  `"<token>1"` against `"-"`). Options 1 and 2 were unaffected.
+- The default scp source was the *client's own* local path — wrong user, wrong
+  folder, backslashes, no `user@`. Now prompts for SSH user + host-side folder.
+- `X4MP_LOG` prompt added (no-op on Windows, see above); `:list_save` quotes
+  filenames.
+- README.txt claimed no runtimes were needed; `x4native_64.dll` /
+  `x4native_core.dll` import MSVCP140/VCRUNTIME140 (VC++ 2015-2022 x64 redist).

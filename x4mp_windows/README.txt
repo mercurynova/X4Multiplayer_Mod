@@ -29,6 +29,35 @@ INSTALL
   3. Enable:  x4native,  x4mp,  x4mp_stream
   4. Restart the game.
 
+IMPORTANT -- steam_appid.txt (read this before your first run)
+  X4 restarts itself through Steam when it is not launched by Steam. The
+  restarted process keeps the command line but inherits STEAM's environment,
+  which means every X4MP_* setting the launcher exports is thrown away and
+  the mod silently runs on its defaults.
+
+  Fix: create a file named steam_appid.txt next to X4.exe containing the
+  single line
+
+      392160
+
+  With that file present the game no longer relaunches and the launcher's
+  settings take effect. Delete it to restore the normal Steam start.
+
+KNOWN ISSUE -- use AUTO-START, not the in-game menu
+  Clicking "Host Multiplayer" in the start menu opens the listening socket
+  and then loses it: loading the universe makes x4native reload and shut
+  down the extensions, closing the socket, and the reloaded extension does
+  not remember that you asked to host. Auto-start does not suffer from this
+  (the reloaded extension re-reads X4MP_AUTO and re-opens the listener), so
+  choose AUTO-START in the launcher until this is fixed.
+
+  Verified working on X4 9.00 with auto-start: TCP 7778 listening, ~92k
+  ships streamed, "heartbeat -- HOST active".
+
+  Note also that on X4 9.00 x4native cannot resolve the MD event hook
+  (EventQueue_InsertOrDispatch), so combat kills, boarding captures and the
+  boarding inert-exemptions are not expected to work on this build.
+
 LAUNCHING
   Double-click x4mp.bat (it sits next to X4.exe). It walks you through:
   role (host/client), universe or save, transport (tcp/udp), net mode,
@@ -59,7 +88,19 @@ FIREWALL  (important -- the #1 cause of "can't connect")
       private AND public networks.
   Also allow the ports (default 7777/7778, tcp and udp).
 
+LOGS
+  The mod writes its own logs (the launcher's log option does not apply on
+  Windows) to:
+      %USERPROFILE%\Documents\Egosoft\X4\<account id>\x4native\
+          x4native.log              core + both extensions
+          x4mp\x4mp.log             host/client
+          x4mp_stream\x4mp_stream.log
+  "HOST listening on TCP port 7778" there means hosting actually started.
+
 TROUBLESHOOTING
+  * Nothing on port 7778? You almost certainly used the in-game menu -- see
+    KNOWN ISSUE above -- or steam_appid.txt is missing. Check with:
+        netstat -ano | findstr 7778
   * Make sure BOTH machines run the SAME extension build/version.
   * Enable "verbose debug logging" in the launcher and watch the console
     for "x4mp: init" and socket messages.
