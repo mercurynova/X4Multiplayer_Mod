@@ -1,8 +1,33 @@
 diff --git a/examples/x4mp/x4mp.cpp b/examples/x4mp/x4mp.cpp
-index 3a9a76a..9b4ff65 100644
+index 3a9a76a..f69bb2f 100644
 --- a/examples/x4mp/x4mp.cpp
 +++ b/examples/x4mp/x4mp.cpp
-@@ -1374,8 +1374,8 @@ static void net_send_client_objects(NetClient& c) {
+@@ -605,7 +605,14 @@ static bool net_init_client(const char* ip, uint16_t port) {
+         setsockopt(g_sock, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
+         int r = connect(g_sock, (struct sockaddr*)&g_host_sa, sizeof(g_host_sa));
+         if (r == 0) g_client_tcp_connecting = false;
+-        else if (errno == EINPROGRESS) g_client_tcp_connecting = true;
++        // A non-blocking connect() that is still in flight reports EINPROGRESS
++        // on POSIX but WSAEWOULDBLOCK (10035, not WSAEINPROGRESS 10036) on
++        // Windows. Treating that as an error closed a perfectly good socket
++        // the instant the handshake started -- the host saw "client connected"
++        // followed by "recv=0 (CLIENT closed)" in the same millisecond, and no
++        // client could ever join from Windows. EWOULDBLOCK is EAGAIN on POSIX,
++        // which connect() never returns, so accepting both is safe everywhere.
++        else if (errno == EINPROGRESS || errno == EWOULDBLOCK) g_client_tcp_connecting = true;
+         else { net_log("x4mp: net: connect() failed"); net_close_fd(g_sock, "init_client_tcp_connect"); g_sock = -1; return false; }
+         g_net_client = true;
+         g_client_last_recv = std::chrono::steady_clock::now();
+@@ -751,7 +758,7 @@ static void net_client_tcp(NetClient& c) {
+         snprintf(m, sizeof(m), "x4mp: net: TCP stream connected to %s:%u",
+                  inet_ntoa(c.addr.sin_addr), (unsigned)c.stream_port);
+         net_log(m);
+-    } else if (errno == EINPROGRESS) {
++    } else if (errno == EINPROGRESS || errno == EWOULDBLOCK) {  // see net_start(): Windows says EWOULDBLOCK
+         c.tcp_fd = fd; c.tcp_connecting = true; // verify next tick
+     } else {
+         net_close_fd(fd, "net_client_tcp_connect_fail"); c.tcp_backoff = 15;
+@@ -1374,8 +1381,8 @@ static void net_send_client_objects(NetClient& c) {
      // Always send the COMPLETE region state every tick. LAN bandwidth is cheap,
      // and a full authoritative snapshot every tick keeps the client's view
      // exact — no delta-compression staleness to cause prune/respawn flicker.
@@ -13,7 +38,7 @@ index 3a9a76a..9b4ff65 100644
      // Append one OBJ line (handles the batch flush).
      auto append = [&](ZoneObj* zo) {
          UniverseID obj = (UniverseID)zo->id;
-@@ -2885,6 +2885,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
+@@ -2885,6 +2892,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
      g_api->log(X4NATIVE_LOG_INFO, "x4mp: HOST requested (in-game menu)");
      g_auto = "host";                       // set role at runtime (menu-driven)
      if (module && *module) g_module = module;
@@ -26,7 +51,7 @@ index 3a9a76a..9b4ff65 100644
      net_start();                           // start our custom network (UDP 7777) now
      if (!g_save.empty()) {
          g_save_pending = true;             // load the save first; do_host on game loaded
-@@ -2909,6 +2915,10 @@ static void on_join_request(const char* /*event_name*/, void* data, void* /*user
+@@ -2909,6 +2922,10 @@ static void on_join_request(const char* /*event_name*/, void* data, void* /*user
      g_api->log(X4NATIVE_LOG_INFO, "x4mp: JOIN requested (in-game menu)");
      g_auto = "client";                     // set role at runtime (menu-driven)
      if (ip && *ip) { g_server_ip = ip; g_net_host_ip = ip; }
@@ -37,7 +62,7 @@ index 3a9a76a..9b4ff65 100644
      net_start();                           // connect our custom network (UDP 7777) now
      if (!g_save.empty()) {
          g_save_pending = true;             // load the same save; client logic connects
-@@ -3289,6 +3299,33 @@ X4NATIVE_EXPORT int x4native_init(X4NativeAPI* api) {
+@@ -3289,6 +3306,33 @@ X4NATIVE_EXPORT int x4native_init(X4NativeAPI* api) {
      // them to the host over the control channel.
      g_sub_send_act = api->subscribe("x4mp.send_act", on_send_act, nullptr, api);
  
@@ -72,10 +97,20 @@ index 3a9a76a..9b4ff65 100644
      if (g_auto == "client") {
          // THIN CLIENT (Option 1 intermediate): load the SAME save as the host
 diff --git a/examples/x4mp_platform.h b/examples/x4mp_platform.h
-index 81ca750..399d836 100644
+index 81ca750..92302ec 100644
 --- a/examples/x4mp_platform.h
 +++ b/examples/x4mp_platform.h
-@@ -89,7 +89,10 @@ static inline int x4mp_sock_set_nonblocking(int fd) {
+@@ -77,6 +77,9 @@
+ #define EINTR                   WSAEINTR
+ #define EAGAIN                  WSAEWOULDBLOCK
+ #define EWOULDBLOCK             WSAEWOULDBLOCK
++// NOTE: a non-blocking connect() in flight reports WSAEWOULDBLOCK on Windows,
++// NOT WSAEINPROGRESS. Code checking for a pending connect must accept
++// EWOULDBLOCK too -- see the connect sites in x4mp.cpp.
+ #define EINPROGRESS             WSAEINPROGRESS
+ #define EBADF                   WSAEBADF
+ #define EPIPE                   WSAECONNRESET
+@@ -89,7 +92,10 @@ static inline int x4mp_sock_set_nonblocking(int fd) {
  }
  
  static inline const char* x4mp_winsock_strerror(int e) {
@@ -87,7 +122,7 @@ index 81ca750..399d836 100644
      if (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                         0, (DWORD)e, 0, buf, (DWORD)sizeof(buf), 0) == 0) {
          buf[0] = 0;
-@@ -109,6 +112,15 @@ static inline int x4mp_sock_ensure_init(void) {
+@@ -109,6 +115,15 @@ static inline int x4mp_sock_ensure_init(void) {
      return 0;
  }
  
@@ -103,7 +138,7 @@ index 81ca750..399d836 100644
  // dirent stubs: net_dump_fds() is Linux-only diagnostics (reads /proc/self/fd).
  // opendir() returns null so the function no-ops on Windows.
  typedef void DIR;
-@@ -137,4 +149,10 @@ static inline ssize_t         readlink(const char*, char*, size_t) { return -1;
+@@ -137,4 +152,10 @@ static inline ssize_t         readlink(const char*, char*, size_t) { return -1;
  // POSIX: WinSock is not a thing; socket() works immediately.
  static inline int x4mp_sock_ensure_init(void) { return 0; }
  
