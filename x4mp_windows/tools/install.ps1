@@ -101,6 +101,20 @@ foreach ($name in 'x4native', 'x4mp', 'x4mp_stream') {
     Ok "$name"
 }
 
+# Files extracted from a downloaded zip carry a "came from the internet"
+# tag (Mark-of-the-Web). Windows can refuse to load tagged unsigned DLLs
+# into a process, which makes the mod silently never start. Strip it.
+$unblocked = 0
+foreach ($name in 'x4native', 'x4mp', 'x4mp_stream') {
+    $to = Join-Path $extDir $name
+    if (Test-Path $to) {
+        Get-ChildItem -Path $to -Recurse -File | ForEach-Object {
+            try { Unblock-File -Path $_.FullName -ErrorAction Stop; $unblocked++ } catch { }
+        }
+    }
+}
+Ok "unblocked $unblocked file(s) (clears the downloaded-from-internet tag)"
+
 $vdb = Join-Path $extDir 'x4native\native\version_db'
 if (Test-Path $vdb) {
     Ok 'version_db (needed for combat/boarding events)'

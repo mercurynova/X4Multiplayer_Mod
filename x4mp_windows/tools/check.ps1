@@ -35,9 +35,15 @@ function Find-AllX4 {
         }
     }
     $found = @()
-    foreach ($lib in ($libs | Select-Object -Unique)) {
+    $seen = @{}
+    foreach ($lib in $libs) {
         $c = Join-Path $lib 'steamapps\common\X4 Foundations'
-        if (Test-Path (Join-Path $c 'X4.exe')) { $found += $c }
+        if (Test-Path (Join-Path $c 'X4.exe')) {
+            # Windows paths ignore case: d:\steam and D:\Steam are ONE install.
+            $full = (Resolve-Path $c).Path
+            $norm = $full.ToLowerInvariant()
+            if (-not $seen.ContainsKey($norm)) { $seen[$norm] = $true; $found += $full }
+        }
     }
     return $found
 }
@@ -89,6 +95,31 @@ if ($game) {
     }
     if ($missingFiles -gt 0) {
         [void]$problems.Add("$missingFiles mod file(s) missing - run Install.bat")
+    }
+
+    # Mark-of-the-Web: the tag Windows puts on files that came out of a
+    # downloaded zip. It can stop unsigned DLLs loading into a process,
+    # which looks exactly like "the mod does nothing".
+    $blocked = @()
+    foreach ($rel in 'extensions\x4native\native\x4native_64.dll',
+                     'extensions\x4native\native\x4native_core.dll',
+                     'extensions\x4mp\native\x4mp.dll',
+                     'extensions\x4mp_stream\native\x4mp_stream.dll') {
+        $f = Join-Path $game $rel
+        if (Test-Path $f) {
+            try {
+                Get-Item -Path $f -Stream Zone.Identifier -ErrorAction Stop | Out-Null
+                $blocked += $rel
+            } catch { }
+        }
+    }
+    if ($blocked.Count -gt 0) {
+        Bad "$($blocked.Count) DLL(s) tagged 'downloaded from the internet'"
+        Info 'Windows may refuse to load them, so the mod never starts.'
+        Info 'Fix: run Install.bat again - it strips the tag.'
+        [void]$problems.Add('DLLs blocked by Mark-of-the-Web - re-run Install.bat')
+    } else {
+        Ok 'DLLs are not blocked by Windows (no internet tag)'
     }
 }
 
