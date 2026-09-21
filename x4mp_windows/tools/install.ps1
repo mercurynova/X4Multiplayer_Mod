@@ -183,8 +183,9 @@ Say ''
 Say '  ONE more thing before you play - turn the mod on in the game:' White
 Say ''
 Say '    1. Start X4 normally (Steam).'
-Say '    2. Main menu -> Settings -> Extensions.'
-Say '    3. Tick:  x4native   x4mp   x4mp_stream'
+Say '    2. Settings -> Game Options -> turn OFF "Protected UI mode".'
+Say '       (The mod CANNOT load while that is on.)'
+Say '    3. Settings -> Extensions -> tick:  x4native  x4mp  x4mp_stream'
 Say '    4. Quit X4 completely and start it again.'
 Say ''
 Say '  Then, to play together:' White

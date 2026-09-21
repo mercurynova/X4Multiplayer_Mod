@@ -45,15 +45,24 @@ You do not need to understand any of it. Follow the steps.
 ---------------------------------------------------------------
 
   1. Start X4 normally from Steam.
-  2. Main menu -> Settings -> Extensions.
-  3. Tick these three:
+
+  2. Settings -> Game Options -> turn OFF "Protected UI mode".
+
+     THIS ONE IS NOT OPTIONAL. While Protected UI mode is on,
+     Windows never lets the game load the mod at all -- the
+     extensions will look correctly installed and ticked, and
+     absolutely nothing will happen. The game may warn you that
+     some online features are unavailable; that is expected and
+     is the normal cost of running any UI mod.
+
+  3. Settings -> Extensions. Tick these three:
          x4native
          x4mp
          x4mp_stream
+
   4. Close X4 completely, then start it again.
 
-  If you skip this, nothing will work -- the game ignores the
-  mod until you tick the boxes.
+  If you skip either 2 or 3, nothing will work.
 
 
 ---------------------------------------------------------------
@@ -122,6 +131,10 @@ You do not need to understand any of it. Follow the steps.
   whoever gave you this folder and they will know what to do.
 
   Common answers:
+
+  "The mod does nothing at all / no Host Multiplayer entry"
+      Protected UI mode is almost certainly still on. See Step 2.
+      Check Install.bat now reports this directly.
 
   "Nothing happens / I do not see my friend"
       Did everyone tick the three boxes in Step 2 and restart?

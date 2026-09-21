@@ -167,6 +167,24 @@ if ($accounts.Count -eq 0) {
             Ok 'not switched off in content.xml (should be active once the game sees them)'
         }
 
+        # --- Protected UI mode blocks package.loadlib(), which is how the
+        # native DLL gets loaded at all. X4 stores it as <uisafemode>.
+        $cfg = Join-Path $acct.FullName 'config.xml'
+        if (Test-Path $cfg) {
+            $cfgText = Get-Content $cfg -Raw
+            if ($cfgText -match '<uisafemode>\s*true\s*</uisafemode>') {
+                Bad 'PROTECTED UI MODE IS ON - this stops the mod loading'
+                Info 'Fix: start X4 -> Settings -> Game Options -> turn OFF'
+                Info '"Protected UI mode", then restart X4.'
+                [void]$problems.Add('Protected UI mode is ON - turn it off in Settings -> Game Options')
+            } elseif ($cfgText -match '<uisafemode>\s*false\s*</uisafemode>') {
+                Ok 'Protected UI mode is off (required for the mod to load)'
+            } else {
+                Warn 'could not read Protected UI mode from config.xml'
+                Info 'Check Settings -> Game Options -> Protected UI mode is OFF.'
+            }
+        }
+
         # --- did the mod actually run?
         $logDir = Join-Path $acct.FullName 'x4native'
         $log = Join-Path $logDir 'x4native.log'
