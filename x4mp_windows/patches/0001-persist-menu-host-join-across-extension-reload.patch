@@ -149,3 +149,60 @@ index 81ca750..92302ec 100644
 +}
 +
  #endif
+diff --git a/examples/x4mp_stream/x4mp_stream.cpp b/examples/x4mp_stream/x4mp_stream.cpp
+index b03e7f8..31f04d2 100644
+--- a/examples/x4mp_stream/x4mp_stream.cpp
++++ b/examples/x4mp_stream/x4mp_stream.cpp
+@@ -78,6 +78,10 @@ struct RemoteObj {
+     bool has_target = false;
+     bool spawned = false;
+     bool is_player = false;                            // true for PLAYER ghosts (human ships)
++    // The ghost model is chosen once, at spawn. When the host swaps ship the
++    // macro on the wire changes, and without this the client keeps flying the
++    // OLD model around at the new position for the rest of the session.
++    bool macro_changed = false;                        // respawn the ghost with the new macro
+     bool is_station = false;                           // true for STA ghosts (host-built stations)
+     // Glide (sector-entry convergence without a teleport): when a local ship
+     // is bound while diverged from the host position by <= g_glide_max_m,
+@@ -546,6 +550,9 @@ static void parse_line(char* line) {
+             RemoteObj& o = g_objs[cid];
+             if (o.has_target && !o.gliding) { o.px = o.tx; o.py = o.ty; o.pz = o.tz; }
+             o.host_id = cid;
++            // Host swapped ship? The spawned ghost is the wrong model now.
++            if (o.spawned && macro[0] && o.macro[0] && strcmp(o.macro, macro) != 0)
++                o.macro_changed = true;
+             snprintf(o.macro, sizeof(o.macro), "%s", macro[0] ? macro : "?");
+             snprintf(o.faction, sizeof(o.faction), "%s", faction[0] ? faction : "player");
+             if (nf >= 10 && sectormacro[0] && sectormacro[0] != '?')
+@@ -1306,6 +1313,31 @@ static void render_pass() {
+         }
+ 
+         // ---- Ghost path (PLAYER ghosts + host-only ships) -----------------
++        // The macro changed under an existing ghost (the host swapped ship):
++        // drop it here and let the spawn below rebuild it with the right model.
++        // PlayerShipIDs guards the client's OWN ship, which must never be
++        // removed (that triggers Game Over: killmethod=removed).
++        if (o.spawned && o.macro_changed) {
++            o.macro_changed = false;
++            if (o.client_id && g_game->RemoveComponent && g_game->IsValidComponent &&
++                g_game->IsValidComponent(o.client_id)) {
++                PlayerShipIDs pids;
++                if (!pids.contains(o.client_id)) {
++                    g_game->RemoveComponent(o.client_id);
++                    char dbg[220];
++                    snprintf(dbg, sizeof(dbg),
++                             "x4mp_stream: [DBG] ghost %llu macro changed -> respawning as %s",
++                             (unsigned long long)kv.first, o.macro);
++                    net_log(dbg);
++                    o.client_id = 0;
++                    o.spawned = false;
++                }
++            } else {
++                o.client_id = 0;
++                o.spawned = false;
++            }
++        }
++
+         if (!o.spawned) {
+             UniverseID newid = g_game->SpawnObjectAtPos2(o.macro, target_sector, pos,
+                                                          (o.faction[0]) ? o.faction : "player");

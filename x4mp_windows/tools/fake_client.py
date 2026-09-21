@@ -42,7 +42,7 @@ def parse_args():
     p.add_argument("--macro", default=DEFAULT_MACRO, help="ship macro the host should ghost-spawn")
     p.add_argument("--sector", default=None, help="sector macro to claim (default: let the host pick)")
     p.add_argument("--pos", default="0,0,0", help="x,y,z in metres (default: 0,0,0)")
-    p.add_argument("--rate", type=float, default=2.0, help="PLAYER updates per second (default: 2)")
+    p.add_argument("--rate", type=float, default=2.0, help="PLAYER updates per second (default: 2; 0 = observe only, send nothing)")
     p.add_argument("--orbit", type=float, default=0.0, help="metres/s of synthetic movement (default: 0 = stand still)")
     p.add_argument("--verbose", action="store_true", help="print every line received")
     return p.parse_args()
@@ -84,7 +84,7 @@ def main():
 
     while time.time() < deadline:
         now = time.time()
-        if now >= next_player:
+        if a.rate > 0 and now >= next_player:
             next_player = now + (1.0 / a.rate if a.rate > 0 else 1.0)
             if a.orbit:
                 x += a.orbit / max(a.rate, 0.001)
