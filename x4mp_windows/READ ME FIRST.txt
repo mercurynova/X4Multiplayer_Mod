@@ -113,6 +113,16 @@ You do not need to understand any of it. Follow the steps.
   IF IT DOES NOT WORK
 ---------------------------------------------------------------
 
+  FIRST: double-click  Check Install.bat
+
+  It works out what is wrong and says so in plain English --
+  whether the files are in the right place, whether the Windows
+  runtime is missing, whether the mod is switched off inside the
+  game, and whether it ever actually loaded. Send that window to
+  whoever gave you this folder and they will know what to do.
+
+  Common answers:
+
   "Nothing happens / I do not see my friend"
       Did everyone tick the three boxes in Step 2 and restart?
       Is everyone on the same savegame?

@@ -72,6 +72,9 @@ def main():
 
     counts = collections.Counter()
     samples = {}
+    bytes_by_verb = collections.Counter()
+    total_rx = 0
+    rx_window = []
     obj_ids = set()
     welcome_id = None
     buf = b""
@@ -100,6 +103,8 @@ def main():
                 print("host closed the connection")
                 break
             buf += chunk
+            total_rx += len(chunk)
+            rx_window.append((time.time(), len(chunk)))
         except socket.timeout:
             continue
         except OSError as e:
@@ -113,6 +118,7 @@ def main():
                 continue
             verb = line.split(" ", 1)[0]
             counts[verb] += 1
+            bytes_by_verb[verb] += len(raw) + 1
             samples.setdefault(verb, line)
             if a.verbose:
                 print(f"  < {line[:160]}")
@@ -143,9 +149,20 @@ def main():
     if not counts:
         print(" host sent NOTHING")
     for verb, n in counts.most_common():
-        print(f"   {verb:<12} {n:>7}   e.g. {samples[verb][:90]}")
+        print(f"   {verb:<12} {n:>7}  {bytes_by_verb[verb]/1024.0:>9.1f} KB  avg {bytes_by_verb[verb]//max(n,1):>4} B   e.g. {samples[verb][:55]}")
     if obj_ids:
         print(f"   distinct object ids streamed: {len(obj_ids)}")
+    if elapsed > 0:
+        kbs = total_rx / 1024.0 / elapsed
+        print()
+        print(f"   BANDWIDTH  {total_rx/1048576.0:.1f} MB in {elapsed:.0f}s  =  {kbs:,.0f} KB/s  =  {kbs*8/1024:.2f} Mbit/s  (ONE client)")
+        if rx_window:
+            t0w = rx_window[0][0]
+            buckets = collections.Counter()
+            for ts, nbytes in rx_window:
+                buckets[int(ts - t0w)] += nbytes
+            peak = max(buckets.values()) / 1024.0
+            print(f"   PEAK       {peak:,.0f} KB/s  =  {peak*8/1024:.2f} Mbit/s in the busiest second")
     print()
 
     ok_welcome = welcome_id is not None
