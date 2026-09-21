@@ -1,8 +1,35 @@
 diff --git a/examples/x4mp/x4mp.cpp b/examples/x4mp/x4mp.cpp
-index 3a9a76a..f69bb2f 100644
+index 3a9a76a..29a20b2 100644
 --- a/examples/x4mp/x4mp.cpp
 +++ b/examples/x4mp/x4mp.cpp
-@@ -605,7 +605,14 @@ static bool net_init_client(const char* ip, uint16_t port) {
+@@ -203,6 +203,26 @@ static int g_next_client_id = 1;
+ // Host-side representation of each connected client's ship (so the host can
+ // SEE the client's ship). Key = hash of client sockaddr; value = spawned ship id.
+ static std::unordered_map<uint64_t, UniverseID> g_client_ships;
++// The macro each client ghost was SPAWNED with. A ghost keeps the model it was
++// created with, so when a player swaps ship we must tear it down and respawn --
++// otherwise everyone else keeps seeing the ship they were flying at join time.
++static std::unordered_map<uint64_t, std::string> g_client_ship_macro;
++
++// The ship the player is in. GetPlayerObjectID() returns the player OBJECT,
++// which is the character -- its macro is the SPACESUIT whenever the player is
++// standing up, walking or docked, so using it made players broadcast
++// "ship_arg_xs_spacesuit_01_a_macro" to everyone else. Prefer the ship the
++// player occupies/controls and fall back to the old behaviour.
++static UniverseID player_ship_id() {
++    if (!g_game) return 0;
++    UniverseID s = 0;
++    if (g_game->GetPlayerOccupiedShipID)  s = g_game->GetPlayerOccupiedShipID();
++    if (!s && g_game->GetPlayerControlledShipID) s = g_game->GetPlayerControlledShipID();
++    if (!s && g_game->GetPlayerShipID)    s = g_game->GetPlayerShipID();
++    if (!s && g_game->GetPlayerObjectID)  s = g_game->GetPlayerObjectID();
++    return s;
++}
++
+ 
+ // Host-side ghost STATIONS built by each client after load (issue 3). The
+ // save's stations already exist on both sides (same save); only post-load
+@@ -605,7 +625,14 @@ static bool net_init_client(const char* ip, uint16_t port) {
          setsockopt(g_sock, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one));
          int r = connect(g_sock, (struct sockaddr*)&g_host_sa, sizeof(g_host_sa));
          if (r == 0) g_client_tcp_connecting = false;
@@ -18,7 +45,7 @@ index 3a9a76a..f69bb2f 100644
          else { net_log("x4mp: net: connect() failed"); net_close_fd(g_sock, "init_client_tcp_connect"); g_sock = -1; return false; }
          g_net_client = true;
          g_client_last_recv = std::chrono::steady_clock::now();
-@@ -751,7 +758,7 @@ static void net_client_tcp(NetClient& c) {
+@@ -751,7 +778,7 @@ static void net_client_tcp(NetClient& c) {
          snprintf(m, sizeof(m), "x4mp: net: TCP stream connected to %s:%u",
                   inet_ntoa(c.addr.sin_addr), (unsigned)c.stream_port);
          net_log(m);
@@ -27,7 +54,24 @@ index 3a9a76a..f69bb2f 100644
          c.tcp_fd = fd; c.tcp_connecting = true; // verify next tick
      } else {
          net_close_fd(fd, "net_client_tcp_connect_fail"); c.tcp_backoff = 15;
-@@ -1374,8 +1381,8 @@ static void net_send_client_objects(NetClient& c) {
+@@ -891,7 +918,7 @@ static void net_send_snapshot_host() {
+     // the server's player ship as a separate entity. (SNAP alone only moves the
+     // client's camera when paused; this spawns a visible ghost of the host.)
+     if (g_game && g_game->GetPlayerObjectID && g_game->GetObjectPositionInSector) {
+-        UniverseID pship = g_game->GetPlayerObjectID();
++        UniverseID pship = player_ship_id();
+         if (pship) {
+             UIPosRot ppos = g_game->GetObjectPositionInSector(pship);
+             char pmacro[160]; get_macro(pship, pmacro, sizeof(pmacro));
+@@ -1175,6 +1202,7 @@ static void net_maintain_universe() {
+                 if (g_game->IsValidComponent && g_game->IsValidComponent(shipit->second))
+                     g_game->RemoveComponent(shipit->second);
+                 g_client_ships.erase(shipit);
++                g_client_ship_macro.erase(it->first);
+             }
+             auto stnit = g_client_stations.find(it->first);
+             if (stnit != g_client_stations.end()) {
+@@ -1374,8 +1402,8 @@ static void net_send_client_objects(NetClient& c) {
      // Always send the COMPLETE region state every tick. LAN bandwidth is cheap,
      // and a full authoritative snapshot every tick keeps the client's view
      // exact — no delta-compression staleness to cause prune/respawn flicker.
@@ -38,7 +82,49 @@ index 3a9a76a..f69bb2f 100644
      // Append one OBJ line (handles the batch flush).
      auto append = [&](ZoneObj* zo) {
          UniverseID obj = (UniverseID)zo->id;
-@@ -2885,6 +2892,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
+@@ -2045,11 +2073,32 @@ static void process_message(const char* msg, const struct sockaddr_in& from) {
+                 UIPosRot pos; pos.x = x; pos.y = y; pos.z = z;
+                 pos.yaw = yaw; pos.pitch = pitch; pos.roll = roll;
+                 auto it = g_client_ships.find(key);
++                // Client swapped ship? Its ghost still has the old model, and a
++                // ghost's macro is fixed at spawn -- drop it so the spawn path
++                // below rebuilds it. (Mirror of the same fix in x4mp_stream.)
++                if (it != g_client_ships.end() && st.macro[0]) {
++                    auto mit = g_client_ship_macro.find(key);
++                    if (mit != g_client_ship_macro.end() && mit->second != st.macro) {
++                        if (g_game && g_game->RemoveComponent && g_game->IsValidComponent &&
++                            g_game->IsValidComponent(it->second))
++                            g_game->RemoveComponent(it->second);
++                        g_host_only_objects.erase(it->second);
++                        g_client_ships.erase(it);
++                        g_client_ship_macro.erase(mit);
++                        it = g_client_ships.end();
++                        if (g_debug) {
++                            char dbg[220];
++                            snprintf(dbg, sizeof(dbg), "x4mp: [DBG] HOST client ghost macro changed -> respawning as %s", st.macro);
++                            net_debug(dbg);
++                        }
++                    }
++                }
+                 if (it == g_client_ships.end()) {
+                     if (g_game && g_game->SpawnObjectAtPos2 && sector && cfaction[0]) {
+                         UniverseID ship = g_game->SpawnObjectAtPos2(st.macro, sector, pos, cfaction);
+                         if (ship) {
+                             g_client_ships[key] = ship;
++                            g_client_ship_macro[key] = st.macro;
+                             g_host_only_objects.insert(ship); // never stream ghosts back
+                         }
+                         if (g_debug) { char dbg[280]; snprintf(dbg, sizeof(dbg), "x4mp: [DBG] HOST spawned client ghost id=%llu macro=%s sector=%s(%llu) faction=%s", (unsigned long long)ship, st.macro, st.sector_macro[0]?st.sector_macro:"?", (unsigned long long)sector, cfaction); net_debug(dbg); }
+@@ -2579,7 +2628,7 @@ static void net_update() {
+                 // can see us. Only once we are in the universe with a valid ship.
+                 if (g_client_ready && g_game && g_game->GetPlayerObjectID &&
+                     g_game->GetObjectPositionInSector) {
+-                    UniverseID ship = g_game->GetPlayerObjectID();
++                    UniverseID ship = player_ship_id();
+                     if (ship) {
+                         UIPosRot pos = g_game->GetObjectPositionInSector(ship);
+                         char macro[160]; get_macro(ship, macro, sizeof(macro));
+@@ -2885,6 +2934,12 @@ static void on_host_request(const char* /*event_name*/, void* data, void* /*user
      g_api->log(X4NATIVE_LOG_INFO, "x4mp: HOST requested (in-game menu)");
      g_auto = "host";                       // set role at runtime (menu-driven)
      if (module && *module) g_module = module;
@@ -51,7 +137,7 @@ index 3a9a76a..f69bb2f 100644
      net_start();                           // start our custom network (UDP 7777) now
      if (!g_save.empty()) {
          g_save_pending = true;             // load the save first; do_host on game loaded
-@@ -2909,6 +2922,10 @@ static void on_join_request(const char* /*event_name*/, void* data, void* /*user
+@@ -2909,6 +2964,10 @@ static void on_join_request(const char* /*event_name*/, void* data, void* /*user
      g_api->log(X4NATIVE_LOG_INFO, "x4mp: JOIN requested (in-game menu)");
      g_auto = "client";                     // set role at runtime (menu-driven)
      if (ip && *ip) { g_server_ip = ip; g_net_host_ip = ip; }
@@ -62,7 +148,7 @@ index 3a9a76a..f69bb2f 100644
      net_start();                           // connect our custom network (UDP 7777) now
      if (!g_save.empty()) {
          g_save_pending = true;             // load the same save; client logic connects
-@@ -3289,6 +3306,33 @@ X4NATIVE_EXPORT int x4native_init(X4NativeAPI* api) {
+@@ -3289,6 +3348,33 @@ X4NATIVE_EXPORT int x4native_init(X4NativeAPI* api) {
      // them to the host over the control channel.
      g_sub_send_act = api->subscribe("x4mp.send_act", on_send_act, nullptr, api);
  
